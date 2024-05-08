@@ -1,3 +1,157 @@
-* {
+body{
     font-family: "Poppins", sans-serif;
+    background-color: #ffff;
 }
+
+.navbar-nav {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+   
+}
+.bg-custom {
+    background-color: #f4f4f4; /* Warna latar belakang navbar */
+}
+
+/* Background dan warna teks untuk navbar */
+.navbar {
+    background-color: #d5d4d4; /* Warna latar belakang navbar */
+    color: white; /* Warna teks navbar */
+}
+
+/* Warna teks pada link navbar */
+.navbar-nav .nav-link {
+    color: white; /* Warna teks link navbar */
+}
+
+/* Warna teks pada tombol search */
+.navbar .btn-primary {
+    background-color: #007bff; /* Warna latar belakang tombol */
+    border-color: #007bff; /* Warna border tombol */
+}
+
+/* Hover effect pada link navbar */
+.navbar-nav .nav-link:hover {
+    color: #f8f9fa; /* Warna teks link navbar saat hover */
+}
+
+/* Hover effect pada tombol search */
+.navbar .btn-primary:hover {
+    background-color: #0056b3; /* Warna latar belakang tombol saat hover */
+    border-color: #0056b3; /* Warna border tombol saat hover */
+}
+
+
+.main-web{
+    width: 1440px;
+    height: 508px;
+    overflow: hidden;
+    margin-bottom: 30px;  
+}
+
+.title-capstone1 {
+    color: #F4F4F4;
+    margin-top: 20%;
+    font-size: 5em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+    
+
+.title-capstone2 {
+    color: #F4F4F4;
+    font-size: 3em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    
+}
+
+.container-overview {
+    display: flex;
+    min-height: auto;
+    width: 1440px;
+    height: 508px;
+    overflow: hidden;
+    
+}    
+
+.overview {
+    flex: 1; /* Membuat elemen memiliki proporsi yang sama */
+    padding: 10px; /* Tambahan padding untuk memberikan ruang di sekitar konten */
+}
+
+.container-analysis {
+    display: flex;
+    min-height: auto;
+    width: 1440px;
+    height: 508px;
+    overflow: hidden; 
+}
+
+.analysis {
+    flex: 1; /* Membuat elemen memiliki proporsi yang sama */
+    padding: 10px; /* Tambahan padding untuk memberikan ruang di sekitar konten */
+}
+
+.container-teams,
+.container-technology {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Menengahkan secara horizontal */
+    padding: 20px;
+    margin-bottom: 30px;  
+}
+
+.container-teams h2,
+.container-technology h2,
+.container-technology .technology {
+    margin-bottom: 20px; /* Menambahkan margin bawah agar terlihat lebih baik */
+}
+.container-teams p{
+    text-align: center;
+}
+
+
+
+
+
+
+
+.card {
+    border-radius: 0; /* Menghilangkan border radius */
+    box-shadow: none; /* Menghilangkan bayangan */
+}
+
+h2.card-title {
+    text-shadow: 2px 2px 4px #888; /* Menambahkan bayangan pada judul h5 */
+}
+
+.cadtechnology {
+    text-shadow: 2px 2px 4px #888; /* Menambahkan bayangan pada judul h5 dengan kelas cadtechnology */
+}
+.container-footer{
+    margin: 30px;
+    display:flex;
+    justify-content: flex-end;
+  }
+
+
+.footer1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 2px;
+    margin-right: 2px;
+  }
+
+.footer-link ul {
+    list-style: none; /* Menghilangkan bulatan */
+    padding: 20px; 
+    margin: 20px;
+   
+}
+
+.footer-link ul li a {
+    text-decoration: none; /* Menghilangkan garis bawah pada tautan */
+  
+}
+
+
