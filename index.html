@@ -6,56 +6,149 @@
         <!-- link boostrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <!-- custom css link -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
         <link rel="stylesheet" href="./css/style.css">
-        
         <title>Team 14 - Home</title>
     </head>
     <body>
+        <div class="bg-utama">
         <!-- header -->
         <header>
             <!-- navbar -->
-            <nav class="navbar fixed-top">
-                <div class="container-fluid">
-                    <ul class="nav nav-underline">
-                        <li class="nav-item">
-                          <a class="nav-link" href="#">Home</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="#">Analysis</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="#">Teams</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
-                        </li>
-                    </ul>
+            <nav class="navbar navbar-expand-lg bg-custom">
+                <div class="container-fluid">  
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/index.html">Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/analisis.html">Analysis</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/team.html">Teams</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/about.html">About</a>
+                            </li>
+                        </ul>
+                        <form class="d-flex" role="search">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <a href="#" class="btn btn-primary">More</a>
+                        </form>                       
+                    </div>
                 </div>
-              </nav>
+            </nav>
+            
         </header>
         <!-- main section -->
         <main>
             <!-- section home -->
-            <section></section>
+            <section class="main-web">
+                <div class="cardmain1 text-bg-light">
+                    <img src="img/gambar2.jpg" class="card-img" alt="contoh gambar">
+                    <div class="card-img-overlay">
+                        <h1 class="title-capstone1">Capstone Project</h1>
+                        <p class="title-capstone2">Team 14 - Jayapura</p>
+                        
+                    </div>
+                </div>
+            </section>
+        </main>
+        
 
             <!-- section project overview -->
-            <section></section>
+            <section class="container-overview">
+                <article class="overview">
+                    <h2>Project Overview</h2>
+                </article>
+                <article class="overview">
+                <p>Lorem ipsum dolor sit amet consectetur. Feugiat cursus elementum mauris urna volutpat sed nisl purus. Eget eu tincidunt eget mollis amet morbi commodo mi id. Aliquet sed adipiscing molestie aliquam euismod egestas phasellus mus. Cursus arcu faucibus at vel eget in volutpat massa eget. Justo elementum nisl a fringilla. Pellentesque in hendrerit donec nibh enim id ut tempus in. Aliquet nulla enim praesent dui volutpat diam adipiscing accumsan mattis. Euismod viverra nunc justo eget ut velit. Vulputate elit integer at netus nunc</p>
+                <a href="#" class="btn btn-primary">More</a>
+            </article>
+            </section>
 
             <!-- section analysis overview -->
-            <section></section>
+            <section class="container-analysis">
+                <article class="analysis">
+                        <h2>The Superstore Analysis✨</h2>
+                    </article>
+                    <article class="analysis">
+                        <p>Lorem ipsum dolor sit amet consectetur. Feugiat cursus elementum mauris urna volutpat sed nisl purus. Eget eu tincidunt eget mollis amet morbi commodo mi id. Aliquet sed adipiscing molestie aliquam euismod egestas phasellus mus. Cursus arcu faucibus at vel eget in volutpat massa eget. Justo elementum nisl a fringilla. Pellentesque in hendrerit donec nibh enim id ut tempus in. Aliquet nulla enim praesent dui volutpat diam adipiscing accumsan mattis. Euismod viverra nunc justo eget ut velit. Vulputate elit integer at netus nunc.</p>
+                        <a href="#" class="btn btn-primary">More</a>
+                    </article>
+            </section>
 
             <!-- section team overview -->
-            <section></section>
+            <article class="container-teams">
+                      <h2>Meet Our Great Teams 🔥</h2>
+                      <p>Lorem ipsum dolor sit amet consectetur. Feugiat cursus elementum mauris urna volutpat sed nisl purus. Eget eu tincidunt eget mollis amet morbi commodo mi id. Aliquet sed adipiscing molestie aliquam euismod egestas phasellus mus.</p>
+                      <a href="#" class="btn btn-primary">More</a>
+                    </article>
+                </section>
 
             <!-- section teknologi -->
-            <section></section>
+            <article class="container-technology">
+                <h2>Technology We Used</h2>
+              <div class="technology">gambar atau logo aplikasi yang dipake</div>
+              <a href="#" class="btn btn-primary">More</a>
+              </article>
+          </section>
+
         </main>
+        
+        <section class="container-footer">
+            <article class="footer-link">
+                <h4>Dashboard</h4>
+                <ul>
+                    <li><a href="#">Overview</a></li>
+                    <li><a href="#">Analysis Overview</a></li>
+                    <li><a href="#">Teams</a></li>
+                    <li><a href="#">Technology</a></li>
+                </ul>
+            </article>
+            <article class="footer-link">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Analysis</a></li>
+                    <li><a href="#">Teams</a></li>
+                    <li><a href="#">About</a></li>
+                   </ul>
+            </article>
+            <article class="footer-link">
+                <h4>Attachment</h4>
+                <ul>
+                    <li><a href="#">Looker</a></li>
+                    <li><a href="#">RCA</a></li>
+                    <li><a href="#">Dataset</a></li>
+                </ul>
+            </article>
 
-        <!-- bagian footer -->
-        <footer>
-
-        </footer>
-
+        </section>
+        <footer class="text-center bg-body-tertiary">
+            <section class="footer1 d-flex justify-content-between align-items-center py-3" style="background-color: rgba(0, 0, 0, 0.05);">
+                <!-- Copyright -->
+                <div class="text-start">
+                  © 2024, Jayapura14-TechAcademy
+                </div>
+              
+                <!-- Social media -->
+                <div class="text-end">
+                  <!-- Instagram -->
+                  <a href="#!" class="link1 btn btn-link btn-floating btn-lg text-body m-10"><i class="fab fa-instagram"></i></a>
+              
+                  <!-- Email -->
+                  <a href="#!" class="link2 btn btn-link btn-floating btn-lg text-body m-10"><i class="far fa-envelope"></i></a>
+              
+                  <!-- GitHub -->
+                  <a href="#!" class="link3 btn btn-link btn-floating btn-lg text-body m-10"><i class="fab fa-github"></i></a>
+                </div>
+              </section>
+              
+          </footer>
+        
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     </body>
 </html>
