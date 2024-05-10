@@ -1,0 +1,175 @@
+.font-h1{
+    font-size: 56px;
+}
+.p-large{
+    font-size: 24px;
+}
+.sub-h1{
+    font-size: 48px;
+    padding-bottom: 16px;
+}
+
+body{
+    font-family: "Poppins", sans-serif;
+    background-color: #ffff;
+}
+
+.navbar-nav {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+   
+}
+
+/* .bg-custom {
+    background-color: #f4f4f4; /* Warna latar belakang navbar */
+
+
+/* Hero Section */
+/* .hero-analisis {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    text-align: center;
+    color: white;
+    height: 508px;
+}
+
+#logo-hero {
+    display: flex;
+    justify-content: flex-end;
+    text-align: right;
+    position: relative;
+    bottom: 32px;
+    right: 32px;
+    padding-right: 10%;
+}
+
+#logo-hero img {
+    margin-left: 16px;
+    height: 56px;
+} */
+.hero-analisis {
+    position: relative;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    height: 508px;
+}
+
+.bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background-image: url('img/header-analisis.png'); */
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -1; /* Menempatkan gambar latar belakang di belakang elemen lain */
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+    color: white;
+    top: 174px; /*perlukah bagian ini?*/
+}
+
+#logo-hero {
+    position: relative;
+    bottom: 32px;
+    right: 32px;
+    text-align: right;
+    padding-right: 10%;
+}
+
+#logo-hero img {
+    margin-left: 24px;
+    height: 56px;
+}
+    
+.operpiu, .problem{
+    align-items: normal;
+    margin: auto;
+    padding: 64px;
+}
+.row{
+    padding-bottom: 32px;
+}
+
+.rca{
+    border-radius: 30px;
+    border: #0072F0;
+}
+
+.daviz, .dataset{
+    margin: auto;
+    padding: 96px;
+}
+.looker{
+    border-radius: 30px;
+    height: 65%;
+    width: auto;
+}
+.dset{
+    height: fit-content;
+    width: auto;
+}
+
+/* Background dan warna teks untuk navbar */
+.navbar {
+    background-color: #f4f4f4; /* Warna latar belakang navbar */
+    color: #0072F0; /* Warna teks navbar */
+}
+
+/* Warna teks pada link navbar */
+.navbar-nav .nav-link {
+    color: #0072F0; /* Warna teks link navbar */
+}
+
+/* Warna teks pada tombol */
+.btn-primary {
+    background-color: #007bff; /* Warna latar belakang tombol */
+    border-color: #007bff; /* Warna border tombol */
+    padding-left: 48px;
+    padding-right: 48px;
+}
+
+/* Hover effect pada link navbar */
+.navbar-nav .nav-link:hover {
+    color: #007bff; /* Warna teks link navbar saat hover */
+}
+
+/* Hover effect pada tombol search */
+.navbar .btn-primary:hover {
+    background-color: #0056b3; /* Warna latar belakang tombol saat hover */
+    border-color: #0056b3; /* Warna border tombol saat hover */
+}
+
+.container-footer{
+    margin: 30px;
+    display:flex;
+    justify-content: flex-end;
+}
+
+
+.footer1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 2px;
+    margin-right: 2px;
+  }
+
+.footer-link ul {
+    list-style: none; /* Menghilangkan bulatan */
+    padding: 20px; 
+    margin: 20px;
+   
+}
+
+.footer-link ul li a {
+    text-decoration: none; /* Menghilangkan garis bawah pada tautan */
+  
+}
