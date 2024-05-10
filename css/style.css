@@ -10,41 +10,39 @@ body{
    
 }
 .bg-custom {
-    background-color: #f4f4f4; /* Warna latar belakang navbar */
+    background-color: #f4f4f4;
 }
 
-/* Background dan warna teks untuk navbar */
+
 .navbar {
-    background-color: #d5d4d4; /* Warna latar belakang navbar */
-    color: white; /* Warna teks navbar */
+    background-color: #d5d4d4; 
+    color: white; 
 }
 
-/* Warna teks pada link navbar */
+
 .navbar-nav .nav-link {
-    color: white; /* Warna teks link navbar */
+    color: white; 
 }
 
-/* Warna teks pada tombol search */
+
 .navbar .btn-primary {
-    background-color: #007bff; /* Warna latar belakang tombol */
-    border-color: #007bff; /* Warna border tombol */
+    background-color: #007bff; 
+    border-color: #007bff; 
 }
 
-/* Hover effect pada link navbar */
+
 .navbar-nav .nav-link:hover {
-    color: #f8f9fa; /* Warna teks link navbar saat hover */
+    color: #f8f9fa; 
 }
 
-/* Hover effect pada tombol search */
+
 .navbar .btn-primary:hover {
-    background-color: #0056b3; /* Warna latar belakang tombol saat hover */
-    border-color: #0056b3; /* Warna border tombol saat hover */
+    background-color: #0056b3; 
+    border-color: #0056b3; 
 }
 
 
 .main-web{
-    width: 1440px;
-    height: 508px;
     overflow: hidden;
     margin-bottom: 30px;  
 }
@@ -67,35 +65,32 @@ body{
 .container-overview {
     display: flex;
     min-height: auto;
-    width: 1440px;
-    height: 508px;
     overflow: hidden;
     
 }    
 
 .overview {
-    flex: 1; /* Membuat elemen memiliki proporsi yang sama */
-    padding: 10px; /* Tambahan padding untuk memberikan ruang di sekitar konten */
+    flex: 1;
+    padding: 20px; 
 }
 
 .container-analysis {
     display: flex;
     min-height: auto;
-    width: 1440px;
-    height: 508px;
     overflow: hidden; 
+    background-color: #7d847f;
 }
 
 .analysis {
-    flex: 1; /* Membuat elemen memiliki proporsi yang sama */
-    padding: 10px; /* Tambahan padding untuk memberikan ruang di sekitar konten */
+    flex: 1; 
+    padding: 20px;
 }
 
 .container-teams,
 .container-technology {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Menengahkan secara horizontal */
+    align-items: center; 
     padding: 20px;
     margin-bottom: 30px;  
 }
@@ -103,7 +98,7 @@ body{
 .container-teams h2,
 .container-technology h2,
 .container-technology .technology {
-    margin-bottom: 20px; /* Menambahkan margin bawah agar terlihat lebih baik */
+    margin-bottom: 20px;
 }
 .container-teams p{
     text-align: center;
@@ -116,42 +111,63 @@ body{
 
 
 .card {
-    border-radius: 0; /* Menghilangkan border radius */
-    box-shadow: none; /* Menghilangkan bayangan */
+    border-radius: 0; 
+    box-shadow: none; 
 }
 
 h2.card-title {
-    text-shadow: 2px 2px 4px #888; /* Menambahkan bayangan pada judul h5 */
+    text-shadow: 2px 2px 4px #888;
 }
 
 .cadtechnology {
-    text-shadow: 2px 2px 4px #888; /* Menambahkan bayangan pada judul h5 dengan kelas cadtechnology */
+    text-shadow: 2px 2px 4px #888; 
 }
+
+.btn {
+    padding: 7px 25px; 
+  }
+
+  footer {
+    padding: 20px; 
+}
+
 .container-footer{
     margin: 30px;
     display:flex;
     justify-content: flex-end;
-  }
-
+}
 
 .footer1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-left: 2px;
-    margin-right: 2px;
-  }
+    padding-top: 10px;
+    padding-bottom: 10px; 
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.footer1 .text-end a {
+    margin-right: 10px; 
+}
+
+.link-instagram,
+.link-email,
+.link-github {
+    display: inline-block;
+    font-size: 20px;
+    color: inherit;
+    margin: 0 5px; 
+}
+  
 
 .footer-link ul {
-    list-style: none; /* Menghilangkan bulatan */
+    list-style: none; 
     padding: 20px; 
     margin: 20px;
    
 }
 
 .footer-link ul li a {
-    text-decoration: none; /* Menghilangkan garis bawah pada tautan */
+    text-decoration: none; 
   
 }
-
-
