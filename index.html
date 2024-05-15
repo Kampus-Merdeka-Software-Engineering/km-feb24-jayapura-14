@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Team 14 - Home</title>
         
-        <!-- link icom font awesome -->
+        <!-- link icon font awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <!-- custom css link -->
         <link rel="Shortcut icon" href="./img/logo/14-logo.svg" />
@@ -22,7 +22,8 @@
                     </label>
                     <label class="logo"><img src="img/logo/Logo.svg" alt="logo" href="index.html"/></label>
                     <ul>
-                      <li><a href="#home">Home</a></li>
+                      <li><a href="/index.html">Home</a></li>
+                      <li><a href="#about">About</a></li>
                       <li>
                           <div class="dropdown">
                               <a href="#" class="dropbtn"></i>Analysis <i class="fa-solid fa-chevron-down"></i></a>
@@ -35,7 +36,6 @@
                       </li>
                       <li><a href="#team">Teams</a></li>
                       <li><a href="#tools">Tools</a></li>
-                      <li><a href="#about">About</a></li>
                       <li><a href="#">Contact</a></li>
                     </ul>
                 </div>
@@ -44,9 +44,10 @@
         <!-- main section -->
         <main>
             <!-- section home -->
-            <section class="main-web" id="home">
+            <section class="hero container-fluid" id="home">
                 <div class="bg-image">
-                    <img src="img/Hero-home.png" width="2040px" height="508px" alt="contoh gambar">
+                    <!-- width="2040px" -->
+                    <img src="img/Hero-home.png" width="100%" height="508px" alt="contoh gambar">
                 </div>
                 <div class="content">
                     <h1 class="title-capstone1">Capstone Project</h1>
@@ -59,7 +60,7 @@
             </section>
         
             <!-- section project overview -->
-            <section class="container-overview" id="about">
+            <section class="container-overview flex-container container-fluid" id="about">
                 <article class="overview">
                     <h2>About The <span style="color: #0072f0; font-style: italic;">Project</span></h2>
                 </article>
@@ -69,12 +70,13 @@
             </section>
 
             <!-- section analysis overview -->
-            <section class="container-analysis">
+            <section class="container-analysis flex-container container-fluid" id="analisis">
                 <div class="bg-image">
-                    <img src="img/analysis-section.png" width="2040px" height="508px" alt="contoh gambar">
+                    <img src="img/analysis-section.png" width="100%" height="508px" alt="contoh gambar">
                 </div>
                 <article class="analysis">
-                    <h2 style="padding-left: 72px;">The Superstore <br>Analysis✨</h2>
+                    <h2>The Superstore Analysis✨</h2>
+                    <!-- <h2 style="padding-left: 64px;">The Superstore Analysis✨</h2> -->
                 </article>
                 <article class="analysis">
                     <p>Lorem ipsum dolor sit amet consectetur. Feugiat cursus elementum mauris urna volutpat sed nisl purus. Eget eu tincidunt eget mollis amet morbi commodo mi id. Aliquet sed adipiscing molestie aliquam euismod egestas phasellus mus. Cursus arcu faucibus at vel eget in volutpat massa eget. Justo elementum nisl a fringilla. Pellentesque in hendrerit donec nibh enim id ut tempus in. Aliquet nulla enim praesent dui volutpat diam adipiscing accumsan mattis. Euismod viverra nunc justo eget ut velit. Vulputate elit integer at netus nunc.</p>
@@ -83,21 +85,19 @@
             </section>
 
             <!-- section team overview -->
-            <section class="container-teams" id="team">
+            <section class="container-teams container-fluid" id="team">
                 <h2>Meet Our Great <span style="color: #0072f0; font-style: italic;">Team</span> 🔥</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, praesentium! Velit obcaecati quas exercitationem totam temporibus <br> ullam dolor quidem minus? Cupiditate quas blanditiis animi totam, similique unde distinctio aut?</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, praesentium! Velit obcaecati quas exercitationem totam temporibus ullam dolor quidem minus? Cupiditate quas blanditiis animi totam, similique unde distinctio aut?</p>
             </section>
 
             <!-- Section Acknoeledgemnet -->
-            <section>
-                <article class="container-acknowledgement">
-                    <h2>Acknowledgement</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur. Feugiat cursus elementum mauris urna volutpat sed nisl purus. Eget eu tincidunt eget mollis amet morbi commodo mi id. <br> Aliquet sed adipiscing molestie aliquam euismod egestas phasellus mus. Cursus arcu faucibus at vel eget in volutpat massa eget. Justo elementum nisl a fringilla. Pellentesque in hendrerit donec nibh enim id ut tempus in.</p>
-                </article>
+            <section class="container-acknowledgement container-fluid">
+                <h2>Acknowledgement</h2>
+                <p>Lorem ipsum dolor sit amet consectetur. Feugiat cursus elementum mauris urna volutpat sed nisl purus. Eget eu tincidunt eget mollis amet morbi commodo mi id. Aliquet sed adipiscing molestie aliquam euismod egestas phasellus mus. Cursus arcu faucibus at vel eget in volutpat massa eget. Justo elementum nisl a fringilla. Pellentesque in hendrerit donec nibh enim id ut tempus in.</p>
             </section>
 
             <!-- section teknologi -->
-            <section class="container-technology" id="tools">
+            <section class="container-technology container-fluid" id="tools">
                 <h2>Technology We <span style="color: #0072f0; font-style: italic;">Used</span></h2>
                 <div class="flex-container technology">
                     <div><img src="img/tools-logo/Figma.svg" alt="Figma"></div>
@@ -108,75 +108,72 @@
                     <div><img src="img/tools-logo/Html 5.svg" alt="HTML"></div>
                     <div><img src="img/tools-logo/CSS3.svg" alt="CSS"></div>
                     <div><img src="img/tools-logo/JavaScript.svg" alt="JavaScript"></div>
-                </div>
-                <div class="flex-container technology">
                     <div><img src="img/tools-logo/GitHub.svg" alt="GitHub"></div>
                     <div><img src="img/tools-logo/Slack New.svg" alt="Slack"></div>
-                    <div><img src="img/tools-logo/77673807.png" style="height: 88px; width: auto;" alt="w3school"></div>
-                    <div><img src="img/tools-logo/zoom-logo-41643.png" style="height: 88px; width: auto;" alt="zoom"></div>
+                    <div><img src="img/tools-logo/77673807.png" alt="w3school"></div>
+                    <div><img src="img/tools-logo/zoom-logo-41643.png" alt="zoom"></div>
                 </div>
             </section>
 
             <!-- section support by -->
-            <section>
-                <section class="container-supportby">
-                    <article class="support-item">
-                        <h2>Support <span style="color: #0072f0; font-style: italic;">By</span></h2>
-                        <div class="img-container">
-                            <img src="img/Logo_KM-color.svg" class="img-thumbnail" alt="logoKM">
-                            <img src="img/RevoU.svg" class="img-thumbnail" alt="logoRevoU">
-                        </div>
-                    </article>
-                </section>
+            <section class="container-supportby container-fluid">
+                <h2>Support <span style="color: #0072f0; font-style: italic;">By</span></h2>
+                <div>
+                    <img src="img/Logo_KM-color.svg" class="img-thumbnail" alt="logoKM">
+                    <img src="img/RevoU.svg" class="img-thumbnail" alt="logoRevoU">
+                </div>
             </section>
         </main>
+        
+        <!-- footer -->
         <footer class="container-fluid">
-            <section class="container-footer">
-                    <article class="footer-link">
-                        <h4>Dashboard</h4>
-                        <ul>
-                            <li><a href="#">Overview</a></li>
-                            <li><a href="#">Analysis Overview</a></li>
-                            <li><a href="#">Teams</a></li>
-                            <li><a href="#">Technology</a></li>
-                        </ul>
-                    </article>
-                    <article class="footer-link">
-                        <h4>Navigation</h4>
-                        <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Analysis</a></li>
-                            <li><a href="#">Teams</a></li>
-                            <li><a href="#">About</a></li>
-                           </ul>
-                    </article>
-                    <article class="footer-link">
-                        <h4>Attachment</h4>
-                        <ul>
-                            <li><a href="#">Looker</a></li>
-                            <li><a href="#">RCA</a></li>
-                            <li><a href="#">Dataset</a></li>
-                        </ul>
-                    </article>
-            </section>
-            <section class="footer1">
-                  <!-- Copyright -->
-                  <div class="text-start">
-                      &copy; 2024, <b>Jayapura14-TechAcademy</b>  ,All Rights Reserved.
-                  </div>
-                  
-                  <!-- Social media -->
-                  <div class="text-end">
-                      <!-- Instagram -->
-                      <a href="#!" class="link-instagram"><i class="fab fa-instagram"></i></a>
-                      
-                      <!-- Email -->
-                      <a href="#!" class="link-email"><i class="far fa-envelope"></i></a>
-                      
-                      <!-- GitHub -->
-                      <a href="https://github.com/Kampus-Merdeka-Software-Engineering/km-feb24-jayapura-14" class="link-github"><i class="fab fa-github"></i></a>
-                  </div>
-            </section>
+            <div class="row primary">
+                <div class="column">
+                    <img src="img/logo/Logo.svg" alt="Logo">
+                    <div class="social">
+                        <a href="https://www.instagram.com/" rel="noopener" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://mail.google.com/"><i class="far fa-envelope"></i></a>
+                        <a href="https://github.com/Kampus-Merdeka-Software-Engineering/km-feb24-jayapura-14" rel="noopener" target="_blank"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="column">
+                    <h3 class="footer-text">Section</h3>
+                    <ul>
+                        <li>
+                            <a href="#about">About</a>
+                        </li>
+                        <li>
+                            <a href="#analisis">Analysis Overview</a>
+                        </li>
+                        <li>
+                            <a href="#team">Team</a>
+                        </li>
+                        <li>
+                            <a href="#tools">Tools</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <h3 class="footer-text">Navigation</h3>
+                    <ul>
+                        <li>
+                            <a href="./analisis.html">Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="https://www.kaggle.com/" target="_blank">The Dataset</a>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank">Data Analytics Deck</a>
+                        </li>
+                        <li>
+                            <a href="https://www.figma.com/" target="_blank">Root Cause Analysis</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>Copyright &copy; 2024 - <a href="#home"><b>Jayapura14 - TechAcademy</b></a>, All Rights Reserved.</p>
+            </div>
         </footer>
     </body>
 </html>
