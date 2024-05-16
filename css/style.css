@@ -370,6 +370,7 @@ footer {
     color: black;
     text-decoration: none;
     /* font-size: 16px; */
+    width: auto;
 }
   
 .column ul li a:hover {
@@ -492,7 +493,7 @@ div.social {
     }
 }
 
-@media screen and (max-width: 500px){
+@media screen and (max-width: 560px){
     /* footer */
     .row.primary {
         grid-template-columns: 1fr;

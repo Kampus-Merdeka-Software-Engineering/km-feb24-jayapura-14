@@ -1,28 +1,10 @@
-.operpiu, .problem{
-    align-items: normal;
-    margin: auto;
-    padding: 64px;
-}
-.row{
-    padding-bottom: 32px;
-}
-
-.rca{
-    border-radius: 30px;
-    border: #0072F0;
-}
-
-.daviz, .dataset{
+/* .dataset{
     margin: auto;
     padding: 96px;
 }
-.looker{
-    border-radius: 30px;
-    height: 65%;
-    width: auto;
-}
+
 .dset{
     height: fit-content;
     width: auto;
-}
+} */
 
