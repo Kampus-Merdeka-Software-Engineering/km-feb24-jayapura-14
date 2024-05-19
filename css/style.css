@@ -312,6 +312,74 @@ a:hover {
     border: none;
 }
 
+/*form===========================*/
+.form-section {
+    display: flex;
+    justify-content: flex-start; 
+    align-items: flex-start; 
+    height: 100vh;
+    padding: 20px; 
+}
+
+.suggestion-box {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc; 
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(151, 149, 149, 0.1);
+    width: 300px;
+}
+
+.suggestion-box h2 {
+    margin-top: 0;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+
+.form-submitbutton {
+    display: flex;
+    justify-content: center;
+}
+
+/* CSS untuk tombol submit */
+.submit-btn {
+    width: auto; 
+    padding: 10px 20px; 
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+    text-align: center; 
+}
+
+.submit-btn:hover {
+    background-color: #0056b3;
+}
+
+
 /* ========================================== */
 footer {
     /* background: linear-gradient(to right, var(--green-dark), var(--green)); */
