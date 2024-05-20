@@ -27,7 +27,8 @@ p {
 
 /* Tag global utk button */
 .btn-primary {
-    background-color: #007bff;
+    /* background-color: #007bff; */
+    background-color: #0072f0;
     padding: 12px 48px;
     text-decoration: none;
     font-size: 16px;
@@ -47,7 +48,8 @@ p {
     border-radius: 5px;
 }
 .btn-primary:hover{
-    background-color: #0056b3;
+    /* background-color: #0056b3; */
+    background-color: #007bff;
 }
 .btn-secondary:hover{
     background-color: #d5d5d5;
@@ -320,42 +322,40 @@ a:hover {
     margin-bottom: 0.5rem; 
 }
 
-/*form===========================*/
+/*================================*/
 .form-section {
-    display: flex;
-    justify-content: flex-start; 
-    align-items: flex-start; 
     height: 100vh;
-    padding: 20px; 
+    padding: 5%; 
+    background-image: linear-gradient(to right, white, white, rgb(0, 114, 240, 0.6));
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12%;
 }
 
 .suggestion-box {
+    justify-content: center;
     background-color: #fff;
-    padding: 20px;
-    border: 1px solid #ccc; 
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(151, 149, 149, 0.1);
-    width: 300px;
+    padding: 10%;
+    border: 1px solid #f4f4f4; 
+    border-radius: 30px;
+    box-shadow: 0 0 10px rgba(151, 149, 149, 0.2);
+    /* width: 60vh; */
+    /* height: 70vh; */
+    height: fit-content;
 }
 
-.suggestion-box h2 {
-    margin-top: 0;
-    text-align: center;
+.suggestion-box h3{
+    /* padding-bottom: 4%; */
+    margin: auto;
+    font-weight: bold;
+    padding: 24px 0px;
 }
 
-.form-group {
-    margin-bottom: 15px;
-}
-
-.form-group input,
+/* .form-group input,
 .form-group textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
     transition: border-color 0.3s;
-}
+} */
 
 .form-group input:focus,
 .form-group textarea:focus {
@@ -363,29 +363,44 @@ a:hover {
     outline: none;
 }
 
-
-.form-submitbutton {
-    display: flex;
-    justify-content: center;
+.form-group {
+    /* margin-bottom: 20px; */
+    /* padding: 0; */
+    /* padding: 20px 0px; */
+    padding-bottom: 20px;
+    gap: 20px;
 }
 
-/* CSS untuk tombol submit */
-.submit-btn {
-    width: auto; 
-    padding: 10px 20px; 
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+textarea {
+    height: 100px;
+}
+
+::placeholder{
+    font-family: "Poppins", sans-serif;
+}
+
+button {
     cursor: pointer;
-    transition: background-color 0.3s;
-    text-decoration: none;
-    text-align: center; 
+    width: 100%;
+    font-family: inherit;
 }
 
-.submit-btn:hover {
-    background-color: #0056b3;
-}
 
 /* ========================================== */
 footer {
@@ -402,14 +417,12 @@ footer {
   
 .row.primary {
     display: grid;
-    /* display: flex; */
     grid-template-columns: 1fr 1fr 1fr 1fr;
     align-items: space-around;
 }
 
 .row.secondary {
     display: grid;
-    /* display: flex; */
     grid-template-columns: 1fr 1fr 1fr;
     align-items: space-around;
 }
@@ -418,7 +431,6 @@ footer {
     width: 100%;
     display: flex;
     flex-direction: column;
-    /* padding-left: 24px; */
     min-height: 1em;
 }
 
@@ -430,7 +442,6 @@ footer {
 .footer-text {
     width: 100%;
     text-align: left;
-    /* font-size: 16px; */
     white-space: nowrap;
     margin-bottom: 1rem;
     font-style: italic;
@@ -451,7 +462,6 @@ footer {
 .column ul li a {
     color: black;
     text-decoration: none;
-    /* font-size: 16px; */
     width: auto;
 }
   
@@ -560,6 +570,10 @@ div.social {
     .overview {
         flex: auto;
         padding: 16px;
+    }
+
+    .form-section{
+        gap: 4%;
     }
 
     /* footer */
