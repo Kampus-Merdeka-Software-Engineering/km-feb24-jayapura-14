@@ -107,13 +107,11 @@ nav ul li a {
     color: #0072f0;
     text-align: center;
     padding: 12px 16px;
-    /* border-radius: 23px; */
     text-decoration: none;
     font-size: 16px;
 }
 
 a:hover {
-    /* color: #007bff; */
     background-color: #f4f4f4;
     transition: .5s;
 }
@@ -123,7 +121,7 @@ a:hover {
     background-color: #f4f4f4;
 }
 
-/* Styling for the dropdown menu */
+/* Styling the dropdown menu */
 .dropdown {
     position: relative;
     display: inline-block;
@@ -216,8 +214,6 @@ a:hover {
     bottom: 32px;
     right: 32px;
     text-align: right;
-    /* padding-right: 10%;
-    padding-top: 96px; */
     padding: 64px 64px 32px;
 }
 
@@ -228,7 +224,6 @@ a:hover {
 
 
 .title-capstone1 {
-    /* margin-top: 20%; */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     padding: 64px 64px 24px;
     margin: 8px;
@@ -346,7 +341,6 @@ a:hover {
 }
 
 .suggestion-box h3{
-    /* padding-bottom: 4%; */
     margin: auto;
     font-weight: bold;
     padding: 24px 0px;
@@ -364,9 +358,6 @@ a:hover {
 }
 
 .form-group {
-    /* margin-bottom: 20px; */
-    /* padding: 0; */
-    /* padding: 20px 0px; */
     padding-bottom: 20px;
     gap: 20px;
 }
@@ -399,14 +390,13 @@ button {
     cursor: pointer;
     width: 100%;
     font-family: inherit;
+    border: none;
 }
 
 
 /* ========================================== */
 footer {
-    /* background: linear-gradient(to right, var(--green-dark), var(--green)); */
     background-color: #f4f4f4;
-    /* background-size: 200% 50%; */
     width: auto;
     font-size: 16px;
 }
@@ -562,11 +552,6 @@ div.social {
     }
 
     /* body */
-    /* .container-overview {
-        display: flex;
-        flex-wrap: wrap;
-    }     */
-    
     .overview {
         flex: auto;
         padding: 16px;
