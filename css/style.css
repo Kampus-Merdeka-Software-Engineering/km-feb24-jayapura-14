@@ -296,6 +296,56 @@ a:hover {
     padding: 4px;
 }
 
+.dropdown2 {
+    width: 100%;
+    max-width: 1200px; /* Atur lebar maksimum sesuai kebutuhan */
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.dropdown select {
+    font-size: 16px;
+}
+
+.flex-container2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1200px;
+    /* display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto; */
+    /* gap: 8px; */
+}
+.flex-container2 > div {
+    margin: 2px;
+    padding: 16px;
+}
+
+.foto-container {
+    text-align: center;
+    margin: 10px;
+    padding: 0px 16px;
+}
+
+.foto-container img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.caption {
+    margin-bottom: 5px;
+}
+
+.additional-text {
+    color: #0072f0;
+    margin-top: 5px;
+    font-size: smaller;
+}
+
 .technology img {
     height: 64px;
     width: 64px;
@@ -585,4 +635,12 @@ div.social {
     .column{
         padding: 24px 0px;
     }
+    .foto-container {
+        flex: 0 0 calc(50% - 20px);
+        /* 2 foto per baris pada layar kecil (misalnya smartphone) */
+    }
 }
+
+/* Maksimum lebar untuk desktop atau tablet */
+/* @media (max-width: 767px) {
+} */
