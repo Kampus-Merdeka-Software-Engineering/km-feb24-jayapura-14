@@ -137,6 +137,9 @@
                         <!-- <div class="column"></div>
                         <div class="column"></div> -->
                         <div class="dashboard">
+                            <!-- <form action="./js/chart.js" class="filters">
+                                
+                            </form> -->
                             <div class="filters">
                                 <select>
                                     <option>Order Date (Month)</option>
@@ -154,13 +157,48 @@
                                     <option>State</option>
                                 </select>
                             </div>
-                            <div class="total-sales">Total Sales By Category and Segment</div>
-                            <div class="sales-profit">Sales & Profit by sub-category</div>
-                            <div class="city-lowest-sales">City by Lowest sales</div>
-                            <div class="profit-region">Profit By Region</div>
-                            <div class="discount-quantity">Discount and Quantity</div>
-                            <div class="heatmap-sales">Heat Map Sales By City</div>
-                            <div class="abs-aov">ABS and AOV In Segment</div>
+                            <div class="total-sales">
+                                <p>Total Sales By Category and Segment</p>
+                                <div class="chart-img">
+                                    <canvas id="total-sales-chart"></canvas>
+                                </div>
+                            </div>
+                            <div class="sales-profit">
+                                <p>Sales & Profit by sub-category</p>
+                                <div class="chart-img">
+                                    <canvas id="sales-profit-chart"></canvas>
+                                </div>
+                            </div>
+                            <div class="city-lowest-sales">
+                                <p>City by Lowest sales</p>
+                                <div class="chart-img">
+                                    <canvas id="city-lowest-sales-chart"></canvas>
+                                </div>
+                            </div>
+                            <div class="profit-region">
+                                <p>Profit By Region</p>
+                                <div class="chart-img">
+                                    <canvas id="profit-region-chart"></canvas>
+                                </div>
+                            </div>
+                            <div class="discount-quantity">
+                                <p>Discount and Quantity</p>
+                                <div class="chart-img">
+                                    <canvas id="diskon-quantity-chart"></canvas>
+                                </div>
+                            </div>
+                            <div class="heatmap-sales">
+                                <p>Heat Map Sales By City</p>
+                                <div class="chart-img">
+                                    <canvas id="heatmap-chart"></canvas>
+                                </div>
+                            </div>
+                            <div class="abs-aov">
+                                <p>ABS and AOV In Segment</p>
+                                <div class="chart-img">
+                                    <canvas id="abs-aov-chart"></canvas>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>
