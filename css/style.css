@@ -686,19 +686,36 @@ div.social {
     .form-group{
         padding-bottom: 4%;
     }
-    /* footer */
-    footer {
-        font-size: 14px;
-    }
-    .column img {
-        width: 150px;
-        height: auto;
-    }
-    div.social {
-        font-size: 24px;
-    }
+    
+}
+#thanks-feedback {
+    display: none;
 }
 
+/*thanks form*/
+.thanks-form {
+    text-align: center; /* center the content horizontally */
+}
+
+.thanks-form h2,
+.thanks-form h5,
+.thanks-form h4 {
+    display: inline-block; /* make the elements inline-block to center them */
+    margin:  20px; /* add margin to center the elements */
+    
+}
+
+/* footer */
+footer {
+    font-size: 14px;
+}
+.column img {
+    width: 150px;
+    height: auto;
+}
+div.social {
+    font-size: 24px;
+}
 /* @media (max-width: 768px) {
 } */
 
