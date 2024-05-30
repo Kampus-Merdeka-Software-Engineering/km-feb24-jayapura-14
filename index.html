@@ -24,16 +24,7 @@
                     <ul>
                       <li><a href="./">Home</a></li>
                       <li><a href="#about">About</a></li>
-                      <li>
-                          <div class="dropdown">
-                              <a href="#" class="dropbtn">Analysis <i class="fa-solid fa-chevron-down"></i></a>
-                              <div class="dropdown-content">
-                                  <a href="./analisis.html">Dashboard</a>
-                                  <a href="https://www.kaggle.com/" target="_blank">The Dataset</a>
-                                  <a href="#" target="_blank">Data Analytics Deck</a>
-                              </div>
-                          </div>
-                      </li>
+                      <li><a href="./analisis.html">Dashboard</a></li>
                       <li><a href="#team">Teams</a></li>
                       <li><a href="#tools">Tools</a></li>
                       <li><a href="#feedback">Contact</a></li>
@@ -65,7 +56,7 @@
                     <h2>About The <span style="color: #0072f0; font-style: italic;">Project</span></h2>
                 </article>
                 <article class="overview">
-                    <p>Project ini bertujuan untuk memenuhi tugas akhir MSIB Studi Independen RevoU TechAcademy. Pada project akhir ini, team 14 Jayapura menggunakan keterampilan analisis data mengenai data penjualan Giant Superstore dan pembuatan web yang telah dipelajari selama berjalannya program ini. Adapun keterampilan analisis data yang dilakukan oleh team 14 Jayapura yaitu, melakukan eksplorasi data, identifikasi tren penjualan, analisis profitabilitas produk, visualisasi data, dan memberikan rekomendasi untuk meningkatkan kinerja penjualan. Hasil analisis tersebut kemudian digunakan untuk merancang dan membangun sebuah website yang informatif dan fungsional. Project ini tidak hanya mengasah kemampuan teknis dalam analisis data dan pengembangan web, tetapi juga memperkuat kemampuan team 14 Jayapura dalam mengkomunikasikan informasi secara efektif melalui media digital.
+                    <p>Project ini bertujuan untuk memenuhi tugas akhir MSIB Studi Independen RevoU TechAcademy. Pada project akhir ini, team Jayapura 14 menggunakan keterampilan analisis data mengenai data penjualan Giant Superstore dan pembuatan web yang telah dipelajari selama berjalannya program ini.<br><br>Adapun keterampilan analisis data yang dilakukan oleh team 14 Jayapura yaitu, melakukan eksplorasi data, identifikasi tren penjualan, analisis profitabilitas produk, visualisasi data, dan memberikan rekomendasi untuk meningkatkan kinerja penjualan.<br><br>Hasil analisis tersebut kemudian digunakan untuk merancang dan membangun sebuah website yang informatif dan fungsional. Project ini tidak hanya mengasah kemampuan teknis dalam analisis data dan pengembangan web, tetapi juga memperkuat kemampuan team Jayapura 14 dalam mengkomunikasikan informasi secara efektif melalui media digital.
                     </p>
                 </article>
             </section>
@@ -79,7 +70,7 @@
                     <h2>The Superstore Analysis✨</h2>
                 </article>
                 <article class="analysis">
-                    <p>Analisis superstore ini bertujuan untuk menyajikan analisis mendalam tentang data penjualan dari sebuah Giant Superstore. Melalui eksplorasi data, pengolahan data, dan visualisasi data, kami memberikan wawasan untuk pemilik superstore dan berbagai pemangku kepentingan di superstore tersebut. Dari tren penjualan hingga analisis profitabilitas produk, kami menggali informasi penting yang dapat digunakan untuk meningkatkan kinerja penjualan di Giant Superstore.unc justo eget ut velit. Vulputate elit integer at netus nunc.
+                    <p>Analisis superstore ini bertujuan untuk menyajikan analisis mendalam tentang data penjualan dari sebuah Giant Superstore. Melalui eksplorasi data, pengolahan data, dan visualisasi data, kami memberikan wawasan untuk pemilik superstore dan berbagai pemangku kepentingan di superstore tersebut. Dari tren penjualan hingga analisis profitabilitas produk, kami menggali informasi penting yang dapat digunakan untuk meningkatkan kinerja penjualan di Giant Superstore.
                     </p>
                     <a href="analisis.html" class="btn-secondary">More</a>
                 </article>
@@ -87,14 +78,12 @@
 
             <!-- section team overview -->
             <section class="container-teams container-fluid" id="team">
-                <h2>Meet Our Great <span style="color: #0072f0; font-style: italic;">Team</span> 🔥</h2>
-                <p>Ayo berkenalan dengan team dan mentor hebat project ini.<br>Kami adalah mahasiswa semester 6 yang berasal dari Universitas dan jurusan yang berbeda-beda, yang disatukan melalui Program Studi Independen MSIB Batch 6 2024 RevoU TechAcademy. Kami berusaha untuk berdedikasi dalam proyek akhir studi independen di RevoU, yang bertugas menganalisis data penjualan Giant Superstore dan membangun sebuah website yang inovatif. Dengan keahlian yang beragam, kami bekerja sama untuk memberikan solusi berbasis data yang dapat meningkatkan kinerja penjualan dan pengalaman pengguna.
+                <h2>Meet Our Great <span style="color: #0072f0; font-style: italic;">Team </span><img src="https://media1.tenor.com/m/uTJev41fOAwAAAAd/ates.gif" width="32px" height="40px"></h2>
+                <p><span style="font-weight: bold;">Ayo Berkenalan dengan Team dan Mentor Hebat Project ini!</span> <br>Kami adalah mahasiswa semester 6 yang berasal dari Universitas dan jurusan yang berbeda-beda, yang disatukan melalui Program Studi Independen MSIB Batch 6 2024 RevoU TechAcademy. Kami berusaha untuk berdedikasi dalam proyek akhir studi independen ini. Dan dengan keahlian yang beragam, kami bekerja sama untuk memberikan solusi berbasis data yang dapat meningkatkan kinerja penjualan dan pengalaman pengguna.
                 </p>
                 <div class="dropdown2">
-                    <select id="dropdownSelect" onchange="changeDisplay()">
-                        <option value="tampilan1" selected>Vertical Software Engineering</option>
-                        <option value="tampilan2">Vertical Data Analytics</option>
-                    </select>
+                    <button class="filter-btn selected" onclick="changeDisplay('tampilan1')"><i class="fa-solid fa-computer"></i>  Ver. Software Engineering</button>
+                    <button class="filter-btn" onclick="changeDisplay('tampilan2')"><i class="fa-solid fa-chart-simple"></i>  Ver. Data Analytics</button>
                 </div>
                 <div id="tampilan1" class="tampilan">
                     <div class="flex-container2">
@@ -120,7 +109,7 @@
                             <p class="additional-text">Front End Engineer</p>
                         </div>
                         <div class="foto-container">
-                            <img src="img\foto-anggota\okta.png" alt="Foto 4">
+                            <img src="img\foto-anggota\Okta.png" alt="Foto 4">
                             <p class="caption">Oktaviya Dwi Lestari</p>
                             <p class="additional-text">Front End Engineer</p>
                         </div>
@@ -130,7 +119,7 @@
                             <p class="additional-text">Deployment Team</p>
                         </div>
                         <div class="foto-container">
-                            <img src="img\foto-anggota\Salsa (1).png" alt="Foto 4">
+                            <img src="img\foto-anggota\Salsa.png" alt="Foto 4">
                             <p class="caption">Salsa Djagat Diyta</p>
                             <p class="additional-text">Pitch Deck Team</p>
                         </div>
@@ -140,22 +129,22 @@
                             <p class="additional-text">Pitch Deck Team</p>
                         </div>
                         <div class="foto-container">
-                            <img src="img\foto-anggota\ity.png" alt="Foto 4">
+                            <img src="img\foto-anggota\Ity.png" alt="Foto 4">
                             <p class="caption">Syhti Zyahtini Wabulla</p>
                             <p class="additional-text">Pitch Deck Team</p>
                         </div>
                         <div class="foto-container">
-                            <img src="img\foto-anggota\yogi.png" alt="Foto 4">
+                            <img src="img\foto-anggota\Yogi.png" alt="Foto 4">
                             <p class="caption">Yogi Dharma Susanto</p>
                             <p class="additional-text">Quality Assurance</p>
                         </div>
                         <div class="foto-container">
-                            <img src="img\foto-anggota\whevman.png" alt="Foto 4">
+                            <img src="img\foto-anggota\Whevman.png" alt="Foto 4">
                             <p class="caption">Whevman</p>
                             <p class="additional-text">Quality Assurance</p>
                         </div>
                         <div class="foto-container">
-                            <img src="img\foto-anggota\tegar.png" alt="Foto 4">
+                            <img src="img\foto-anggota\Tegar.png" alt="Foto 4">
                             <p class="caption">Tegar Rahmat Hidayat</p>
                             <p class="additional-text">Quality Assurance</p>
                         </div>
@@ -171,7 +160,7 @@
                             <p class="additional-text">Project Leader</p>
                         </div>
                         <div class="foto-container">
-                            <img src="img\foto-anggota\yogi.png" alt="Foto 2">
+                            <img src="img\foto-anggota\Yogi.png" alt="Foto 2">
                             <p class="caption">Yogi Dharma Susanto</p>
                             <p class="additional-text">Data Cleanning</p>
                         </div>
@@ -186,7 +175,7 @@
                             <p class="additional-text">Data Cleaning</p>
                         </div>
                         <div class="foto-container">
-                            <img src="img\foto-anggota\ity.png" alt="Foto 2">
+                            <img src="img\foto-anggota\Ity.png" alt="Foto 2">
                             <p class="caption">Syhti Zyahtini Wabulla</p>
                             <p class="additional-text">Data Cleaning</p>
                         </div>
@@ -196,17 +185,17 @@
                             <p class="additional-text">Data Analysis</p>
                         </div>
                         <div class="foto-container">
-                            <img src="img\foto-anggota\Salsa (1).png" alt="Foto 2">
+                            <img src="img\foto-anggota\Salsa.png" alt="Foto 2">
                             <p class="caption">Salsa Djagat Diyta</p>
                             <p class="additional-text">Data Analysis</p>
                         </div>
                         <div class="foto-container">
-                            <img src="img\foto-anggota\okta.png" alt="Foto 2">
+                            <img src="img\foto-anggota\Okta.png" alt="Foto 2">
                             <p class="caption">Oktaviya Dwi Lestari</p>
                             <p class="additional-text">Data Analysis</p>
                         </div>
                         <div class="foto-container">
-                            <img src="img\foto-anggota\whevman.png" alt="Foto 2">
+                            <img src="img\foto-anggota\Whevman.png" alt="Foto 2">
                             <p class="caption">Whevman</p>
                             <p class="additional-text">Data Visualization</p>
                         </div>
@@ -221,7 +210,7 @@
                             <p class="additional-text">Data Communication</p>
                         </div>
                         <div class="foto-container">
-                            <img src="img\foto-anggota\tegar.png" alt="Foto 2">
+                            <img src="img\foto-anggota\Tegar.png" alt="Foto 2">
                             <p class="caption">Tegar Rahmat Hidayat</p>
                             <p class="additional-text">Data Communication</p>
                         </div>
@@ -252,7 +241,7 @@
             <section class="container-acknowledgement container-fluid">
                 <h2>Acknowledgement</h2>
                 <div class="line"></div>
-                <p>Team 14 Jayapura ingin mengucapkan terima kasih kepada semua pihak yang telah berkontribusi dan mendukung kami dalam penyelesaian capstone project ini. Terima kasih kepada instruktur, mentor, section manajer, dan rekan tim atas bimbingan, dukungan, dan fasilitas yang telah diberikan. Tanpa bantuan mereka, pencapaian ini tidak akan terwujud. Terima kasih atas segala dukungan dan kesempatan yang diberikan.</p>
+                <p>Team Jayapura 14 ingin mengucapkan terima kasih kepada semua pihak yang telah berkontribusi dan mendukung kami dalam penyelesaian capstone project ini. Terima kasih kepada instruktur, mentor, section manajer, dan rekan tim atas bimbingan, dukungan, dan fasilitas yang telah diberikan. Tanpa bantuan mereka, pencapaian ini tidak akan terwujud. Terima kasih atas segala dukungan dan kesempatan yang diberikan.</p>
 
             </section>
 
