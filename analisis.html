@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
         <head>
             <meta charset="utf-8">
@@ -25,16 +25,14 @@
                         <ul>
                             <li><a href="./">Home</a></li>
                             <li><a href="./#about">About</a></li>
-                            <li>
-                                <div class="dropdown">
-                                    <a href="#" class="dropbtn">Analysis <i class="fa-solid fa-chevron-down"></i></a>
-                                    <div class="dropdown-content">
-                                        <a href="./analisis.html">Dashboard</a>
-                                        <a href="https://www.kaggle.com/" target="_blank">The Dataset</a>
-                                        <a href="#" target="_blank">Data Analytics Deck</a>
-                                    </div>
+                            <li><a href="./analisis.html">Dashboard</a></li>
+                            <!-- <div class="dropdown">
+                                <a href="#" class="dropbtn">Analysis <i class="fa-solid fa-chevron-down"></i></a>
+                                <div class="dropdown-content">
+                                    <a href="https://www.kaggle.com/" target="_blank">The Dataset</a>
+                                    <a href="#" target="_blank">Data Analytics Deck</a>
                                 </div>
-                            </li>
+                            </div> -->
                             <li><a href="./#team">Teams</a></li>
                             <li><a href="./#tools">Tools</a></li>
                             <li><a href="./#feedback">Contact</a></li>
@@ -86,7 +84,6 @@
                 <section class="container-fluid">
                     <div class="row">
                         <h2>Dashboard Superstore 2017</h2>
-                        <!-- <a href="#" class="btn-primary">More</a> -->
                         <div class="cards">
                             <div class="card">
                                 <div class="card-content">
@@ -137,10 +134,54 @@
                         <!-- <div class="column"></div>
                         <div class="column"></div> -->
                         <div class="dashboard">
-                            <!-- <form action="./js/chart.js" class="filters">
-                                
-                            </form> -->
-                            <div class="filters">
+                            <form action="./js/chart.js" class="filters select">
+                                <div class="select-dropdown">
+                                    <div class="select-btn btn1">
+                                        <span class="btn-text">Order Date(Month)</span>
+                                        <span class="arrow-dwn">
+                                            <i class="fa fa-chevron-down"></i>
+                                        </span>
+                                    </div>
+                                    <ul class="list-items order-month"></ul>
+                                </div>
+                                <div class="select-dropdown">
+                                    <div class="select-btn btn2">
+                                        <span class="btn-text">Sub-category</span>
+                                        <span class="arrow-dwn">
+                                            <i class="fa fa-chevron-down"></i>
+                                        </span>
+                                    </div>
+                                    <ul class="list-items sub-cat"></ul>
+                                </div>
+                                <div class="select-dropdown">
+                                    <div class="select-btn btn3">
+                                        <span class="btn-text">Segment</span>
+                                        <span class="arrow-dwn">
+                                            <i class="fa fa-chevron-down"></i>
+                                        </span>
+                                    </div>
+                                    <ul class="list-items segment"></ul>
+                                </div>
+                                <div class="select-dropdown">
+                                    <div class="select-btn btn4">
+                                        <span class="btn-text">Region</span>
+                                        <span class="arrow-dwn">
+                                            <i class="fa fa-chevron-down"></i>
+                                        </span>
+                                    </div>
+                                    <ul class="list-items region"></ul>
+                                </div>
+                                <div class="select-dropdown">
+                                    <div class="select-btn btn5">
+                                        <span class="btn-text">State</span>
+                                        <span class="arrow-dwn">
+                                            <i class="fa fa-chevron-down"></i>
+                                        </span>
+                                    </div>
+                                    <ul class="list-items state"></ul>
+                                </div>
+                            </form>
+                            <!-- <div class="filters">
                                 <select>
                                     <option>Order Date (Month)</option>
                                 </select>
@@ -156,53 +197,69 @@
                                 <select>
                                     <option>State</option>
                                 </select>
-                            </div>
-                            <div class="total-sales">
-                                <p>Total Sales By Category and Segment</p>
+                            </div> -->
+                            <!-- <div id="filterButtonsContainer"></div>
+                            <canvas id="myChart"></canvas> -->
+                            <div class="total-sales chart-item">
+                                <div class="chart-text">
+                                    <p>Total Sales By Category and Segment</p>
+                                </div>
                                 <div class="chart-img">
                                     <canvas id="total-sales-chart"></canvas>
                                 </div>
                             </div>
-                            <div class="sales-profit">
-                                <p>Sales & Profit by sub-category</p>
+                            <div class="sales-profit chart-item">
+                                <div class="chart-text">
+                                    <p>Sales & Profit by sub-category</p>
+                                </div>
                                 <div class="chart-img">
                                     <canvas id="sales-profit-chart"></canvas>
                                 </div>
                             </div>
-                            <div class="city-lowest-sales">
-                                <p>City by Lowest sales</p>
-                                <div class="chart-img">
-                                    <canvas id="city-lowest-sales-chart"></canvas>
+                            <div class="profit-region chart-item">
+                                <div class="chart-text">
+                                    <p>Profit By Region</p>
                                 </div>
-                            </div>
-                            <div class="profit-region">
-                                <p>Profit By Region</p>
                                 <div class="chart-img">
                                     <canvas id="profit-region-chart"></canvas>
                                 </div>
                             </div>
-                            <div class="discount-quantity">
-                                <p>Discount and Quantity</p>
+                            <div class="discount-quantity chart-item">
+                                <div class="chart-text">
+                                    <p>Discount and Quantity</p>
+                                </div>
                                 <div class="chart-img">
                                     <canvas id="diskon-quantity-chart"></canvas>
                                 </div>
                             </div>
-                            <div class="heatmap-sales">
-                                <p>Heat Map Sales By City</p>
+                            <div class="abs-aov chart-item">
+                                <div class="chart-text">
+                                    <p>ABS and AOV In Segment</p>
+                                </div>
+                                <div class="chart-img">
+                                    <canvas id="abs-aov-chart"></canvas>
+                                </div>
+                            </div>
+                            <div class="heatmap-sales chart-item">
+                                <div class="chart-text">
+                                    <p>Heat Map Sales By City</p>
+                                </div>
                                 <div class="chart-img">
                                     <canvas id="heatmap-chart"></canvas>
                                 </div>
                             </div>
-                            <div class="abs-aov">
-                                <p>ABS and AOV In Segment</p>
+                            <div class="city-lowest-sales chart-item">
+                                <div class="chart-text">
+                                    <p>City by Lowest sales</p>
+                                </div>
                                 <div class="chart-img">
-                                    <canvas id="abs-aov-chart"></canvas>
+                                    <canvas id="city-lowest-sales-chart"></canvas>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
-                <section class="flex-container container-fluid">
+                <!-- <section class="flex-container container-fluid">
                     <div class="card2">
                         <div class="dropdown">
                             <button onclick="toggleDropdown()" class="dropbtn btn-primary">
@@ -224,7 +281,7 @@
                             </div>
                         </div>
                     </div>
-                </section>
+                </section> -->
             </main>
 
             <!-- footer -->
@@ -233,8 +290,8 @@
                     <div class="column">
                         <img src="img/logo/Logo.svg" alt="Logo">
                         <div class="social">
-                            <a href="https://www.instagram.com/" rel="noopener" target="_blank"><i class="fab fa-instagram"></i></a>
-                            <a href="https://mail.google.com/"><i class="far fa-envelope"></i></a>
+                            <a href="https://www.instagram.com/revou_id/" rel="noopener" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a href="mailto:team14.jayapura@gmail.com"><i class="far fa-envelope"></i></a>
                             <a href="https://github.com/Kampus-Merdeka-Software-Engineering/km-feb24-jayapura-14" rel="noopener" target="_blank"><i class="fab fa-github"></i></a>
                         </div>
                     </div>
@@ -278,7 +335,9 @@
                     <p>Copyright &copy; 2024 - <a href="#"><b>Jayapura14 - TechAcademy</b></a>, All Rights Reserved.</p>
                 </div>
             </footer>
-
+            
+            <script src="./js/chart.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
         </body>
 </html>

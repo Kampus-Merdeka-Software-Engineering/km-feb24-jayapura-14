@@ -1,3 +1,4 @@
+/* === summary === */
 .row h2{
     /* padding: 24px 0px; */
     padding: 4%;
@@ -34,7 +35,6 @@
 }
 
 .number {
-    font-size: 24px;
     font-weight: 500;
     color: #0072f0;
 }
@@ -74,12 +74,11 @@
     border-radius: 4px;
 } */
 
-.dropdown .show {
+/* .dropdown .show {
     display: block;
-}
+} */
 
-
-.dropdown-content label {
+/* .dropdown-content label {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
@@ -88,8 +87,8 @@
 
 .dropdown-content label:hover {
     background-color: #f1f1f1;
-}
-
+} */
+/* === dashboard === */
 .dashboard {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -103,21 +102,7 @@
     align-items: center;
     padding: 2%;
 }
-
-.total-sales {
-    grid-column: span 6;
-    background-color: #ccc;
-    padding: 20px;
-    height: 240px;
-}
-
-.sales-profit {
-    grid-column: span 3;
-    background-color: #ccc;
-    padding: 20px;
-    height: 240px;
-}
-
+/* === filter box === */
 .filters {
     grid-column: span 3;
     display: flex;
@@ -125,50 +110,152 @@
     gap: 12px;
 }
 
-.filters select {
-    padding: 10px;
+form .select {
+    align-items: center;
+    box-sizing: border-box;
+}
+
+form .select-dropdown .select-btn {
+    display: flex;
+    height: 48px;
+    width: auto;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    cursor: pointer;
+    background-color: white;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+form .select-btn .btn-text {
     font-size: 16px;
+    font-weight: 400;
+    color: black;
+}
+form .select-btn .arrow-dwn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0072f0;
+    font-size: inherit;
+    transition: all 0.3s ease;;
+  }
+.select-btn.open-list .arrow-dwn {
+    transform: rotate(180deg);
+}
+.select-btn.open-list ~ .list-items {
+    display: block;
+}
+.select .list-items {
+    position: absolute;
+    width: auto;
+    max-height: 300px;
+    margin-top: 5px;
+    border-radius: 5px;
+    padding: 12px;
+    background-color: white;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    display: none;
+    overflow-y: scroll;
+}
+.select .list-items .select-all {
+    width: 100px;
+    padding: 4px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    margin: 5px 5px;
+    color: #fff;
+    background-color: #0072f0;
+}
+.reset {
+    width: 100px;
+    padding: 4px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    margin: 5px 5px;
+    color: #fff;
+    background-color: #888;
+}
+.select .list-items .select-all:hover .reset:hover {
+    cursor: pointer;
+}
+  
+.select .list-items .item {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    height: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+    padding: 0 12px;
+    border-radius: 5px;
+    background-color: white;
+}
+.select .list-items .item:hover {
+    background-color: #f4f4f4;
+}
+.select .list-items .item label {
+    font-size: 16px;
+    font-weight: 400;
+    padding: 16px;
+    color: black;
+}
+.select .list-items .item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 5px;
+    transition: all 0.3s ease;;
 }
 
-.discount-quantity {
-    grid-column: span 6;
-    background-color: #ccc;
-    padding: 20px;
-    height: 240px;
+/* === chart === */
+.total-sales {
+    grid-column: span 9;
+}
+.sales-profit, .discount-quantity, .heatmap-sales {
+    grid-column: span 7;
+}
+.profit-region, .abs-aov, .city-lowest-sales {
+    grid-column: span 5;
 }
 
-.profit-region {
-    grid-column: span 3;
-    background-color: #ccc;
-    padding: 20px;
-    height: 240px;
+.chart-item {
+    background-color: #f4f4f4;
+    padding: 20px 10px;
+    border-radius: 10px;
+    height: 360px;
+    display: flex;
+    justify-content: space-betwen;
+    align-items: center;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+.chart-item .chart-img {
+    width: 100%;
+    height: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.chart-item canvas {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100%;
+    max-height: 100%;
+    box-sizing: border-box;
+}
+.chart-item p {
+    font-weight: bolder;
 }
 
-.city-lowest-sales {
-    grid-column: span 3;
-    background-color: #ccc;
-    padding: 20px;
-    height: 240px;
-}
-
-.abs-aov {
-    grid-column: span 6;
-    background-color: #ccc;
-    padding: 20px;
-    height: 240px;
-}
-
-.heatmap-sales {
-    grid-column: span 6;
-    background-color: #ccc;
-    padding: 20px;
-    height: 240px;
-}
-
-@media screen and (max-width: 768px) {
+/* === media queries === */
+@media (max-width: 900px) {
     .cards {
-        /* display: grid;
-        grid-template-columns: repeat(5, 1fr); */
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: auto;
         grid-gap: 12px;
     }
     .card {
@@ -177,7 +264,8 @@
         /* justify-content: space-between; */
         /* border-radius: 10px; */
     }
-
+}
+@media screen and (max-width: 768px) {
     .number, .card-name{
         font-size: 16px;
         font-weight: 600;
@@ -189,23 +277,39 @@
     
     .filters {
         flex-direction: row;
+        flex-wrap: wrap;
         grid-column: span 12;
+        /* grid-template-columns: repeat(5. 1fr); */
         gap: 8px;
+        justify-content: center;
     }
-    .filters select{
+    form .select-dropdown .select-btn {
+        /* width: max-content; */
+        width: 150px;
+        padding: 0 16px;
+    }
+    form .select-btn .btn-text {
         font-size: smaller;
-        width: 100%;
     }
 
-    .total-sales{
-        grid-column: span 8;
-        padding: 10px;
+    .total-sales, .discount-quantity, .abs-aov, .heatmap-sales, .city-lowest-sales{
+        grid-column: span 12;
     }
-    .sales-profit{
-        grid-column: span 4;
-        padding: 10px;
+    .sales-profit, .profit-region{
+        grid-column: span 6;
     }
     .total-sales, .sales-profit, .discount-quantity, .profit-region, .city-lowest-sales, .abs-aov, .heatmap-sales {
         padding: 10px;
+    }
+}
+@media screen and (max-width: 610px){
+    .total-sales, .sales-profit, .discount-quantity, .profit-region, .city-lowest-sales, .abs-aov, .heatmap-sales {
+        grid-column: span 12;
+    }
+}
+@media screen and (max-width: 470px){
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 10px;
     }
 }
