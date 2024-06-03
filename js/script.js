@@ -33,3 +33,35 @@ function changeDisplay(tampilan) {
     }, 500); // Waktu harus sama dengan durasi transisi
 }
 
+/*feedback form*/ 
+document.addEventListener("DOMContentLoaded", function () {
+    const suggestionForm = document.getElementById("suggestionForm");
+    const sendFeedback = document.getElementById("send-feedback");
+    const thanksFeedback = document.getElementById("thanks-feedback");
+    const okayButton = document.getElementById("okay-button");
+
+    suggestionForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const formData = new FormData(suggestionForm);
+        fetch(suggestionForm.action, {
+            method: "POST",
+            body: formData,
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                sendFeedback.style.display = "none";
+                thanksFeedback.style.display = "block";
+                suggestionForm.reset();
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+            });
+    });
+
+    okayButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        thanksFeedback.style.display = "none";
+        sendFeedback.style.display = "block";
+        suggestionForm.reset();
+    });
+});

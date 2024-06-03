@@ -282,35 +282,50 @@
             </section>
 
             <!-- form feedback -->
-            <section class="form-section container-fluid" id="feedback">
-                <div class="form-section-right">
-                    <h2>We're looking forward to hearing back from you!</h2>
-                    <p>Feel free to ask us if you have any question. <br>We will appreciate all your feedback.</p>
-                </div>
-                <div class="suggestion-box">
-                    <h3>Hello! <br> Let's get in touch.</h3>
-                    <form action="-" id="suggestionForm">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" placeholder="Enter Your Name" required/>
+                <section class="form-section container-fluid" id="feedback">
+                    <div class="form-section-right">
+                        <h2>We're looking forward to hearing back from you!</h2>
+                        <p>Feel free to ask us if you have any question. <br>We will appreciate all your feedback.</p>
+                    </div>
+                    <div class="suggestion-box" id="send-feedback">
+                        <h3>Hello! <br> Let's get in touch.</h3>
+                        <form action="https://api.web3forms.com/submit" method="POST" id="suggestionForm">
+                            <input type="hidden" name="access_key" value="4ea2f3a5-b2fe-457e-88eb-11f7bb15e700">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" placeholder="Enter Your Name" required/>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="Enter Your Email" required/>
+                            </div>
+                            <div class="form-group">
+                                <label for="suggestion">Please tell us more</label>
+                                <textarea id="suggestion" name="suggestion" placeholder="Write Your Message Here" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" id="submitButton" value="submit" class="btn-primary">
+                                    Send feedback <i class="fa-solid fa-arrow-right-long"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="suggestion-box" id="thanks-feedback">
+                        <div class="thanks-form">
+                            <h2>Thank You!</h2>
                         </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" placeholder="Enter Your Email" required/>
+                        <div class="thanks-form">
+                            <h5>By making your voice heard, you help us improve our service.</h5>
+                            <h2>🖤</h2>
+                            <div class="form-group">
+                                <button type="button" id="okay-button" class="btn-primary">
+                                    Okay<i></i>
+                                </button>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="suggestion">Please tell us more</label>
-                            <textarea id="suggestion" name="suggestion" placeholder="Write Your Message Here" required></textarea>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" value="submit" class="btn-primary">
-                                <!-- <a href="mailto:team14.jayapura@gmail.com" class="button"></a> -->
-                                Send feedback <i class="fa-solid fa-arrow-right-long"></i>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-           </section>
+                    </div>
+                </section>
+
         </main>
 
         <!-- footer -->
