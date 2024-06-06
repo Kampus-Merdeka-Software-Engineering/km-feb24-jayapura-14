@@ -270,7 +270,21 @@ function displayData(data) {
         const uniqueState = new Set(state);
         numState = uniqueState.size;
     }
-
+    // ABS = Sum of Quantity / count_distinct(Order_ID)
+    let abs = 0;
+    if (data.length > 0) {
+        const quantity = data.reduce((total, item) => {
+            return total + parseFloat(item["Quantity"]);
+        }, 0);
+        abs = quantity / numOrders;
+    }
+    // AOV = total Sales / count_distinct(Order_ID)
+    let aov = 0;
+    if (data.length > 0){
+        aov = totalSales / numOrders;
+    }
+    console.log(abs, aov);
+    
     document.getElementById("sales-summary").textContent = `$${totalSales.toLocaleString()}`;
     document.getElementById("profit-summary").textContent = `$${totalProfit.toLocaleString()}`;
     document.getElementById("order-summary").textContent = `${numOrders.toLocaleString()}`;
@@ -278,503 +292,684 @@ function displayData(data) {
     document.getElementById("state-summary").textContent = `${numState.toLocaleString()}`;
 
     //update chart
-    buatTotalSalesbyCatAndSeg(data); // total-sales-chart
-    buatSalesAndProfitbySubCat(data); // sales-profit-chart
-	buatCitybyLowSales(data); // city-lowest-sales-chart
-	buatProfitbyRegion(data); // city-lowest-sales-chart
-	buatDiskonAndKuantiti(data); // city-lowest-sales-chart
-	buatHeatmap(data); // city-lowest-sales-chart
-	buatABSnAOVinSeg(data); // city-lowest-sales-chart
-
-    // createBestSellingPizzaSizeChart(data);
-    // createAveragePurchasedPriceChart(data);
-    // createDailyPizzaSalesTrendChart(data);
-    // createTop5BestSellingPizzaTypeChart(data)
-    // createTop5LeastSellingPizzaTypeChart(data)
+    buatTotalSalesbyCatAndSeg(data); // total_salesChart
+    buatSalesAndProfitbySubCat(data); // sales_profitChart
+	buatDiskonAndKuantiti(data); // diskon_quantityChart
+	buatABSnAOVinSeg(data); // abs_aovChart
+	buatCatbyProfit(data); // catbyorder_profitChart
+    buatStatebyLowest(data) // statelowest_salesTable
+	buatCitybyLowSales(data); // citylowest_salesTable
+	buatHeatmap(data); // heatMapChart
 }
 
+let total_salesChart;
+function buatTotalSalesbyCatAndSeg(data) {
+    const ctx = document.getElementById("total_salesChart").getContext("2d");
+    if (total_salesChart) {
+        total_salesChart.destroy();
+    }
+    // buat object
+    const aggregatedData = {
+        "Furniture": { "Consumer": 0, "Corporate": 0, "Home Office": 0 },
+        "Office Supplies": { "Consumer": 0, "Corporate": 0, "Home Office": 0 },
+        "Technology": { "Consumer": 0, "Corporate": 0, "Home Office": 0 }
+    };
 
-// let bestSellingPizzaSizeChart;
-// function createBestSellingPizzaSizeChart(data) {
-//   const ctx = document.getElementById("bestSellingPizzaSizeChart").getContext("2d");
+    data.forEach(item => {
+        const category = item.Category;
+        const segment = item.Segment;
+        const sales = parseFloat(item.Sales);
 
-//   if (bestSellingPizzaSizeChart) {
-//     bestSellingPizzaSizeChart.destroy(); // Destroy previous chart instance if it exists
-//   }
+        if (aggregatedData[category] && aggregatedData[category][segment] !== undefined) {
+            aggregatedData[category][segment] += sales;
+        }
+    });
 
-//   const pizzaSizes = [...new Set(data.map((item) => item.Size))];
-//   const sizeSales = pizzaSizes.map((size) => {
-//     return data.filter((item) => item.Size === size).reduce((total, item) => total + parseFloat(item.Price.replace("$", "")) * item.Quantity, 0);
-//   });
+    const labels = ["Furniture", "Office Supplies", "Technology"];
+    const segments = ["Consumer", "Corporate", "Home Office"];
+    const datasets = segments.map(segment => {
+        return {
+            label: segment,
+            data: labels.map(label => aggregatedData[label][segment]),
+            backgroundColor: getSegmentColor(segment),
+            borderColor: "transparent",
+            borderWidth: 1
+        };
+    });
+    // background color brdsrkan segment
+    function getSegmentColor(segment) {
+        switch(segment) {
+            case 'Consumer': return "#0072f0";
+            case 'Corporate': return "#F10096";
+            case 'Home Office': return "#00B6CB";
+            default: return "#d4d4d4";
+        }
+    }             
+    // let = tickColor = "#000";
+    // if (document.body.classList.contains("dark")) {
+    //     tickColor = "#fff";
+    // }
+    total_salesChart = new Chart(ctx, {
+        type: 'bar',
+        data : {
+            labels: labels,
+            datasets: datasets
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true,
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function (context) {
+                            return `${context.label}: ${context.raw.toLocaleString()}`;
+                        },
+                    },
+                },
+                datalabels: {
+                    color: "#fff",
+                    anchor: "center",
+                    align: "center",
+                    formatter: function (value) {
+                        return value.toLocaleString();
+                    },
+                    font: {
+                        weight: "bold",
+                    },
+                },
+            },
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Category'
+                    },
+                    ticks: {
+                        autoSkip: false,
+                    },
+                    grid: {
+                        display: false, // Hide x-axis grid lines
+                    },
+                },
+                y: {
+                    // beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Total Sales'
+                    },
+                    ticks: {
+                        // stepSize: 5000,
+                        beginAtZero: true,
+                        // color: tickColor,
+                        callback: function (value) {
+                            return value.toLocaleString();
+                        },
+                    },
+                    grid: {
+                        display: true, // Hide x-axis grid lines
+                    },
+                },
+            },
+        },
+        plugins: [ChartDataLabels],
+    });
+}
+// SALES & PROFIT BY SUB CATEGORY
+let sales_profitChart;
+function buatSalesAndProfitbySubCat(data) {
+    const ctx = document.getElementById("sales_profitChart").getContext("2d");
+    if (sales_profitChart) {
+        sales_profitChart.destroy();
+    }
+    const aggregatedData = {};
+    // Aggregate the sales and profit data
+    data.forEach(item => {
+        const subCategory = item["Sub_Category"];
+        const sales = parseFloat(item.Sales);
+        const profit = parseFloat(item.Profit);
+        if (!aggregatedData[subCategory]) {
+            aggregatedData[subCategory] = { sales: 0, profit: 0 };
+        }
 
-//   const sizeColors = {
-//     S: "#AF672D",
-//     M: "#D3B786",
-//     L: "#886839",
-//     XL: "#E4B455",
-//   };
+        aggregatedData[subCategory].sales += sales;
+        aggregatedData[subCategory].profit += profit;
+    });
 
-//   const colors = pizzaSizes.map((size) => sizeColors[size] || "#000000");
+    // Prepare data for Chart.js
+    const labels = Object.keys(aggregatedData);
+    const salesData = labels.map(label => aggregatedData[label].sales);
+    const profitData = labels.map(label => aggregatedData[label].profit);
+    const datasets = [
+        {
+            label: 'Sales',
+            data: salesData,
+            backgroundColor: "#F10096",
+            borderColor: "transparent",
+            borderWidth: 1,
+            // yAxisID: 'y-sales',
+        },
+        {
+            label: 'Profit',
+            data: profitData,
+            backgroundColor: "#0072f0",
+            borderColor: "transparent",
+            borderWidth: 1,
+            // yAxisID: 'y-profit',
+        }
+    ];
+    sales_profitChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: datasets
+        },
+        options: {
+            indexAxis: 'y', // This makes the chart horizontal
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true, // Display the legend
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function (context) {
+                            return `${context.dataset.label}: ${context.raw.toLocaleString()}`;
+                        },
+                    },
+                },
+                datalabels: {
+                    color: "#000",
+                    anchor: "end",
+                    align: "end",
+                    formatter: function (value) {
+                        return value.toLocaleString();
+                    },
+                    font: {
+                        weight: "bold",
+                    },
+                },
+            },
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Amount'
+                    },
+                    ticks: {
+                        beginAtZero: true,
+                        callback: function(value) {
+                            return value.toLocaleString();
+                        },
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Sub-Category'
+                    },
+                    stacked: true, // Stack the bars horizontally
+                    ticks: {
+                        autoSkip: false,
+                        beginAtZero: true,
+                    },
+                }
+            },
+        },
+        plugins: [ChartDataLabels], // Include the ChartDataLabels plugin
+    });
+}
+// DISKON KUANTITI
+let diskon_quantityChart;
+function buatDiskonAndKuantiti(data) {
+    const ctx = document.getElementById("diskon_quantityChart").getContext("2d");
+    if (diskon_quantityChart) {
+        diskon_quantityChart.destroy();
+    }
 
-//   bestSellingPizzaSizeChart = new Chart(ctx, {
-//     type: "pie",
-//     data: {
-//       labels: pizzaSizes,
-//       datasets: [
-//         {
-//           label: "Total Sales",
-//           data: sizeSales,
-//           backgroundColor: colors,
-//         },
-//       ],
-//     },
-//     options: {
-//       responsive: true,
-//       maintainAspectRatio: false,
-//       plugins: {
-//         legend: {
-//           position: "top",
-//         },
-//         tooltip: {
-//           callbacks: {
-//             label: function (context) {
-//               const label = context.label || "";
-//               const value = context.raw || 0;
-//               const total = context.dataset.data.reduce((sum, val) => sum + val, 0);
-//               const percentage = ((value / total) * 100).toFixed(2);
-//               return `${label}: $${value.toFixed(2)} (${percentage}%)`;
-//             },
-//           },
-//         },
-//         datalabels: {
-//           formatter: (value, context) => {
-//             const total = context.chart.data.datasets[0].data.reduce((sum, val) => sum + val, 0);
-//             const percentage = ((value / total) * 100).toFixed(2);
-//             return `${percentage}%`;
-//           },
-//           color: "#fff",
-//           labels: {
-//             title: {
-//               font: {
-//                 weight: "bold",
-//               },
-//             },
-//           },
-//         },
-//       },
-//     },
-//     plugins: [ChartDataLabels],
-//   });
-// }
+    const aggregatedData = {};
+    // buat urutin bulan
+    const months = [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+    months.forEach(month => {
+        aggregatedData[month] = { discount: 0, quantity: 0 };
+    });
 
-// let averagePurchasedPriceChart;
-// function createAveragePurchasedPriceChart(data) {
-//   const ctx = document.getElementById("averagePurchasedPriceChart").getContext("2d");
+    // itung data
+    data.forEach(item => {
+        const date = new Date(item["Order_Date"]);
+        const month = months[date.getMonth()];
+        const discount = parseFloat(item.Discount);
+        const quantity = parseInt(item.Quantity, 10);
 
-//   if (averagePurchasedPriceChart) {
-//     averagePurchasedPriceChart.destroy();
-//   }
+        if (aggregatedData[month]) {
+            aggregatedData[month].discount += discount;
+            aggregatedData[month].quantity += quantity;
+        }
+    });
 
-//   const priceRanges = {
-//     "$9.75 - $13.99": { min: 9.75, max: 13.99 },
-//     "$14 - $17.99": { min: 14, max: 17.99 },
-//     "$18 - $21.99": { min: 18, max: 21.99 },
-//     "$22 - $25.50": { min: 22, max: 25.5 },
-//   };
+    const labels = months;
+    const discountData = labels.map(label => aggregatedData[label].discount);
+    const quantityData = labels.map(label => aggregatedData[label].quantity);
 
-//   const rangeQuantities = {
-//     "$9.75 - $13.99": 0,
-//     "$14 - $17.99": 0,
-//     "$18 - $21.99": 0,
-//     "$22 - $25.50": 0,
-//   };
+    const datasets = [
+        {
+            label: 'Discount',
+            data: discountData,
+            borderColor: "#0072f0",
+            backgroundColor: "transparent",
+            borderWidth: 2,
+            fill: true,
+            tension: 0.4
+        },
+        {
+            label: 'Quantity',
+            data: quantityData,
+            borderColor: "#00B6CB",
+            backgroundColor: "transparent",
+            borderWidth: 2,
+            fill: true,
+            tension: 0.4
+        }
+    ];
 
-//   data.forEach((item) => {
-//     const price = parseFloat(item["Price"].replace("$", ""));
-//     for (const range in priceRanges) {
-//       if (price >= priceRanges[range].min && price <= priceRanges[range].max) {
-//         rangeQuantities[range] += item.Quantity;
-//         break;
-//       }
-//     }
-//   });
+    diskon_quantityChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: datasets
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true,
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function (context) {
+                            return `${context.dataset.label}: ${context.raw.toLocaleString()}`;
+                        },
+                    },
+                },
+                datalabels: {
+                    color: "#000",
+                    anchor: "start",
+                    align: "start",
+                    formatter: function (value) {
+                        return value.toLocaleString();
+                    },
+                    font: {
+                        weight: "bold",
+                    },
+                },
+            },
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Month'
+                    },
+                    ticks: {
+                        autoSkip: false, // Ensure all months are displayed
+                        // maxRotation: 0,
+                        // minRotation: 0
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Amount'
+                    },
+                    ticks: {
+                        beginAtZero: true,
+                        callback: function(value) {
+                            return value.toLocaleString();
+                        },
+                    }
+                }
+            },
+        },
+        plugins: [ChartDataLabels],
+    });
+}
+// ABS AOV
+let abs_aovChart;
+function buatABSnAOVinSeg(data) {
+    const ctx = document.getElementById("abs_aovChart").getContext("2d");
+    if (abs_aovChart) {
+        abs_aovChart.destroy();
+    }
 
-//   const labels = Object.keys(rangeQuantities);
-//   const quantities = Object.values(rangeQuantities);
+    const aggregatedData = {};
+    const segments = ["Consumer", "Corporate", "Home Office"];
 
-//   // Hapus kategori 'Other' jika tidak ada nilai di dalamnya
-//   const otherIndex = labels.indexOf("Other");
-//   if (otherIndex !== -1 && quantities[otherIndex] === 0) {
-//     labels.splice(otherIndex, 1);
-//     quantities.splice(otherIndex, 1);
-//   }
+    segments.forEach(segment => {
+        aggregatedData[segment] = { sales: 0, quantity: 0, orders: new Set() };
+    });
 
-//   let = tickColor = "#000";
-//   if (document.body.classList.contains("dark")) {
-//     tickColor = "#fff";
-//   }
+    data.forEach(item => {
+        const segment = item.Segment;
+        const sales = parseFloat(item.Sales);
+        const quantity = parseInt(item.Quantity, 10);
+        const orderId = item["Order_ID"];
 
-//   averagePurchasedPriceChart = new Chart(ctx, {
-//     type: "bar",
-//     data: {
-//       labels: labels,
-//       datasets: [
-//         {
-//           label: "Quantity",
-//           data: quantities,
-//           backgroundColor: "#d3b786",
-//           borderColor: "transparent", // Remove border from bar chart
-//           borderWidth: 0,
-//         },
-//       ],
-//     },
-//     options: {
-//       responsive: true,
-//       maintainAspectRatio: false,
-//       plugins: {
-//         legend: {
-//           display: false,
-//         },
-//         tooltip: {
-//           callbacks: {
-//             label: function (context) {
-//               return `${context.label}: ${context.raw.toLocaleString()}`;
-//             },
-//           },
-//         },
-//         datalabels: {
-//           color: "#fff",
-//           anchor: "center",
-//           align: "center",
-//           formatter: function (value) {
-//             return value.toLocaleString();
-//           },
-//           font: {
-//             weight: "bold",
-//           },
-//         },
-//       },
-//       scales: {
-//         x: {
-//           title: {
-//             // color : '#fff',
-//             // display: true,
-//             // text: 'Price Range',
-//           },
-//           ticks: {
-//             color: tickColor, // Set color of x-axis ticks to white
-//           },
-//           grid: {
-//             display: false, // Hide x-axis grid lines
-//           },
-//         },
-//         y: {
-//           title: {
-//             // color : '#fff',
-//             // display: true,
-//             // text: 'Quantity',
-//           },
-//           ticks: {
-//             stepSize: 5000,
-//             beginAtZero: true,
-//             color: tickColor,
-//             callback: function (value) {
-//               return value.toLocaleString();
-//             },
-//           },
-//           grid: {
-//             display: false, // Hide x-axis grid lines
-//           },
-//         },
-//       },
-//     },
-//     plugins: [ChartDataLabels],
-//   });
-// }
+        if (aggregatedData[segment]) {
+            aggregatedData[segment].sales += sales;
+            aggregatedData[segment].quantity += quantity;
+            aggregatedData[segment].orders.add(orderId);
+        }
+    });
 
-// let dailyPizzaSalesTrendChart;
-// function createDailyPizzaSalesTrendChart(data) {
-//   const ctx = document.getElementById("dailyPizzaSalesTrendChart").getContext("2d");
+    const labels = segments;
+    const absData = labels.map(label => {
+        const ordersCount = aggregatedData[label].orders.size;
+        return ordersCount ? aggregatedData[label].quantity / ordersCount : 0;
+    });
+    const aovData = labels.map(label => {
+        const ordersCount = aggregatedData[label].orders.size;
+        return ordersCount ? aggregatedData[label].sales / ordersCount : 0;
+    });
 
-//   if (dailyPizzaSalesTrendChart) {
-//     dailyPizzaSalesTrendChart.destroy();
-//   }
+    const datasets = [
+        {
+            label: 'AOV',
+            data: aovData,
+            backgroundColor: "#0072f0",
+            yAxisID: 'y-aov',
+            borderWidth: 1,
+        },
+        {
+            label: 'ABS',
+            data: absData,
+            backgroundColor: "#00B6CB",
+            yAxisID: 'y-abs',
+            borderWidth: 1,
+        }
+    ];
 
-//   // Process data to get daily sales trend
-//   const dailySales = data.reduce((acc, item) => {
-//     const day = item["Day"];
-//     const price = parseFloat(item["Price"].replace("$", ""));
-//     if (!acc[day]) {
-//       acc[day] = 0;
-//     }
-//     acc[day] += price * item.Quantity;
-//     return acc;
-//   }, {});
+    abs_aovChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: datasets
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true,
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function (context) {
+                            return `${context.dataset.label}: ${context.raw.toLocaleString()}`;
+                        },
+                    },
+                },
+                datalabels: {
+                    color: "#fff",
+                    anchor: "center",
+                    align: "center",
+                    formatter: function (value) {
+                        return value.toLocaleString();
+                    },
+                    font: {
+                        weight: "bold",
+                    },
+                },
+            },
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Segment'
+                    },
+                    ticks: {
+                        autoSkip: false,
+                    }
+                },
+                'y-aov': {
+                    type: 'linear',
+                    position: 'left',
+                    title: {
+                        display: true,
+                        text: 'AOV'
+                    },
+                    ticks: {
+                        beginAtZero: true,
+                        callback: function(value) {
+                            return value.toLocaleString();
+                        },
+                    }
+                },
+                'y-abs': {
+                    type: 'linear',
+                    position: 'right',
+                    title: {
+                        display: true,
+                        text: 'ABS'
+                    },
+                    ticks: {
+                        beginAtZero: true,
+                        callback: function(value) {
+                            return value.toLocaleString();
+                        },
+                    },
+                    grid: {
+                        drawOnChartArea: false
+                    }
+                }
+            },
+        },
+        plugins: [ChartDataLabels],
+    });
+}
+// CATEGORY BY PROFIT
+let catbyprofitChart;
+function buatCatbyProfit(data) {
+    const ctx = document.getElementById("catbyprofitChart").getContext("2d");
+    if (catbyprofitChart) {
+        catbyprofitChart.destroy();
+    }
 
-//   const labels = Object.keys(dailySales).sort();
-//   const sales = labels.map((day) => dailySales[day]);
+    const aggregatedData = {};
+    let totalProfit = 0;
 
-//   let tickColor = "#000";
-//   if (document.body.classList.contains("dark")) {
-//     tickColor = "#fff";
-//   }
+    data.forEach(item => {
+        const category = item.Category;
+        const profit = parseFloat(item.Profit);
 
-//   dailyPizzaSalesTrendChart = new Chart(ctx, {
-//     type: "line",
-//     data: {
-//       labels: labels,
-//       datasets: [
-//         {
-//           label: "Total Sales ($)",
-//           data: sales,
-//           backgroundColor: "transparent",
-//           borderColor: "#E4B455",
-//           borderWidth: 2,
-//           fill: true,
-//         },
-//       ],
-//     },
-//     options: {
-//       responsive: true,
-//       maintainAspectRatio: false,
-//       plugins: {
-//         legend: {
-//           display: false,
-//         },
-//         tooltip: {
-//           callbacks: {
-//             label: function (context) {
-//               return `${context.label}: ${context.raw.toLocaleString()}`;
-//             },
-//             // label: function (context) {
-//             //   const value = Math.round(context.raw || 0).toLocaleString();
-//             //   return `${value}`;
-//             // },
-//           },
-//         },
-//         datalabels: {
-//           color: tickColor,
-//           anchor: "start",
-//           align: "start",
-//           formatter: function (value) {
-//             return `${value.toLocaleString()}`;
-//           },
-//           // formatter: (value) => `${Math.round(value).toLocaleString()}`,
-//           font: {
-//             weight: "bold",
-//           },
-//         },
-//       },
-//       scales: {
-//         x: {
-//           ticks: {
-//             color: tickColor,
-//           },
-//           grid: {
-//             display: false,
-//           },
-//         },
-//         y: {
-//           // title: {
-//           //   display: true,
-//           //   text: 'Total Sales ($)',
-//           //   color: tickColor
-//           // },
-//           ticks: {
-//             stepSize: 50000, // Set step size to 50,000
-//             beginAtZero: true,
-//             color: tickColor,
-//             callback: function (value) {
-//               return `${value.toLocaleString()}`;
-//             },
-//           },
-//           grid: {
-//             display: false,
-//           },
-//         },
-//       },
-//     },
-//     plugins: [ChartDataLabels],
-//   });
-// }
+        if (!aggregatedData[category]) {
+            aggregatedData[category] = 0;
+        }
 
-// let top5BestSellingPizzaTypeChart;
-// function createTop5BestSellingPizzaTypeChart(data) {
-//   const ctx = document.getElementById("top5BestSellingPizzaTypeChart").getContext("2d");
+        aggregatedData[category] += profit;
+        totalProfit += profit;
+    });
 
-//   if (top5BestSellingPizzaTypeChart) {
-//     top5BestSellingPizzaTypeChart.destroy(); // Destroy previous chart instance if it exists
-//   }
+    // Prepare data for Chart.js
+    const labels = Object.keys(aggregatedData);
+    const profitData = labels.map(label => (aggregatedData[label] / totalProfit) * 100);
 
-//   const pizzaTypes = [...new Set(data.map((item) => item["Pizza ID"]))];
-//   const typeSales = pizzaTypes.map((type) => {
-//     return data.filter((item) => item["Pizza ID"] === type).reduce((total, item) => total + parseFloat(item["Price"].replace("$", "")) * item["Quantity"], 0);
-//   });
+    // Colors for the pie chart
+    const colors = [
+        "#F10096", "#0072f0", "#00B6CB"
+    ];
 
-//   const top5Data = pizzaTypes
-//     .map((type, index) => ({ type, sales: typeSales[index] }))
-//     .sort((a, b) => b.sales - a.sales)
-//     .slice(0, 5);
+    catbyprofitChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: labels,
+            datasets: [{
+                data: profitData,
+                backgroundColor: colors.slice(0, labels.length),
+                borderColor: "transparent",
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: true,
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function (context) {
+                            const label = context.label || '';
+                            const value = context.raw.toFixed(2);
+                            return `${label}: ${value}%`;
+                        },
+                    },
+                },
+                datalabels: {
+                    color: "#fff",
+                    formatter: function (value, context) {
+                        return value.toFixed(2) + '%';
+                    },
+                    font: {
+                        weight: "bold",
+                    },
+                },
+            },
+        },
+        plugins: [ChartDataLabels], // Include the ChartDataLabels plugin
+    });
+}
+// STATE BY LOWEST SALES
+let statelowest_salesTable;
+function buatStatebyLowest(data) {
+    // Clear previous data if DataTable already initialized
+    if (statelowest_salesTable) {
+        statelowest_salesTable.destroy();
+    }
+    const aggregatedData = {};
+    data.forEach(item => {
+        const state = item.State;
+        const sales = parseFloat(item.Sales);
+        if (!aggregatedData[state]) {
+            aggregatedData[state] = 0;
+        }
+        aggregatedData[state] += sales;
+    });
+    
+    const sortedData = Object.keys(aggregatedData).map(state => {
+        return { state: state, totalSales: aggregatedData[state] };
+    }).sort((a, b) => a.totalSales - b.totalSales);
+    
+    // Populate table with sorted data
+    const tbody = $('#statelowest_salesTable tbody');
+    tbody.empty();
+    sortedData.forEach(item => {
+        tbody.append(`
+            <tr>
+                <td>${item.state}</td>
+                <td>$ ${item.totalSales.toLocaleString()}</td>
+            </tr>
+        `);
+    });
 
-//   const top5Labels = top5Data.map((item) => item.type);
-//   const top5Sales = top5Data.map((item) => item.sales);
+    // Initialize DataTable with pagination and search features
+    statelowest_salesTable = $('#statelowest_salesTable').DataTable({
+        "pageLength": 10,
+        "searching": true,
+        "ordering": true,
+        "order": [[1, 'asc']],
+        "pagingType": "full_numbers",
+        "dom": '<"top"lf>rt<"bottom"ip><"clear">',
+        "language": {
+            "paginate": {
+                "first": "&#171;",
+                "last": "&#187;",
+                "next": "&#8250;",
+                "previous": "&#8249;"
+            }
+        }
+    });
+}
+// CITY BY LOWEST PROFIT
+let dataTable;
+function buatCitybyLowSales(data){
+    const aggregatedData = {};
+    data.forEach(item => {
+        const city = item.City;
+        const sales = parseFloat(item.Sales);
+        const profit = parseFloat(item.Profit);
+        if (!aggregatedData[city]) {
+            aggregatedData[city] = { totalSales: 0, totalProfit: 0 };
+        }
+        aggregatedData[city].totalSales += sales;
+        aggregatedData[city].totalProfit += profit;
+    });
 
-//   let tickColor = "#000";
-//   if (document.body.classList.contains("dark")) {
-//     tickColor = "#fff";
-//   }
+    const sortedData = Object.keys(aggregatedData).map(city => {
+        return { city: city, totalSales: aggregatedData[city].totalSales, totalProfit: aggregatedData[city].totalProfit };
+    }).sort((a, b) => a.totalProfit - b.totalProfit);
 
-//   top5BestSellingPizzaTypeChart = new Chart(ctx, {
-//     type: "bar",
-//     data: {
-//       labels: top5Labels,
-//       datasets: [
-//         {
-//           label: "Total Sales",
-//           data: top5Sales,
-//           backgroundColor: "#AF672D",
-//         },
-//       ],
-//     },
-//     options: {
-//       responsive: true,
-//       maintainAspectRatio: false,
-//       scales: {
-//         x: {
-//           beginAtZero: true,
-//           ticks: {
-//             color: tickColor,
-//           },
-//           grid: {
-//             display: false,
-//           },
-//         },
-//         y: {
-//           beginAtZero: true,
-//           ticks: {
-//             stepSize: 10000,
-//             color: tickColor,
-//             callback: function (value) {
-//               return value.toLocaleString();
-//             }
-//           },
-//           grid: {
-//             display: false,
-//           },
-//         },
-//       },
-//       plugins: {
-//         legend: {
-//           display: false,
-//         },
-//         tooltip: {
-//           callbacks: {
-//             label: function (context) {
-//               const value = Math.round(context.raw || 0).toLocaleString();
-//               return `${value}`;
-//             },
-//           },
-//         },
-//         datalabels: {
-//           anchor: 'center',
-//           align: 'center',
-//           formatter: (value) => `${Math.round(value).toLocaleString()}`,
-//           color: '#fff',
-//           font: {
-//             weight: 'bold',
-//           },
-//         },
-//       },
-//     },
-//     plugins: [ChartDataLabels],
-//   });
-// }
+    // Clear previous data if DataTable already initialized
+    if (dataTable) {
+        dataTable.clear().destroy();
+    }
 
-// let top5LeastSellingPizzaTypeChart;
-// function createTop5LeastSellingPizzaTypeChart(data) {
-//   const ctx = document.getElementById("top5LeastSellingPizzaTypeChart").getContext("2d");
+    // Populate table with sorted data
+    const tbody = $('#citylowest_salesTable tbody');
+    tbody.empty();
+    sortedData.forEach(item => {
+        tbody.append(`
+            <tr>
+                <td>${item.city}</td>
+                <td>$ ${item.totalSales.toLocaleString()}</td>
+                <td>$ ${item.totalProfit.toLocaleString()}</td>
+            </tr>
+        `);
+    });
+    // Initialize DataTable with pagination and search features
+    dataTable = $('#citylowest_salesTable').DataTable({
+        "pageLength": 10,
+        "searching": true,
+        "ordering": true,
+        "order": [[2, 'asc']],
+        "pagingType": "full_numbers",
+        "dom": '<"top"lf>rt<"bottom"ip><"clear">',
+        "language": {
+            "paginate": {
+                "first": "&#171;",
+                "last": "&#187;",
+                "next": "&#8250;",
+                "previous": "&#8249;"
+            }
+        }
+    });
+}
 
-//   if (top5LeastSellingPizzaTypeChart) {
-//     top5LeastSellingPizzaTypeChart.destroy(); // Destroy previous chart instance if it exists
-//   }
+// HEAT MAP
+let heat;
+function buatHeatmap(data){
+    const map = L.map('heatmapChart').setView([37.8, -96], 4);
+    
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    
+    //buat data yg masuk dinamis, klo ada data bisa didestroy dulu
+    if (heat) {
+        map.removeLayer(heat);
+    }
+    // const heatData = data.map(item => [...item.Coordinates, item.Sales]);
+    const heatData = data.filter(item => Array.isArray(item.Coordinates) && item.Coordinates.length === 2).map(item => [...item.Coordinates, item.Sales]);
 
-//   const pizzaTypes = [...new Set(data.map((item) => item["Pizza ID"]))];
-//   const typeSales = pizzaTypes.map((type) => {
-//     return data.filter((item) => item["Pizza ID"] === type).reduce((total, item) => total + parseFloat(item["Price"].replace("$", "")) * item["Quantity"], 0);
-//   });
-
-//   const top5Data = pizzaTypes
-//     .map((type, index) => ({ type, sales: typeSales[index] }))
-//     .sort((a, b) => a.sales - b.sales)
-//     .slice(0, 5);
-
-//   const top5Labels = top5Data.map((item) => item.type);
-//   const top5Sales = top5Data.map((item) => item.sales);
-
-//   let tickColor = "#000";
-//   if (document.body.classList.contains("dark")) {
-//     tickColor = "#fff";
-//   }
-
-//   top5LeastSellingPizzaTypeChart = new Chart(ctx, {
-//     type: "bar",
-//     data: {
-//       labels: top5Labels,
-//       datasets: [
-//         {
-//           label: "Total Sales",
-//           data: top5Sales,
-//           backgroundColor: "#886839",
-//         },
-//       ],
-//     },
-//     options: {
-//       responsive: true,
-//       maintainAspectRatio: false,
-//       scales: {
-//         x: {
-//           beginAtZero: true,
-//           ticks: {
-//             color: tickColor,
-//           }
-//         },
-//         y: {
-//           beginAtZero: true,
-//           ticks: {
-//             stepSize: 1000,
-//             color: tickColor,
-//             callback: function (value) {
-//               return value.toLocaleString();
-//             },
-//           },
-//           grid: {
-//             display: false,
-//           },
-//         },
-//       },
-//       plugins: {
-//         legend: {
-//           display: false,
-//         },
-//         tooltip: {
-//           callbacks: {
-//             label: function (context) {
-//               const value = Math.round(context.raw || 0).toLocaleString();
-//               return `${value}`;
-//             },
-//           },
-//         },
-//         datalabels: {
-//           anchor: 'center',
-//           align: 'center',
-//           formatter: (value) => `${Math.round(value).toLocaleString()}`,
-//           color: '#fff',
-//           font: {
-//             weight: 'bold',
-//           },
-//         },
-//       },
-//     },
-//     plugins: [ChartDataLabels],
-//   });
-// }
+    heat = L.heatLayer(heatData, {
+        radius: 25,
+        blur: 15,
+        maxZoom: 17,
+        gradient: {0.4: 'green', 0.65: 'yellow', 1: 'red'}
+    }).addTo(map);
+}

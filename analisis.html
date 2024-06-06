@@ -6,7 +6,12 @@
 
             <!-- link icon font awesome -->
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-                
+
+            <!-- link library css bawaan DataTables.js dan leaflet.js -->
+            <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+            <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+            <!-- link CSS -->
             <link rel="stylesheet" href="./css/style.css">
             <link rel="stylesheet" href="./css/analisis-style.css">
             <link rel="Shortcut icon" href="./img/logo/14-logo.svg" />
@@ -26,13 +31,6 @@
                             <li><a href="./">Home</a></li>
                             <li><a href="./#about">About</a></li>
                             <li><a href="./analisis.html">Dashboard</a></li>
-                            <!-- <div class="dropdown">
-                                <a href="#" class="dropbtn">Analysis <i class="fa-solid fa-chevron-down"></i></a>
-                                <div class="dropdown-content">
-                                    <a href="https://www.kaggle.com/" target="_blank">The Dataset</a>
-                                    <a href="#" target="_blank">Data Analytics Deck</a>
-                                </div>
-                            </div> -->
                             <li><a href="./#team">Teams</a></li>
                             <li><a href="./#tools">Tools</a></li>
                             <li><a href="./#feedback">Contact</a></li>
@@ -63,20 +61,15 @@
                         <div class="row secondary">
                             <div class="column">
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos ullam deserunt, cum dolores illo accusantium debitis aliquid necessitatibus reiciendis molestias? Quod molestias consequuntur rem reprehenderit inventore exercitationem dignissimos qui ipsa?</p>
-                                <p>GRAFIK BACKGROUND ANALISIS AWAL DISINI</p>
+                                <h3>GRAFIK BACKGROUND ANALISIS AWAL DISINI</h3>
                             </div>
-                            <div class="column"></div>
                             <div class="column">
                                 <h3>Business Situation</h3>
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic deleniti culpa necessitatibus, numquam dolores nobis similique, doloribus blanditiis, ducimus corporis inventore perferendis consequatur nostrum sapiente. Ratione quia numquam omnis nulla?</p>
                                 <h3>Problem Statement</h3>
                                 <p>Mengapa kenaikan profit tahun 2016 ke 2017 hanya 14,24%? → Mengidentifikasi variabel apa saja yang memiliki pengaruh kuat terhadap kenaikan profit sebesar 14,24%?</p>
                             </div>
-                            <!-- <div class="column"></div> -->
                         </div>
-                        <!-- bisa tambahin apa gtu nnt disini-->
-                        <!-- <div class="row"></div>
-                        <div class="row"></div> -->
                     </div>
                 </section>
 
@@ -84,6 +77,7 @@
                 <section class="container-fluid">
                     <div class="row">
                         <h2>Dashboard Superstore 2017</h2>
+                        <!-- SUMMARY CARD -->
                         <div class="cards">
                             <div class="card">
                                 <div class="card-content">
@@ -131,8 +125,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="column"></div>
-                        <div class="column"></div> -->
+                        <!-- DASHBOARD -->
                         <div class="dashboard">
                             <form action="./js/chart.js" class="filters select">
                                 <div class="select-dropdown">
@@ -181,31 +174,12 @@
                                     <ul class="list-items state"></ul>
                                 </div>
                             </form>
-                            <!-- <div class="filters">
-                                <select>
-                                    <option>Order Date (Month)</option>
-                                </select>
-                                <select>
-                                    <option>Sub-category</option>
-                                </select>
-                                <select>
-                                    <option>Segment</option>
-                                </select>
-                                <select>
-                                    <option>Region</option>
-                                </select>
-                                <select>
-                                    <option>State</option>
-                                </select>
-                            </div> -->
-                            <!-- <div id="filterButtonsContainer"></div>
-                            <canvas id="myChart"></canvas> -->
                             <div class="total-sales chart-item">
                                 <div class="chart-text">
                                     <p>Total Sales By Category and Segment</p>
                                 </div>
                                 <div class="chart-img">
-                                    <canvas id="total-sales-chart"></canvas>
+                                    <canvas id="total_salesChart"></canvas>
                                 </div>
                             </div>
                             <div class="sales-profit chart-item">
@@ -213,15 +187,15 @@
                                     <p>Sales & Profit by sub-category</p>
                                 </div>
                                 <div class="chart-img">
-                                    <canvas id="sales-profit-chart"></canvas>
+                                    <canvas id="sales_profitChart"></canvas>
                                 </div>
                             </div>
                             <div class="profit-region chart-item">
                                 <div class="chart-text">
-                                    <p>Profit By Region</p>
+                                    <p>Category by Profit</p>
                                 </div>
                                 <div class="chart-img">
-                                    <canvas id="profit-region-chart"></canvas>
+                                    <canvas id="catbyprofitChart"></canvas>
                                 </div>
                             </div>
                             <div class="discount-quantity chart-item">
@@ -229,7 +203,7 @@
                                     <p>Discount and Quantity</p>
                                 </div>
                                 <div class="chart-img">
-                                    <canvas id="diskon-quantity-chart"></canvas>
+                                    <canvas id="diskon_quantityChart"></canvas>
                                 </div>
                             </div>
                             <div class="abs-aov chart-item">
@@ -237,51 +211,53 @@
                                     <p>ABS and AOV In Segment</p>
                                 </div>
                                 <div class="chart-img">
-                                    <canvas id="abs-aov-chart"></canvas>
+                                    <canvas id="abs_aovChart"></canvas>
                                 </div>
                             </div>
                             <div class="heatmap-sales chart-item">
                                 <div class="chart-text">
                                     <p>Heat Map Sales By City</p>
                                 </div>
-                                <div class="chart-img">
-                                    <canvas id="heatmap-chart"></canvas>
+                                <div class="chart-img heatlayer" id="heatmapChart">
+                                    <!-- <canvas id="heatmapChart"></canvas> -->
                                 </div>
                             </div>
-                            <div class="city-lowest-sales chart-item">
-                                <div class="chart-text">
-                                    <p>City by Lowest sales</p>
+                            <div class="table state-lowest">
+                                <div class="table-header">
+                                    <p>State by Lowest sales</p>
                                 </div>
-                                <div class="chart-img">
-                                    <canvas id="city-lowest-sales-chart"></canvas>
+                                <div>
+                                    <table id="statelowest_salesTable" class="display compact">
+                                        <thead>
+                                            <tr>
+                                                <th>State</th>
+                                                <th>Total Sales</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="table city-lowest-sales">
+                                <div class="table-header">
+                                    <p>City by The Most Lowest Profit</p>
+                                </div>
+                                <div>
+                                    <table id="citylowest_salesTable" class="display">
+                                        <thead>
+                                            <tr>
+                                                <th>City</th>
+                                                <th>Total Sales</th>
+                                                <th>Total Profit</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
-                <!-- <section class="flex-container container-fluid">
-                    <div class="card2">
-                        <div class="dropdown">
-                            <button onclick="toggleDropdown()" class="dropbtn btn-primary">
-                                Order Date (Month)
-                            </button>
-                            <div id="monthDropdown" class="dropdown-content">
-                                <label><input type="checkbox" value="2014" checked/>Januari</label>
-                                <label><input type="checkbox" value="2015" checked/>Februari</label>
-                                <label><input type="checkbox" value="2016" checked/>Maret</label>
-                                <label><input type="checkbox" value="2017" checked/>April</label>
-                                <label><input type="checkbox" value="2017" checked/>Mei</label>
-                                <label><input type="checkbox" value="2017" checked/>Juni</label>
-                                <label><input type="checkbox" value="2017" checked/>Juli</label>
-                                <label><input type="checkbox" value="2017" checked/>Agustus</label>
-                                <label><input type="checkbox" value="2017" checked/>September</label>
-                                <label><input type="checkbox" value="2017" checked/>Oktober</label>
-                                <label><input type="checkbox" value="2017" checked/>November</label>
-                                <label><input type="checkbox" value="2017" checked/>Desember</label>
-                            </div>
-                        </div>
-                    </div>
-                </section> -->
             </main>
 
             <!-- footer -->
@@ -337,7 +313,11 @@
             </footer>
             
             <script src="./js/chart.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+            <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+            <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+            <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+            <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
         </body>
 </html>

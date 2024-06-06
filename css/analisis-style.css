@@ -1,7 +1,7 @@
 /* === summary === */
 .row h2{
-    /* padding: 24px 0px; */
-    padding: 4%;
+    padding: 24px 0px;
+    /* padding-top: 2%; */
     margin: auto;
 }
 
@@ -99,7 +99,7 @@
     width: auto;
     min-height: 100vh;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     padding: 2%;
 }
 /* === filter box === */
@@ -217,15 +217,20 @@ form .select-btn .arrow-dwn {
 .sales-profit, .discount-quantity, .heatmap-sales {
     grid-column: span 7;
 }
-.profit-region, .abs-aov, .city-lowest-sales {
+.profit-region, .abs-aov, .state-lowest {
     grid-column: span 5;
+}
+.city-lowest-sales{
+    grid-column: span 12;
 }
 
 .chart-item {
-    background-color: #f4f4f4;
+    /* background-color: #f4f4f4; */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     padding: 20px 10px;
     border-radius: 10px;
-    height: 360px;
+    height: 450px;
+    /* height: max-content; */
     display: flex;
     justify-content: space-betwen;
     align-items: center;
@@ -234,7 +239,7 @@ form .select-btn .arrow-dwn {
 }
 .chart-item .chart-img {
     width: 100%;
-    height: 95%;
+    height: 80%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -244,11 +249,192 @@ form .select-btn .arrow-dwn {
     height: 100% !important;
     max-width: 100%;
     max-height: 100%;
+}
+.chart-item table {
+    width: 100% !important;
+    max-width: 100%;
     box-sizing: border-box;
 }
 .chart-item p {
     font-weight: bolder;
 }
+
+/* table {
+    width: 100%;
+    height: 100% !important;
+    max-width: 100%;
+    max-height: 100%;
+    border-collapse: collapse;
+} */
+/* th, td {
+    font-size: 12px;
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+} */
+/* .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.pagination button {
+    padding: 8px 16px;
+    margin: 0 4px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+.pagination button.active {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+} */
+
+/* .content-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 12px;
+    width: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.20);
+}
+.content-table thead tr {
+    background-color: #0072f0;
+    color: #fff;
+    text-align: left;
+    font-weight: bold;
+}
+.content-table th,
+.content-table td {
+    font-size: 12px;
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+.content-table tbody tr {
+    background-color: #f4f4f4;
+    color: #000;
+    border-bottom: 1px solid #dddddd;
+} */
+/* ========== Tabel ========== */
+.table {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0 0 0;
+    /* padding: 20px 10px; */
+    /* border-radius: 10px; */
+    height: max-content;
+    /* height: max-content; */
+    justify-content: space-betwen;
+    align-items: center;
+    box-sizing: border-box;
+}
+.table .table-header {
+    font-size: 16px;
+    color: black;
+    font-weight: bolder;
+}
+div.dt-container{
+    color: black;
+    font-weight: 500;
+    font-size: 12px;
+    position: static;
+    margin-top: 5px;
+}
+div.dt-container select.dt-input, div.dt-container .dt-search input {
+    border: 1px solid #000;
+}
+div.dt-container select.dt-input option {
+    background-color: white;
+}
+table.dataTable {
+    border-collapse: collapse;
+    background-color: white;
+    margin: 10px 0;
+    width: auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+table.dataTable thead th, table.dataTable thead td{
+    padding: 12px;
+}
+table.dataTable tbody th, table.dataTable tbody td {
+    padding: 4px 12px;
+}
+table.dataTable thead tr {
+    background-color: #0072f0;
+    color: #fff;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+}
+table.dataTable thead > tr > th.dt-orderable-asc{
+    text-align: center;
+}
+table.dataTable > tbody > tr {
+    text-align: center;
+    font-size: 12px;
+    border-bottom: 0.5px solid rgba(132, 139, 200, 0.18);
+}
+table.dataTable > tbody > tr{
+    background-color: white;
+}
+table.dataTable tbody tr:hover td {
+    background-color: transparent;
+}
+table.dataTable tbody td.active {
+    background-color: transparent; 
+}
+table.dataTable td.dt-type-numeric {
+    text-align: center;
+}
+table.dataTable {
+    width: 100% !important;
+}
+div.dt-container .dt-paging .dt-paging-button.disabled, 
+div.dt-container .dt-paging .dt-paging-button.disabled:hover, 
+div.dt-container .dt-paging .dt-paging-button.disabled:active {
+    color: #f4f4f4 !important;
+}
+.dataTables_wrapper .dataTables_length, .dataTables_filter, .dataTables_info, .dataTables_paginate {
+    font-size: 12px;
+    color: #000;
+}
+.dataTables_paginate .paginate_button {
+    padding: 4px 8px;
+}
+.dataTables_wrapper .dataTables_filter{
+    float: none;
+}
+
+/* === HEAT MAP === */
+#heatmapChart {
+    height: auto;
+    width: 100%;
+}
+.heatlayer {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100%;
+    max-height: 100%;
+}
+/* .chart-item {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px 10px;
+    border-radius: 10px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+.chart-text {
+    font-weight: bolder;
+    margin-bottom: 10px;
+} */
 
 /* === media queries === */
 @media (max-width: 900px) {
@@ -292,18 +478,18 @@ form .select-btn .arrow-dwn {
         font-size: smaller;
     }
 
-    .total-sales, .discount-quantity, .abs-aov, .heatmap-sales, .city-lowest-sales{
+    .total-sales, .discount-quantity, .abs-aov, .heatmap-sales, .state-lowest{
         grid-column: span 12;
     }
     .sales-profit, .profit-region{
         grid-column: span 6;
     }
-    .total-sales, .sales-profit, .discount-quantity, .profit-region, .city-lowest-sales, .abs-aov, .heatmap-sales {
+    .total-sales, .sales-profit, .discount-quantity, .profit-region, .city-lowest-sales, .abs-aov, .heatmap-sales, .state-lowest {
         padding: 10px;
     }
 }
 @media screen and (max-width: 610px){
-    .total-sales, .sales-profit, .discount-quantity, .profit-region, .city-lowest-sales, .abs-aov, .heatmap-sales {
+    .sales-profit, .profit-region {
         grid-column: span 12;
     }
 }
