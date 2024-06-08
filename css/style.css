@@ -241,10 +241,13 @@ a:hover {
     align-items: center;
     justify-content: center;
     flex-direction: row;
-    gap: 4%;
+    /* gap: 4%; */
     color: white;
     margin-top: 65px;
     padding: 64px;
+}
+.ilustrasi{
+    height: 500px;
 }
 .content {
     position: relative;
@@ -256,13 +259,13 @@ a:hover {
     flex-direction: column;
     color: white;
     margin-top: 65px;
-    padding: 40px;
+    padding: 56px;
 }
 /* logo KM-Revou */
 #logo-hero {
     position: relative;
     text-align: right;
-    padding: 64px 64px 32px;
+    padding: 32px 64px;
 }
 #logo-hero img {
     margin-left: 24px;
@@ -271,7 +274,7 @@ a:hover {
 .logoutama{
     position: relative;
     margin: auto;
-    padding: 64px 64px 64px;
+    padding: 64px;
 }
 .logoutama img{
     height: 56px;
@@ -467,7 +470,8 @@ a:hover {
 .img-thumbnail {
     width: 88px;
     height: 88px;
-    margin: 10px;
+    /* margin: 10px; */
+    margin: auto;
     padding: 24px; 
     border: none;
 }
@@ -721,7 +725,14 @@ div.social {
         width: 40%;
     }
 }
-
+/* @media screen and (max-width: 1024px){
+    .hero1{
+        flex-shrink: 2;
+    }
+    .hero2{
+        flex-shrink: 1;
+    }
+} */
 @media screen and (max-width: 920px) {
     /* navbar */
     .checkbtn {
@@ -828,8 +839,55 @@ div.social {
         font-size: 24px;
     }
 }
-/* @media (max-width: 768px) {
-} */
+@media (max-width: 768px) {
+    .hero, .home{
+        height: auto;
+    }
+    .title-capstone1, .title-capstone2{
+        padding: 16px 40px;
+    }
+    .content-hero{
+        padding: 32px 48px;
+        gap: 0px;
+    }
+    .ilustrasi{
+        height: 350px;
+        /* transform: scale(0.7); */
+    }
+    .logoutama {
+        padding: 48px;
+    }
+    .logoutama img,
+    #logo-hero img {
+        height: 48px;
+        /* margin-right: 24px; */
+    }
+}
+@media screen and (max-width: 670px){
+    .ilustrasi{
+        height: 250px;
+    }
+    /* h1 {
+        font-size: 32px;
+    } */
+    .container-teams, .container-technology, .container-acknowledgement, .container-supportby{
+        padding: 32px;
+    }
+    .flex-container2 > div {
+        padding: 8px;
+    }
+    .foto-container img {
+        width: 100px;
+        height: 100px;
+    }
+    .caption, .additional-text{
+        font-size: smaller;
+    }
+    .img-thumbnail {
+        width: 70px;
+        height: 70px;
+    }
+}
 
 @media screen and (max-width: 560px){
     /* footer */
@@ -842,16 +900,18 @@ div.social {
     .column{
         padding: 24px 0px;
     }
-    .foto-container img {
-        width: 100px;
-        height: 100px;
+    .analysis h2 {
+        text-align: left;
     }
-    /* .flex-container.foto-container{
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-    } */
-    .caption, .additional-text{
-        font-size: smaller;
+    .container-acknowledgement p {
+        text-align: justify;
+    }
+}
+@media screen and (max-width: 425px){
+    .container-overview, .container-analysis {
+        padding: 24px;
+    }
+    .overview, .analysis{
+        padding: 8px;
     }
 }

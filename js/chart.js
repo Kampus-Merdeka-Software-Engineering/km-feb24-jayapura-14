@@ -14,108 +14,130 @@ selectbtn.forEach((selectBtn) => {
   });
 });
 
-fetch("./Data/Superstore.json")
-  .then((response) => response.json())
-  .then((data) => {
-    createFilter(data, "Order_Date", ".order-month", true);
-    createFilter(data, "Sub_Category", ".sub-cat");
-    createFilter(data, "Segment", ".segment");
-    createFilter(data, "Region", ".region");
-    createFilter(data, "State", ".state");
-
-    // Membuat Button SELECT ALL dan RESET di setiap filter section
-    function addSelectAllButton(containerSelector) {
-        const container = document.querySelector(containerSelector);
-        const existingSelectAllButton = container.querySelector(".select-all");
-        const existingResetButton = container.querySelector(".reset");
-
-        // Pastikan tombol tidak duplikat
-        if (!existingSelectAllButton) {
-            const selectAllButton = document.createElement("button");
-            selectAllButton.textContent = "Select All";
-            selectAllButton.className = "select-all";
-            selectAllButton.style.display = "none"; // Sembunyikan tombol select di awal
-            container.prepend(selectAllButton);
-
-            selectAllButton.addEventListener("click", (e) => {
-                e.preventDefault();
-                container.querySelectorAll(".item input[type=checkbox]").forEach((checkbox) => {
-                    checkbox.checked = true;
-                });
-                toggleButtons(containerSelector);
-                const selectedFilters = getSelectedFilters();
-                const filteredData = data.filter(filterData(selectedFilters));
-                displayData(filteredData);
-            });
+let cityCoordinates = {};
+function mergeDataWithCoordinates(filteredSalesData) {
+    return filteredSalesData.map(sale => {
+        const cityCoord = cityCoordinates.find(city => city.City === sale.City);
+        if (cityCoord) {
+            return {
+                ...sale,
+                Coordinates: [parseFloat(cityCoord.Lat), parseFloat(cityCoord.Lng)]
+            };
         }
+        return sale;
+    }).filter(item => item.Coordinates); // Filter out entries without coordinates
+}
+document.addEventListener("DOMContentLoaded", function(){
+    async function fetchCityCoordinates() {
+        const response = await fetch('Data/cityCoordinates.json');
+        cityCoordinates = await response.json();
+        console.log(cityCoordinates);
+    }
+    fetchCityCoordinates().then(() => {
+        fetch("./Data/Superstore.json")
+        .then((response) => response.json())
+        .then((data) => {
+            createFilter(data, "Order_Date", ".order-month", true);
+            createFilter(data, "Sub_Category", ".sub-cat");
+            createFilter(data, "Segment", ".segment");
+            createFilter(data, "Region", ".region");
+            createFilter(data, "State", ".state");
 
-        if (!existingResetButton) {
-            const resetButton = document.createElement("button");
-            resetButton.textContent = "Reset";
-            resetButton.className = "reset";
-            // resetButton.style.display = "none"; // Sembunyikan tombol reset di awal
-            container.prepend(resetButton);
+            // Membuat Button SELECT ALL dan RESET di setiap filter section
+            function addSelectAllButton(containerSelector) {
+                const container = document.querySelector(containerSelector);
+                const existingSelectAllButton = container.querySelector(".select-all");
+                const existingResetButton = container.querySelector(".reset");
 
-            resetButton.addEventListener("click", (e) => {
-                e.preventDefault();
-                container.querySelectorAll(".item input[type=checkbox]").forEach((checkbox) => {
-                    checkbox.checked = false;
-                });
-                toggleButtons(containerSelector);
-                displayData([]);
-            });
-        }
-        // event listeners checkboxe
-        container.querySelectorAll(".item input[type=checkbox]").forEach((checkbox) => {
-            checkbox.addEventListener("change", () => {
-                toggleButtons(containerSelector);
-                const selectedFilters = getSelectedFilters();
-                updateFilters(data, selectedFilters);
-                const filteredData = data.filter(filterData(selectedFilters));
-                if (Object.values(selectedFilters).every((filter) => filter.length === 0)) {
-                    displayData([]); // Tampilkan data kosong jika tidak ada yang di ceklis
-                } else {
-                    displayData(filteredData);
+                // Pastikan tombol tidak duplikat
+                if (!existingSelectAllButton) {
+                    const selectAllButton = document.createElement("button");
+                    selectAllButton.textContent = "Select All";
+                    selectAllButton.className = "select-all";
+                    selectAllButton.style.display = "none"; // Sembunyikan tombol select di awal
+                    container.prepend(selectAllButton);
+
+                    selectAllButton.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        container.querySelectorAll(".item input[type=checkbox]").forEach((checkbox) => {
+                            checkbox.checked = true;
+                        });
+                        toggleButtons(containerSelector);
+                        const selectedFilters = getSelectedFilters();
+                        const filteredData = data.filter(filterData(selectedFilters));
+                        displayData(filteredData);
+                    });
                 }
+
+                if (!existingResetButton) {
+                    const resetButton = document.createElement("button");
+                    resetButton.textContent = "Reset";
+                    resetButton.className = "reset";
+                    // resetButton.style.display = "none"; // Sembunyikan tombol reset di awal
+                    container.prepend(resetButton);
+
+                    resetButton.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        container.querySelectorAll(".item input[type=checkbox]").forEach((checkbox) => {
+                            checkbox.checked = false;
+                        });
+                        toggleButtons(containerSelector);
+                        displayData([]);
+                    });
+                }
+                // event listeners checkboxe
+                container.querySelectorAll(".item input[type=checkbox]").forEach((checkbox) => {
+                    checkbox.addEventListener("change", () => {
+                        toggleButtons(containerSelector);
+                        const selectedFilters = getSelectedFilters();
+                        updateFilters(data, selectedFilters);
+                        const filteredData = data.filter(filterData(selectedFilters));
+                        if (Object.values(selectedFilters).every((filter) => filter.length === 0)) {
+                            displayData([]); // Tampilkan data kosong jika tidak ada yang di ceklis
+                        } else {
+                            displayData(filteredData);
+                        }
+                    });
+                });
+                toggleButtons(containerSelector); // Atur visibilitas tombol di awal
+            }
+            // Add "Select All" buttons to each filter section
+            addSelectAllButton(".order-month");
+            addSelectAllButton(".sub-cat");
+            addSelectAllButton(".segment");
+            addSelectAllButton(".region");
+            addSelectAllButton(".state");
+
+
+            // Display data awal by default
+            document.querySelectorAll(".item input[type=checkbox]").forEach((checkbox) => {
+                checkbox.checked = true;
             });
+            // Display all data by default
+            const selectedFilters = getSelectedFilters();
+            updateFilters(data, selectedFilters);
+            displayData(data);
+
+            function toggleButtons(containerSelector) {
+                const container = document.querySelector(containerSelector);
+                const checkboxes = container.querySelectorAll(".item input[type=checkbox]");
+                const selectAllButton = container.querySelector(".select-all");
+                const resetButton = container.querySelector(".reset");
+            
+                const allChecked = Array.from(checkboxes).every((checkbox) => checkbox.checked);
+                const someChecked = Array.from(checkboxes).some((checkbox) => checkbox.checked);
+            
+                if (allChecked) {
+                    selectAllButton.style.display = "none";
+                    resetButton.style.display = "block";
+                }
+                else {
+                    selectAllButton.style.display = "block";
+                    resetButton.style.display = someChecked ? "block" : "none";
+                }
+            }
         });
-        toggleButtons(containerSelector); // Atur visibilitas tombol di awal
-    }
-    // Add "Select All" buttons to each filter section
-    addSelectAllButton(".order-month");
-    addSelectAllButton(".sub-cat");
-    addSelectAllButton(".segment");
-    addSelectAllButton(".region");
-    addSelectAllButton(".state");
-
-
-    // Display data awal by default
-    document.querySelectorAll(".item input[type=checkbox]").forEach((checkbox) => {
-        checkbox.checked = true;
     });
-    // Display all data by default
-    const selectedFilters = getSelectedFilters();
-    updateFilters(data, selectedFilters);
-    displayData(data);
-
-    function toggleButtons(containerSelector) {
-        const container = document.querySelector(containerSelector);
-        const checkboxes = container.querySelectorAll(".item input[type=checkbox]");
-        const selectAllButton = container.querySelector(".select-all");
-        const resetButton = container.querySelector(".reset");
-    
-        const allChecked = Array.from(checkboxes).every((checkbox) => checkbox.checked);
-        const someChecked = Array.from(checkboxes).some((checkbox) => checkbox.checked);
-    
-        if (allChecked) {
-            selectAllButton.style.display = "none";
-            resetButton.style.display = "block";
-        }
-        else {
-            selectAllButton.style.display = "block";
-            resetButton.style.display = someChecked ? "block" : "none";
-        }
-    }
 });
 
 function createFilter(data, attribute, containerSelector, isDate = false) {
@@ -284,6 +306,15 @@ function displayData(data) {
         aov = totalSales / numOrders;
     }
     console.log(abs, aov);
+    // Num of City = count_distinct(City)
+    let numCity = 0;
+    if (data.length > 0) {
+        const city = data.map((item) => item["City"]);
+        const uniqueCity = new Set(city);
+        numCity = uniqueCity.size;
+    }
+    console.log(numCity);
+    
     
     document.getElementById("sales-summary").textContent = `$${totalSales.toLocaleString()}`;
     document.getElementById("profit-summary").textContent = `$${totalProfit.toLocaleString()}`;
@@ -299,7 +330,38 @@ function displayData(data) {
 	buatCatbyProfit(data); // catbyorder_profitChart
     buatStatebyLowest(data) // statelowest_salesTable
 	buatCitybyLowSales(data); // citylowest_salesTable
-	buatHeatmap(data); // heatMapChart
+	// buatHeatmap(data); // heatMapChart
+    
+    // Merge data with coordinates and update heatmap
+    const mergedData = mergeDataWithCoordinates(data);
+    console.log(mergedData);
+    buatHeatmap(mergedData); // heatMapChart
+}
+
+// HEAT MAP
+let heat;
+function buatHeatmap(data) {
+    const map = L.map('heatmapChart').setView([37.8, -96], 4);
+    
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    
+    // Remove previous heatmap layer if it exists
+    if (window.heat) {
+        map.removeLayer(window.heat);
+    }
+    
+    // Prepare the heatmap data
+    const heatData = data.map(item => [...item.Coordinates, parseFloat(item.Sales)]);
+    
+    // Create and add the heatmap layer to the map
+    window.heat = L.heatLayer(heatData, {
+        radius: 25,
+        blur: 15,
+        maxZoom: 17,
+        gradient: {0.4: 'green', 0.65: 'yellow', 1: 'red'}
+    }).addTo(map);
 }
 
 let total_salesChart;
@@ -901,18 +963,20 @@ function buatCitybyLowSales(data){
     const aggregatedData = {};
     data.forEach(item => {
         const city = item.City;
+        const state = item.State;
         const sales = parseFloat(item.Sales);
         const profit = parseFloat(item.Profit);
         if (!aggregatedData[city]) {
-            aggregatedData[city] = { totalSales: 0, totalProfit: 0 };
+            aggregatedData[city] = { city: city, state: state, totalSales: 0, totalProfit: 0 };
         }
         aggregatedData[city].totalSales += sales;
         aggregatedData[city].totalProfit += profit;
     });
 
-    const sortedData = Object.keys(aggregatedData).map(city => {
-        return { city: city, totalSales: aggregatedData[city].totalSales, totalProfit: aggregatedData[city].totalProfit };
-    }).sort((a, b) => a.totalProfit - b.totalProfit);
+    // const sortedData = Object.keys(aggregatedData).map(city => {
+    //     return { city: city, state: state, totalSales: aggregatedData[city].totalSales, totalProfit: aggregatedData[city].totalProfit };
+    // }).sort((a, b) => a.totalProfit - b.totalProfit);
+    const sortedData = Object.values(aggregatedData).sort((a, b) => a.totalProfit - b.totalProfit);
 
     // Clear previous data if DataTable already initialized
     if (dataTable) {
@@ -926,6 +990,7 @@ function buatCitybyLowSales(data){
         tbody.append(`
             <tr>
                 <td>${item.city}</td>
+                <td>${item.state}</td>
                 <td>$ ${item.totalSales.toLocaleString()}</td>
                 <td>$ ${item.totalProfit.toLocaleString()}</td>
             </tr>
@@ -936,7 +1001,7 @@ function buatCitybyLowSales(data){
         "pageLength": 10,
         "searching": true,
         "ordering": true,
-        "order": [[2, 'asc']],
+        "order": [[3, 'asc']],
         "pagingType": "full_numbers",
         "dom": '<"top"lf>rt<"bottom"ip><"clear">',
         "language": {
@@ -950,26 +1015,46 @@ function buatCitybyLowSales(data){
     });
 }
 
-// HEAT MAP
-let heat;
-function buatHeatmap(data){
-    const map = L.map('heatmapChart').setView([37.8, -96], 4);
-    
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-    
-    //buat data yg masuk dinamis, klo ada data bisa didestroy dulu
-    if (heat) {
-        map.removeLayer(heat);
-    }
-    // const heatData = data.map(item => [...item.Coordinates, item.Sales]);
-    const heatData = data.filter(item => Array.isArray(item.Coordinates) && item.Coordinates.length === 2).map(item => [...item.Coordinates, item.Sales]);
 
-    heat = L.heatLayer(heatData, {
-        radius: 25,
-        blur: 15,
-        maxZoom: 17,
-        gradient: {0.4: 'green', 0.65: 'yellow', 1: 'red'}
-    }).addTo(map);
-}
+// function buatHeatmap(data){
+//     const map = L.map('heatmapChart').setView([37.8, -96], 4);
+    
+//     var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+//         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+//     })
+//     osm.addTo(map);
+    
+//     //buat data yg masuk dinamis, klo ada data bisa didestroy dulu
+//     if (heat) {
+//         map.removeLayer(heat);
+//     }
+//     // Merge filtered sales data with city coordinates
+//     const mergedData = mergeDataWithCoordinates(data);
+    
+//     // Prepare the heatmap data
+//     const heatData = mergedData.map(item => [...item.Coordinates, item.Sales]);
+//     console.log(heatData);
+//     // const heatData = data.map(item => [...item.Coordinates, item.Sales]);
+//     // const heatData = data.filter(item => Array.isArray(item.Coordinates) && item.Coordinates.length === 2).map(item => [...item.Coordinates, item.Sales]);
+
+//     heat = L.heatLayer(heatData, {
+//         radius: 25,
+//         blur: 15,
+//         maxZoom: 17,
+//         gradient: {0.4: 'green', 0.65: 'yellow', 1: 'red'}
+//     }).addTo(map);
+// }
+
+// function getUniqueCities(data) {
+//     const cityCount = {};
+//     data.forEach(item => {
+//         const city = item.City;
+//         if (cityCount[city]) {
+//             cityCount[city]++;
+//         } else {
+//             cityCount[city] = 1;
+//         }
+//     });
+//     console.log(cityCount)
+//     return data.toLocaleString();
+// }
