@@ -5,14 +5,10 @@
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <!-- link icon font awesome -->
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
-
-            <!-- link library css bawaan DataTables.js dan leaflet.js -->
+            <!-- link library css bawaan DataTables.js-->
             <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
-            <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-
             <!-- library animasi aos -->
             <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
             <!-- link CSS -->
             <link rel="stylesheet" href="./css/style.css">
             <link rel="stylesheet" href="./css/analisis-style.css">
@@ -246,7 +242,6 @@
                                 <div id="SalesProfitSubCat" class="popup">
                                     <div class="popup-content">
                                         <i class="close" onclick="closeSalesProfitSubCatInsight()">&times;</i>
-                                        <!-- <span class="close" onclick="closeInsightPopup()">&times;</span> -->
                                         <h3><span style="color: #0072f0; font-size: larger;">Insight</span><br>Sales & Profit by Sub-Category</h3>
                                         <p>Based on the chart, it can be seen that several sub-categories show varying performance, including the <b>'Paper'</b> and <b>'Accessories'</b> sub-categories showing <b>very high</b> profits, <b>70.5M</b> and <b>47.8M</b> respectively, indicating that this product is </b>selling and profitable</b>. Meanwhile, the <b>'Tables'</b> sub-category had <b>negative</b> profits despite sales, indicating high operational costs or a less effective sales strategy. While the sub-categories <b>'Chairs'</b> and <b>'Phones'</b> showed <b>significant sales with good profits</b>, indicating the potential to focus on increasing sales.<br><br>Our recommendation is to focus sales strategies on sub-categories with high profits such as <b>'Paper'</b> and <b>'Accessories'</b>, and evaluate sub-categories with negative profits to increase profitability.</p>
                                     </div>
@@ -330,6 +325,8 @@
                                 </div>
                                 <iframe class="chart-img" src="heat.html" frameborder="0"></iframe>
                                 <div class="btn-hasil">
+                                    <!-- <a class="dropbtn" target="_blank" src="./heat.html">Fullsize Map</a> -->
+                                    <a href="./heat.html" target="_blank" class="btn-secondary">Fullsize</a>
                                     <button class="btn-primary" type="button" onclick="showInsightHeatmap()">Insight</button>
                                 </div>
                                 <div id="insightHeatMap" class="popup">

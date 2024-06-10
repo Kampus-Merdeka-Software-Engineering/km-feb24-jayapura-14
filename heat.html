@@ -16,7 +16,8 @@
 
         <script>
             var L = window.L;
-            var map = L.map('map').setView([37.8, -96], 4);
+            var initialZoom = window.innerWidth < 600 ? 3 : 4; // Atur tingkat zoom awal berdasarkan lebar layar
+            var map = L.map('map').setView([37.8, -96], initialZoom);
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);
