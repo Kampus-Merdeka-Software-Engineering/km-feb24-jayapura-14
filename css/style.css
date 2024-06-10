@@ -6,15 +6,13 @@ h1 {
 }
 h2 {
     font-size: 32px;
-    padding-bottom: 16px;
+    /* padding-bottom: 16px; */
     font-weight: normal;
     transition: transform 0.6s ease; /* Transisi untuk transformasi */
 }
-
 h2:hover {
     transform: scale(1.2); /* Memperbesar ukuran h2 menjadi 2 kali lipat */
 }
-
 h3 {
     font-weight: bold;
 }
@@ -34,7 +32,7 @@ p {
 .btn-primary {
     /* background-color: #007bff; */
     background-color: #0072f0;
-    padding: 12px 48px;
+    padding: 12px 40px;
     text-decoration: none;
     font-size: 16px;
     color: white;
@@ -45,7 +43,7 @@ p {
 }
 .btn-secondary {
     background-color: #f4f4f4;
-    padding: 12px 48px;
+    padding: 12px 40px;
     text-decoration: none;
     font-size: 16px;
     color: black;
@@ -69,28 +67,25 @@ p {
 html{
     scroll-behavior: smooth;
 }
-
 body{
     font-family: "Poppins", sans-serif;
     padding: 0px;
     margin: 0px;
     text-decoration: none;
 }
-
 .container-fluid{
     width: auto;
     height: auto;
     margin: auto;
     position: relative;
 }
-
 /* navbar */
 nav {
     width: 100%;
     height: 64px;
-    background: white;
-    /* background-color: rgba(255, 255, 255, 0.3); */
-    /* backdrop-filter: blur(10px); */
+    background: #fff;
+    /* background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px); */
     border-bottom: 1px solid #f4f4f4;
     position: fixed;
     z-index: 999;
@@ -137,19 +132,9 @@ a:hover {
     cursor: pointer;
     display: none;
 }
-
 #check {
     display: none;
 }
-/* .navbar a:hover {
-    background-color: #f4f4f4;
-} */
-
-/* .navbar a:hover,
-.dropdown:hover .dropbtn {
-    background-color: #f4f4f4;
-} */
-
 /* Styling the dropdown menu */
 .dropdown {
     position: relative;
@@ -221,7 +206,8 @@ a:hover {
     width: 100%;
     height: 720px;
     background-size: cover;
-    background-repeat: no-repeat;
+    background-repeat: space;
+    background-attachment: fixed;
     background-position: center;
     z-index: -1;
 }
@@ -603,7 +589,7 @@ footer {
 .row.secondary {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    align-items: space-around;
+    align-items: center;
     gap: 4%;
 }
   
@@ -738,7 +724,6 @@ div.social {
     .checkbtn {
         display: block;
     }
-
     nav {
         top: 0;
     }
@@ -781,13 +766,13 @@ div.social {
         top: 65px;
     }
 
-    .dropbtn {
+    /* .dropbtn {
         font-size: 16px;
     }
 
     .dropdown-content {
         bottom: 0;
-    }
+    } */
 
     /* body */
     .overview, .analysis {
@@ -839,7 +824,8 @@ div.social {
         font-size: 24px;
     }
 }
-@media (max-width: 768px) {
+/* @media (max-width: 768px) */
+@media (max-width: 860px) {
     .hero, .home{
         height: auto;
     }
@@ -907,11 +893,62 @@ div.social {
         text-align: justify;
     }
 }
+@media screen and (max-width: 540px) {
+    .logoutama {
+        padding: 16px 40px;
+    }
+    .logoutama img{
+        height: 40px;
+        margin-right: 16px;
+    }
+    .content-hero{
+        align-items: flex-end;
+        flex-direction: column;
+        padding: 32px;
+    }
+}
 @media screen and (max-width: 425px){
-    .container-overview, .container-analysis {
+    .container-overview, .container-analysis, .container-teams, 
+    .container-technology, .container-acknowledgement, .container-supportby{
         padding: 24px;
     }
     .overview, .analysis{
         padding: 8px;
+    }
+    .container-teams p {
+        text-align: justify;
+    }
+    .foto-container{
+        width: 130px;
+    }
+    .foto-container p {
+        text-align: center;
+    }
+    .btn-secondary,
+    .btn-primary {
+        padding: 12px 32px;
+    }
+}
+@media screen and (max-width: 375px){
+    .title-capstone1, .title-capstone2{
+        padding: 16px 24px;
+    }
+    .logoutama {
+        padding: 16px 24px;
+    }
+    .ilustrasi {
+        height: 200px;
+    }
+}
+@media screen and (max-width: 320px) {
+    .title-capstone1, .title-capstone2 {
+        padding: 8px 16px;
+    }
+    .foto-container {
+        width: 100px;
+    }
+    .content-hero, .container-overview, .container-analysis, .container-teams, 
+    .container-technology, .container-acknowledgement, .container-supportby{
+        padding: 16px;
     }
 }

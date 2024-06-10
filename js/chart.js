@@ -193,12 +193,6 @@ function updateFilters(data, selectedFilters) {
             Segmen.add(item["Segment"]);
             Reg.add(item["Region"]);
             Stet.add(item["State"]);
-            // if (!selectedFilters["Region"].length || selectedFilters["Region"].includes(item["Region"])) {
-            //     Stet.add(item["State"]);
-            // }
-            // if (!selectedFilters["State"].length || selectedFilters["State"].includes(item["State"])) {
-            //     Reg.add(item["Region"]);
-            // }
             Sub_Cat.add(item["Sub_Category"]);
             Segmen.add(item["Segment"]);
         }
@@ -292,20 +286,6 @@ function displayData(data) {
         const uniqueState = new Set(state);
         numState = uniqueState.size;
     }
-    // ABS = Sum of Quantity / count_distinct(Order_ID)
-    let abs = 0;
-    if (data.length > 0) {
-        const quantity = data.reduce((total, item) => {
-            return total + parseFloat(item["Quantity"]);
-        }, 0);
-        abs = quantity / numOrders;
-    }
-    // AOV = total Sales / count_distinct(Order_ID)
-    let aov = 0;
-    if (data.length > 0){
-        aov = totalSales / numOrders;
-    }
-    console.log(abs, aov);
     // Num of City = count_distinct(City)
     let numCity = 0;
     if (data.length > 0) {
@@ -365,13 +345,14 @@ function buatHeatmap(data) {
 }
 
 let total_salesChart;
+let totalsalesData;
 function buatTotalSalesbyCatAndSeg(data) {
     const ctx = document.getElementById("total_salesChart").getContext("2d");
     if (total_salesChart) {
         total_salesChart.destroy();
     }
     // buat object
-    const aggregatedData = {
+    totalsalesData = {
         "Furniture": { "Consumer": 0, "Corporate": 0, "Home Office": 0 },
         "Office Supplies": { "Consumer": 0, "Corporate": 0, "Home Office": 0 },
         "Technology": { "Consumer": 0, "Corporate": 0, "Home Office": 0 }
@@ -382,8 +363,8 @@ function buatTotalSalesbyCatAndSeg(data) {
         const segment = item.Segment;
         const sales = parseFloat(item.Sales);
 
-        if (aggregatedData[category] && aggregatedData[category][segment] !== undefined) {
-            aggregatedData[category][segment] += sales;
+        if (totalsalesData[category] && totalsalesData[category][segment] !== undefined) {
+            totalsalesData[category][segment] += sales;
         }
     });
 
@@ -392,7 +373,7 @@ function buatTotalSalesbyCatAndSeg(data) {
     const datasets = segments.map(segment => {
         return {
             label: segment,
-            data: labels.map(label => aggregatedData[label][segment]),
+            data: labels.map(label => totalsalesData[label][segment]),
             backgroundColor: getSegmentColor(segment),
             borderColor: "transparent",
             borderWidth: 1
@@ -407,10 +388,6 @@ function buatTotalSalesbyCatAndSeg(data) {
             default: return "#d4d4d4";
         }
     }             
-    // let = tickColor = "#000";
-    // if (document.body.classList.contains("dark")) {
-    //     tickColor = "#fff";
-    // }
     total_salesChart = new Chart(ctx, {
         type: 'bar',
         data : {
@@ -432,11 +409,17 @@ function buatTotalSalesbyCatAndSeg(data) {
                     },
                 },
                 datalabels: {
-                    color: "#fff",
-                    anchor: "center",
-                    align: "center",
+                    color: "#000",
+                    anchor: "end",
+                    align: "end",
                     formatter: function (value) {
-                        return value.toLocaleString();
+                        if (value >= 1e6) {
+                            return (value / 1e6).toFixed(1) + 'M'; // Tampilkan dalam jutaan
+                        } else if (value >= 1e3) {
+                            return (value / 1e3).toFixed(1) + 'K'; // Tampilkan dalam ribuan
+                        } else {
+                            return value.toLocaleString(); // Tampilkan nilai aslinya
+                        }
                     },
                     font: {
                         weight: "bold",
@@ -467,7 +450,13 @@ function buatTotalSalesbyCatAndSeg(data) {
                         beginAtZero: true,
                         // color: tickColor,
                         callback: function (value) {
-                            return value.toLocaleString();
+                            if (value >= 1e6) {
+                                return (value / 1e6) + 'M'; // Tampilkan dalam jutaan
+                            } else if (value >= 1e3) {
+                                return (value / 1e3) + 'K'; // Tampilkan dalam ribuan
+                            } else {
+                                return value.toLocaleString(); // Tampilkan nilai aslinya
+                            }
                         },
                     },
                     grid: {
@@ -479,31 +468,68 @@ function buatTotalSalesbyCatAndSeg(data) {
         plugins: [ChartDataLabels],
     });
 }
+function sortTotalSales(order) {
+    const labels = ["Furniture", "Office Supplies", "Technology"];
+    
+    // Buat array dari total penjualan per kategori untuk diurutkan
+    const totalSalesPerCategory = labels.map(category => {
+        const totalSales = Object.values(totalsalesData[category]).reduce((sum, value) => sum + value, 0);
+        return { category, totalSales };
+    });
+
+    // Urutkan berdasarkan total penjualan
+    totalSalesPerCategory.sort((a, b) => order === 'asc' ? a.totalSales - b.totalSales : b.totalSales - a.totalSales);
+
+    // Urutkan label dan dataset sesuai urutan total penjualan
+    const sortedLabels = totalSalesPerCategory.map(item => item.category);
+    const sortedDatasets = total_salesChart.data.datasets.map(dataset => ({
+        ...dataset,
+        data: sortedLabels.map(label => totalsalesData[label][dataset.label])
+    }));
+
+    total_salesChart.data.labels = sortedLabels;
+    total_salesChart.data.datasets = sortedDatasets;
+    total_salesChart.update();
+}
+// pop up insight
+function showInsightPopup() {
+    document.getElementById("insightPopup").style.display = "block";
+}
+function closeInsightPopup() {
+    document.getElementById("insightPopup").style.display = "none";
+}
+
+// =================================
 // SALES & PROFIT BY SUB CATEGORY
 let sales_profitChart;
+let SalesProfitData;
 function buatSalesAndProfitbySubCat(data) {
     const ctx = document.getElementById("sales_profitChart").getContext("2d");
     if (sales_profitChart) {
         sales_profitChart.destroy();
     }
-    const aggregatedData = {};
-    // Aggregate the sales and profit data
+    SalesProfitData = {};
+
     data.forEach(item => {
         const subCategory = item["Sub_Category"];
         const sales = parseFloat(item.Sales);
         const profit = parseFloat(item.Profit);
-        if (!aggregatedData[subCategory]) {
-            aggregatedData[subCategory] = { sales: 0, profit: 0 };
+        if (!SalesProfitData[subCategory]) {
+            SalesProfitData[subCategory] = { sales: 0, profit: 0 };
         }
-
-        aggregatedData[subCategory].sales += sales;
-        aggregatedData[subCategory].profit += profit;
+        SalesProfitData[subCategory].sales += sales;
+        SalesProfitData[subCategory].profit += profit;
     });
 
-    // Prepare data for Chart.js
-    const labels = Object.keys(aggregatedData);
-    const salesData = labels.map(label => aggregatedData[label].sales);
-    const profitData = labels.map(label => aggregatedData[label].profit);
+    updateChart();
+}
+
+function updateChart() {
+    const ctx = document.getElementById("sales_profitChart").getContext("2d");
+    const labels = Object.keys(SalesProfitData);
+    const salesData = labels.map(label => SalesProfitData[label].sales);
+    const profitData = labels.map(label => SalesProfitData[label].profit);
+
     const datasets = [
         {
             label: 'Sales',
@@ -511,7 +537,6 @@ function buatSalesAndProfitbySubCat(data) {
             backgroundColor: "#F10096",
             borderColor: "transparent",
             borderWidth: 1,
-            // yAxisID: 'y-sales',
         },
         {
             label: 'Profit',
@@ -519,9 +544,9 @@ function buatSalesAndProfitbySubCat(data) {
             backgroundColor: "#0072f0",
             borderColor: "transparent",
             borderWidth: 1,
-            // yAxisID: 'y-profit',
         }
     ];
+
     sales_profitChart = new Chart(ctx, {
         type: 'bar',
         data: {
@@ -529,12 +554,12 @@ function buatSalesAndProfitbySubCat(data) {
             datasets: datasets
         },
         options: {
-            indexAxis: 'y', // This makes the chart horizontal
+            indexAxis: 'y',
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
                 legend: {
-                    display: true, // Display the legend
+                    display: true,
                 },
                 tooltip: {
                     callbacks: {
@@ -548,7 +573,13 @@ function buatSalesAndProfitbySubCat(data) {
                     anchor: "end",
                     align: "end",
                     formatter: function (value) {
-                        return value.toLocaleString();
+                        if (value >= 1e6) {
+                            return (value / 1e6).toFixed(1) + 'M';
+                        } else if (value >= 1e3) {
+                            return (value / 1e3).toFixed(1) + 'K';
+                        } else {
+                            return value.toLocaleString();
+                        }
                     },
                     font: {
                         weight: "bold",
@@ -564,7 +595,13 @@ function buatSalesAndProfitbySubCat(data) {
                     ticks: {
                         beginAtZero: true,
                         callback: function(value) {
-                            return value.toLocaleString();
+                            if (value >= 1e6) {
+                                return (value / 1e6) + 'M';
+                            } else if (value >= 1e3) {
+                                return (value / 1e3) + 'K';
+                            } else {
+                                return value.toLocaleString();
+                            }
                         },
                     }
                 },
@@ -573,7 +610,7 @@ function buatSalesAndProfitbySubCat(data) {
                         display: true,
                         text: 'Sub-Category'
                     },
-                    stacked: true, // Stack the bars horizontally
+                    stacked: true,
                     ticks: {
                         autoSkip: false,
                         beginAtZero: true,
@@ -581,11 +618,52 @@ function buatSalesAndProfitbySubCat(data) {
                 }
             },
         },
-        plugins: [ChartDataLabels], // Include the ChartDataLabels plugin
+        plugins: [ChartDataLabels],
     });
 }
+function sortSubCat(order) {
+    const labels = Object.keys(SalesProfitData);
+    const sortedData = labels.map(label => ({
+        label,
+        sales: SalesProfitData[label].sales,
+        profit: SalesProfitData[label].profit
+    }));
+
+    if (order === 'sales-asc') {
+        sortedData.sort((a, b) => a.sales - b.sales);
+    } else if (order === 'sales-desc') {
+        sortedData.sort((a, b) => b.sales - a.sales);
+    } else if (order === 'profit-asc') {
+        sortedData.sort((a, b) => a.profit - b.profit);
+    } else if (order === 'profit-desc') {
+        sortedData.sort((a, b) => b.profit - a.profit);
+    }
+
+    const sortedLabels = sortedData.map(item => item.label);
+    const sortedSalesData = sortedData.map(item => item.sales);
+    const sortedProfitData = sortedData.map(item => item.profit);
+
+    sales_profitChart.data.labels = sortedLabels;
+    sales_profitChart.data.datasets[0].data = sortedSalesData;
+    sales_profitChart.data.datasets[1].data = sortedProfitData;
+    sales_profitChart.update();
+}
+function showSalesProfitSubCatInsight(){
+    document.getElementById("SalesProfitSubCat").style.display = "block";
+}
+function closeSalesProfitSubCatInsight(){
+    document.getElementById("SalesProfitSubCat").style.display = "none";        
+}
+// ==================================
 // DISKON KUANTITI
 let diskon_quantityChart;
+let labels = [];
+let discountData = [];
+let quantityData = [];
+const months = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+];
 function buatDiskonAndKuantiti(data) {
     const ctx = document.getElementById("diskon_quantityChart").getContext("2d");
     if (diskon_quantityChart) {
@@ -593,11 +671,6 @@ function buatDiskonAndKuantiti(data) {
     }
 
     const aggregatedData = {};
-    // buat urutin bulan
-    const months = [
-        'January', 'February', 'March', 'April', 'May', 'June',
-        'July', 'August', 'September', 'October', 'November', 'December'
-    ];
     months.forEach(month => {
         aggregatedData[month] = { discount: 0, quantity: 0 };
     });
@@ -608,16 +681,15 @@ function buatDiskonAndKuantiti(data) {
         const month = months[date.getMonth()];
         const discount = parseFloat(item.Discount);
         const quantity = parseInt(item.Quantity, 10);
-
         if (aggregatedData[month]) {
             aggregatedData[month].discount += discount;
             aggregatedData[month].quantity += quantity;
         }
     });
 
-    const labels = months;
-    const discountData = labels.map(label => aggregatedData[label].discount);
-    const quantityData = labels.map(label => aggregatedData[label].quantity);
+    labels = months;
+    discountData = labels.map(label => aggregatedData[label].discount);
+    quantityData = labels.map(label => aggregatedData[label].quantity);
 
     const datasets = [
         {
@@ -700,9 +772,59 @@ function buatDiskonAndKuantiti(data) {
         },
         plugins: [ChartDataLabels],
     });
+    document.getElementById("sortCriteria").value = "date-asc";
+    sortDiskon();
 }
+function sortDiskon() {
+    const sortCriteria = document.getElementById("sortCriteria").value;
+    const combinedData = labels.map((label, index) => ({
+        month: label,
+        discount: discountData[index],
+        quantity: quantityData[index]
+    }));
+
+    switch (sortCriteria) {
+        case 'discount-asc':
+            combinedData.sort((a, b) => a.discount - b.discount);
+            break;
+        case 'discount-desc':
+            combinedData.sort((a, b) => b.discount - a.discount);
+            break;
+        case 'quantity-asc':
+            combinedData.sort((a, b) => a.quantity - b.quantity);
+            break;
+        case 'quantity-desc':
+            combinedData.sort((a, b) => b.quantity - a.quantity);
+            break;
+        case 'date-asc':
+            combinedData.sort((a, b) => months.indexOf(a.month) - months.indexOf(b.month));
+            break;
+        case 'date-desc':
+            combinedData.sort((a, b) => months.indexOf(b.month) - months.indexOf(a.month));
+            break;
+    }
+
+    labels = combinedData.map(item => item.month);
+    discountData = combinedData.map(item => item.discount);
+    quantityData = combinedData.map(item => item.quantity);
+
+    diskon_quantityChart.data.labels = labels;
+    diskon_quantityChart.data.datasets[0].data = discountData;
+    diskon_quantityChart.data.datasets[1].data = quantityData;
+    diskon_quantityChart.update();
+}
+function showDiskonKuantiti(){
+    document.getElementById("insightDiskon").style.display = "block";
+}
+function closeDiskonKuantiti(){
+    document.getElementById("insightDiskon").style.display = "none";
+}
+// ============================
 // ABS AOV
 let abs_aovChart;
+let globalLabels = [];
+let globalAbsData = [];
+let globalAovData = [];
 function buatABSnAOVinSeg(data) {
     const ctx = document.getElementById("abs_aovChart").getContext("2d");
     if (abs_aovChart) {
@@ -738,6 +860,9 @@ function buatABSnAOVinSeg(data) {
         const ordersCount = aggregatedData[label].orders.size;
         return ordersCount ? aggregatedData[label].sales / ordersCount : 0;
     });
+    globalLabels = labels;
+    globalAbsData = absData;
+    globalAovData = aovData;
 
     const datasets = [
         {
@@ -778,10 +903,15 @@ function buatABSnAOVinSeg(data) {
                 },
                 datalabels: {
                     color: "#fff",
-                    anchor: "center",
-                    align: "center",
+                    anchor: "end",
+                    rotation: 90,
+                    align: "start",
                     formatter: function (value) {
-                        return value.toLocaleString();
+                        if (value >= 1e3) {
+                            return (value / 1e3).toFixed(1) + 'K';
+                        } else {
+                            return value.toFixed(2).toLocaleString(); // Tampilkan nilai aslinya
+                        }
                     },
                     font: {
                         weight: "bold",
@@ -833,7 +963,56 @@ function buatABSnAOVinSeg(data) {
         },
         plugins: [ChartDataLabels],
     });
+    document.getElementById("sortOrder").value = "abs-asc";
+    sortABSAOV();
 }
+function onSortOrderChange() {
+    const order = document.getElementById("sortabsaov").value;
+    sortABSAOV(order);
+}
+function sortABSAOV(order) {
+    const labels = [...globalLabels];
+    const absData = [...globalAbsData];
+    const aovData = [...globalAovData];
+
+    const combinedData = labels.map((label, index) => ({
+        segment: label,
+        abs: absData[index],
+        aov: aovData[index]
+    }));
+
+    switch (order) {
+        case 'abs-asc':
+            combinedData.sort((a, b) => a.abs - b.abs);
+            break;
+        case 'abs-desc':
+            combinedData.sort((a, b) => b.abs - a.abs);
+            break;
+        case 'aov-asc':
+            combinedData.sort((a, b) => a.aov - b.aov);
+            break;
+        case 'aov-desc':
+            combinedData.sort((a, b) => b.aov - a.aov);
+            break;
+    }
+
+    const sortedLabels = combinedData.map(item => item.segment);
+    const sortedAbsData = combinedData.map(item => item.abs);
+    const sortedAovData = combinedData.map(item => item.aov);
+
+    abs_aovChart.data.labels = sortedLabels;  // Update chart labels
+    abs_aovChart.data.datasets[0].data = sortedAovData;
+    abs_aovChart.data.datasets[1].data = sortedAbsData;
+    abs_aovChart.update();
+}
+
+function showAbsAov() {
+    document.getElementById("insightAbsAov").style.display = "block";
+}
+function closeAbsAov() {
+    document.getElementById("insightAbsAov").style.display = "none";
+}
+// =================================
 // CATEGORY BY PROFIT
 let catbyprofitChart;
 function buatCatbyProfit(data) {
@@ -906,6 +1085,13 @@ function buatCatbyProfit(data) {
         plugins: [ChartDataLabels], // Include the ChartDataLabels plugin
     });
 }
+function showCatProfit(){
+    document.getElementById("CatProfit").style.display = "block";
+}
+function closeCatProfit(){
+    document.getElementById("CatProfit").style.display = "none";        
+}
+// =========================
 // STATE BY LOWEST SALES
 let statelowest_salesTable;
 function buatStatebyLowest(data) {
@@ -1015,6 +1201,12 @@ function buatCitybyLowSales(data){
     });
 }
 
+function showInsightHeatmap() {
+    document.getElementById("insightHeatMap").style.display = "block";
+}
+function closeInsightHeatmap() {
+    document.getElementById("insightHeatMap").style.display = "none";
+}
 
 // function buatHeatmap(data){
 //     const map = L.map('heatmapChart').setView([37.8, -96], 4);

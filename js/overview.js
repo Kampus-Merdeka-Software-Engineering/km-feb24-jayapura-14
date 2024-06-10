@@ -2,25 +2,9 @@ document.addEventListener("DOMContentLoaded", function(){
     fetch("./Data/analysisStarter.json")
     .then((response) => response.json())
     .then((data) => {
-        // Mengelompokkan data berdasarkan tahun dan menghitung total profit
-        const profitByYear = {};
-
-        data.forEach(item => {
-            const year = new Date(item.Order_Date).getFullYear();
-            const profit = parseFloat(item.Profit);
-
-            if (!profitByYear[year]) {
-                profitByYear[year] = 0;
-            }
-
-            profitByYear[year] += profit;
-        });
-
-        // Menyiapkan data untuk Chart.js
-        const years = Object.keys(profitByYear).sort();
-        const profits = years.map(year => profitByYear[year]);
-
-        // Membuat bar chart menggunakan Chart.js
+        const years = data.map(item => item.Year);
+        const profits = data.map(item => parseFloat(item.Profit));
+        // Membuat bar chart
         const ctx = document.getElementById('profitChart').getContext('2d');
         const profitChart = new Chart(ctx, {
             type: 'bar',
@@ -29,18 +13,80 @@ document.addEventListener("DOMContentLoaded", function(){
                 datasets: [{
                     label: 'Total Profit',
                     data: profits,
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: "#0072f0",
+                    borderColor: "transparent",
                     borderWidth: 1
                 }]
             },
             options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (context) {
+                                return `${context.label}: ${context.raw.toLocaleString()}`;
+                            },
+                        },
+                    },
+                    datalabels: {
+                        color: "#fff",
+                        anchor: "center",
+                        align: "center",
+                        formatter: function (value) {
+                            if (value >= 1e6) {
+                                return (value / 1e6).toFixed(1) + 'M'; // Tampilkan dalam jutaan
+                            } else if (value >= 1e3) {
+                                return (value / 1e3).toFixed(1) + 'K'; // Tampilkan dalam ribuan
+                            } else {
+                                return value.toLocaleString(); // Tampilkan nilai aslinya
+                            }
+                        },
+                        font: {
+                            weight: "bold",
+                        },
+                    },
+                },
                 scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Year'
+                        },
+                        ticks: {
+                            autoSkip: false,
+                        },
+                        grid: {
+                            display: false, // Hide x-axis grid lines
+                        },
+                    },
                     y: {
-                        beginAtZero: true
-                    }
-                }
-            }
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Total Profit'
+                        },
+                        ticks: {
+                            callback: function (value) {
+                                if (value >= 1e6) {
+                                    return (value / 1e6).toFixed(1) + 'M'; // Tampilkan dalam jutaan
+                                } else if (value >= 1e3) {
+                                    return (value / 1e3).toFixed(1) + 'K'; // Tampilkan dalam ribuan
+                                } else {
+                                    return value.toLocaleString(); // Tampilkan nilai aslinya
+                                }
+                            },
+                        },
+                        grid: {
+                            display: true, // Show y-axis grid lines
+                        },
+                    },
+                },
+            },
+            plugins: [ChartDataLabels],
         });
     })
     .catch(error => console.error('Error fetching data:', error));

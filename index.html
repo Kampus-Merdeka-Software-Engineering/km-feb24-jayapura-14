@@ -6,7 +6,9 @@
         <title>Jayapura 14</title>
         
         <!-- link icon font awesome -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
+        <!-- library animasi aos -->
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
         <!-- custom css link -->
         <link rel="Shortcut icon" href="./img/logo/14-logo.svg" />
         <link rel="stylesheet" href="./css/style.css">
@@ -41,7 +43,7 @@
                     <img src="img/Desktop.png" width="100%" height="720px" style="z-index: -999;" alt="contoh gambar">
                 </div>
                 <div class="content-hero">
-                    <div class="hero1">
+                    <div data-aos="fade-right">
                         <h1 class="title-capstone1">Superstore Dashboard Project</h1>
                         <p class="large title-capstone2">Jayapura 14</p>
                         <div class="logoutama">
@@ -49,19 +51,18 @@
                             <img src="img/logo-white@2x-km.svg" alt="Kampus Merdeka">
                         </div>
                     </div>
-                    <div class="hero2">
+                    <div data-aos="fade-left">
                         <!-- height="592px" width="638px" -->
                         <img src="./img/ilustrasi-hero.png" alt="ilustrasi" class="ilustrasi">
                     </div>
                 </div>
             </section>
-        
             <!-- section project overview -->
             <section class="container-overview flex-container container-fluid" id="about">
-                <article class="overview">
+                <article class="overview" data-aos="fade-right">
                     <h2>About The <span style="color: #0072f0; font-style: italic;">Project</span></h2>
                 </article>
-                <article class="overview">
+                <article class="overview" data-aos="fade-up">
                     <p>This project is our final assignment for the MSIB Independent Study at RevoU TechAcademy. We used our data analysis and web development skills to analyze sales data from Giant Superstore and build an informative website.<br><br>We explored the data, identified sales trends, analyzed product profitability, created data visualizations, and made recommendations to boost sales performance.<br><br> These insights were then used to design and develop a functional website. This project improved our technical skills and enhanced our ability to communicate information effectively through digital media.
                     </p>
                 </article>
@@ -72,10 +73,10 @@
                 <div class="bg-image">
                     <img src="img/analysis-section.png" width="100%" height="720px" alt="contoh gambar">
                 </div>
-                <article class="analysis">
+                <article class="analysis" data-aos="fade-right">
                     <h2>The Superstore Analysis✨</h2>
                 </article>
-                <article class="analysis">
+                <article class="analysis" data-aos="fade-up">
                     <p>Our Superstore analysis aims to provide a detailed look into the sales data of Giant Superstore. Through data exploration, processing, and visualization, we offer insights for the superstore owner and various stakeholders.  From analyzing sales trends to evaluating product profitability, we uncover critical information that can be used to enhance sales performance at the Giant Superstore.
                     </p>
                     <a href="analisis.html" class="btn-secondary">More</a>
@@ -84,147 +85,148 @@
 
             <!-- section team overview -->
             <section class="container-teams container-fluid" id="team">
-                <h2>Meet Our Great <span style="color: #0072f0; font-style: italic;">Team </span><img src="https://media1.tenor.com/m/uTJev41fOAwAAAAd/ates.gif" width="32px" height="40px"></h2>
-                <p><span style="font-weight: bold;">Let's take a moment to introduce the amazing team and mentor behind this project!</span> <br>We are sixth-semester students from various universities and majors, united by the MSIB Batch 6 2024 Independent Study Program at RevoU TechAcademy. We are committed to our final independent study project at RevoU, where we analyze sales data from Giant Superstore and develop an innovative website. Leveraging our diverse skills, we work together to deliver data-driven solutions that enhance sales performance and improve user experience.
+                <h2 data-aos="zoom-in">Meet Our Great <span style="color: #0072f0; font-style: italic;">Team </span><img src="https://media1.tenor.com/m/uTJev41fOAwAAAAd/ates.gif" width="32px" height="40px"></h2>
+                <p data-aos="fade"><span style="font-weight: bold;">Let's take a moment to introduce the amazing team and mentor behind this project!</span> <br>We are sixth-semester students from various universities and majors, united by the MSIB Batch 6 2024 Independent Study Program at RevoU TechAcademy. We are committed to our final independent study project at RevoU, where we analyze sales data from Giant Superstore and develop an innovative website. Leveraging our diverse skills, we work together to deliver data-driven solutions that enhance sales performance and improve user experience.
                 </p>
-                <div class="dropdown2">
+                <div class="dropdown2" data-aos="fade">
                     <button class="filter-btn selected" onclick="changeDisplay('tampilan1')"><i class="fa-solid fa-computer"></i>  Ver. Software Engineering</button>
                     <button class="filter-btn" onclick="changeDisplay('tampilan2')"><i class="fa-solid fa-chart-simple"></i>  Ver. Data Analytics</button>
                 </div>
-                <div id="tampilan1" class="tampilan">
-                    <div class="flex-container2">
-                        <!-- Foto-foto untuk Tampilan 1 -->
-                        <div class="foto-container">
-                            <img src="img\foto-anggota\Noel.png" alt="Foto 3">
-                            <p class="caption">Imanuel Wicaksono</p>
-                            <p class="additional-text">Project Leader</p>
-                        </div>
-                        <div class="foto-container">
-                            <img src="img\foto-anggota\Salma.png" alt="Foto 4">
-                            <p class="caption">Salma Niftrina Hardianti</p>
-                            <p class="additional-text">Front End Engineer</p>
-                        </div>
-                        <div class="foto-container">
-                            <img src="img\foto-anggota\Faiza.png" alt="Foto 4">
-                            <p class="caption">Faiza Sabila</p>
-                            <p class="additional-text">Front End Engineer</p>
-                        </div>
-                        <div class="foto-container">
-                            <img src="img\foto-anggota\Yulia.png" alt="Foto 4">
-                            <p class="caption">Yulia Pradinda</p>
-                            <p class="additional-text">Front End Engineer</p>
-                        </div>
-                        <div class="foto-container">
-                            <img src="img/foto-anggota/okta.png" alt="Foto 4">
-                            <p class="caption">Oktaviya Dwi Lestari</p>
-                            <p class="additional-text">Front End Engineer</p>
-                        </div>
-                        <div class="foto-container">
-                            <img src="img\foto-anggota\Febri.png" alt="Foto 4">
-                            <p class="caption">Febriansyah Ilham N.W.</p>
-                            <p class="additional-text">Deployment Team</p>
-                        </div>
-                        <div class="foto-container">
-                            <img src="img\foto-anggota\Salsa.png" alt="Foto 4">
-                            <p class="caption">Salsa Djagat Diyta</p>
-                            <p class="additional-text">Pitch Deck Team</p>
-                        </div>
-                        <div class="foto-container">
-                            <img src="img\foto-anggota\Monic.png" alt="Foto 4">
-                            <p class="caption">Devina Monic Ritonga</p>
-                            <p class="additional-text">Pitch Deck Team</p>
-                        </div>
-                        <div class="foto-container">
-                            <img src="img/foto-anggota/ity.png" alt="Foto 4">
-                            <p class="caption">Syhti Zyahtini Wabulla</p>
-                            <p class="additional-text">Pitch Deck Team</p>
-                        </div>
-                        <div class="foto-container">
-                            <img src="img/foto-anggota/yogi.png" alt="Foto 4">
-                            <p class="caption">Yogi Dharma Susanto</p>
-                            <p class="additional-text">Quality Assurance</p>
-                        </div>
-                        <div class="foto-container">
-                            <img src="img/foto-anggota/whevman.png" alt="Foto 4">
-                            <p class="caption">Whevman</p>
-                            <p class="additional-text">Quality Assurance</p>
-                        </div>
-                        <div class="foto-container">
-                            <img src="img/foto-anggota/tegar.png" alt="Foto 4">
-                            <p class="caption">Tegar Rahmat Hidayat</p>
-                            <p class="additional-text">Quality Assurance</p>
+                <div data-aos="fade-up">
+                    <div id="tampilan1" class="tampilan">
+                        <div class="flex-container2">
+                            <!-- Foto-foto untuk Tampilan 1 -->
+                            <div class="foto-container">
+                                <img src="img\foto-anggota\Noel.png" alt="Foto 3">
+                                <p class="caption">Imanuel Wicaksono</p>
+                                <p class="additional-text">Project Leader</p>
+                            </div>
+                            <div class="foto-container">
+                                <img src="img\foto-anggota\Salma.png" alt="Foto 4">
+                                <p class="caption">Salma Niftrina Hardianti</p>
+                                <p class="additional-text">Front End Engineer</p>
+                            </div>
+                            <div class="foto-container">
+                                <img src="img\foto-anggota\Faiza.png" alt="Foto 4">
+                                <p class="caption">Faiza Sabila</p>
+                                <p class="additional-text">Front End Engineer</p>
+                            </div>
+                            <div class="foto-container">
+                                <img src="img\foto-anggota\Yulia.png" alt="Foto 4">
+                                <p class="caption">Yulia Pradinda</p>
+                                <p class="additional-text">Front End Engineer</p>
+                            </div>
+                            <div class="foto-container">
+                                <img src="img/foto-anggota/okta.png" alt="Foto 4">
+                                <p class="caption">Oktaviya Dwi Lestari</p>
+                                <p class="additional-text">Front End Engineer</p>
+                            </div>
+                            <div class="foto-container">
+                                <img src="img\foto-anggota\Febri.png" alt="Foto 4">
+                                <p class="caption">Febriansyah Ilham N.W.</p>
+                                <p class="additional-text">Deployment Team</p>
+                            </div>
+                            <div class="foto-container">
+                                <img src="img\foto-anggota\Salsa.png" alt="Foto 4">
+                                <p class="caption">Salsa Djagat Diyta</p>
+                                <p class="additional-text">Pitch Deck Team</p>
+                            </div>
+                            <div class="foto-container">
+                                <img src="img\foto-anggota\Monic.png" alt="Foto 4">
+                                <p class="caption">Devina Monic Ritonga</p>
+                                <p class="additional-text">Pitch Deck Team</p>
+                            </div>
+                            <div class="foto-container">
+                                <img src="img/foto-anggota/ity.png" alt="Foto 4">
+                                <p class="caption">Syhti Zyahtini Wabulla</p>
+                                <p class="additional-text">Pitch Deck Team</p>
+                            </div>
+                            <div class="foto-container">
+                                <img src="img/foto-anggota/yogi.png" alt="Foto 4">
+                                <p class="caption">Yogi Dharma Susanto</p>
+                                <p class="additional-text">Quality Assurance</p>
+                            </div>
+                            <div class="foto-container">
+                                <img src="img/foto-anggota/whevman.png" alt="Foto 4">
+                                <p class="caption">Whevman</p>
+                                <p class="additional-text">Quality Assurance</p>
+                            </div>
+                            <div class="foto-container">
+                                <img src="img/foto-anggota/tegar.png" alt="Foto 4">
+                                <p class="caption">Tegar Rahmat Hidayat</p>
+                                <p class="additional-text">Quality Assurance</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            
-                <div id="tampilan2" class="tampilan" style="display: none;">
-                    <div class="flex-container2">
-                        <!-- Foto-foto untuk Tampilan 2 -->
-                        <div class="foto-container">
-                            <img src="img\foto-anggota\Salma.png" alt="Foto 1">
-                            <p class="caption">Salma Niftrina Hardianti</p>
-                            <p class="additional-text">Project Leader</p>
-                        </div>
-                        <div class="foto-container">
-                            <img src="img\foto-anggota\yogi.png" alt="Foto 2">
-                            <p class="caption">Yogi Dharma Susanto</p>
-                            <p class="additional-text">Data Cleanning</p>
-                        </div>
-                        <div class="foto-container">
-                            <img src="img\foto-anggota\Yulia.png" alt="Foto 2">
-                            <p class="caption">Yulia Pradinda</p>
-                            <p class="additional-text">Data Cleaning</p>
-                        </div>
-                        <div class="foto-container">
-                            <img src="img\foto-anggota\Faiza.png" alt="Foto 2">
-                            <p class="caption">Faiza Sabila</p>
-                            <p class="additional-text">Data Cleaning</p>
-                        </div>
-                        <div class="foto-container">
-                            <img src="img\foto-anggota\ity.png" alt="Foto 2">
-                            <p class="caption">Syhti Zyahtini Wabulla</p>
-                            <p class="additional-text">Data Cleaning</p>
-                        </div>
-                        <div class="foto-container">
-                            <img src="img\foto-anggota\Noel.png" alt="Foto 2">
-                            <p class="caption">Imanuel Wicaksono</p>
-                            <p class="additional-text">Data Analysis</p>
-                        </div>
-                        <div class="foto-container">
-                            <img src="img\foto-anggota\Salsa.png" alt="Foto 2">
-                            <p class="caption">Salsa Djagat Diyta</p>
-                            <p class="additional-text">Data Analysis</p>
-                        </div>
-                        <div class="foto-container">
-                            <img src="img\foto-anggota\okta.png" alt="Foto 2">
-                            <p class="caption">Oktaviya Dwi Lestari</p>
-                            <p class="additional-text">Data Analysis</p>
-                        </div>
-                        <div class="foto-container">
-                            <img src="img\foto-anggota\whevman.png" alt="Foto 2">
-                            <p class="caption">Whevman</p>
-                            <p class="additional-text">Data Visualization</p>
-                        </div>
-                        <div class="foto-container">
-                            <img src="img\foto-anggota\Febri.png" alt="Foto 2">
-                            <p class="caption">Febriansyah Ilham N.W.</p>
-                            <p class="additional-text">Data Visualization</p>
-                        </div>
-                        <div class="foto-container">
-                            <img src="img\foto-anggota\Monic.png" alt="Foto 2">
-                            <p class="caption">Devina Monic Ritonga</p>
-                            <p class="additional-text">Data Communication</p>
-                        </div>
-                        <div class="foto-container">
-                            <img src="img\foto-anggota\tegar.png" alt="Foto 2">
-                            <p class="caption">Tegar Rahmat Hidayat</p>
-                            <p class="additional-text">Data Communication</p>
+                    <div id="tampilan2" class="tampilan" style="display: none;">
+                        <div class="flex-container2">
+                            <!-- Foto-foto untuk Tampilan 2 -->
+                            <div class="foto-container">
+                                <img src="img\foto-anggota\Salma.png" alt="Foto 1">
+                                <p class="caption">Salma Niftrina Hardianti</p>
+                                <p class="additional-text">Project Leader</p>
+                            </div>
+                            <div class="foto-container">
+                                <img src="img\foto-anggota\yogi.png" alt="Foto 2">
+                                <p class="caption">Yogi Dharma Susanto</p>
+                                <p class="additional-text">Data Cleanning</p>
+                            </div>
+                            <div class="foto-container">
+                                <img src="img\foto-anggota\Yulia.png" alt="Foto 2">
+                                <p class="caption">Yulia Pradinda</p>
+                                <p class="additional-text">Data Cleaning</p>
+                            </div>
+                            <div class="foto-container">
+                                <img src="img\foto-anggota\Faiza.png" alt="Foto 2">
+                                <p class="caption">Faiza Sabila</p>
+                                <p class="additional-text">Data Cleaning</p>
+                            </div>
+                            <div class="foto-container">
+                                <img src="img\foto-anggota\ity.png" alt="Foto 2">
+                                <p class="caption">Syhti Zyahtini Wabulla</p>
+                                <p class="additional-text">Data Cleaning</p>
+                            </div>
+                            <div class="foto-container">
+                                <img src="img\foto-anggota\Noel.png" alt="Foto 2">
+                                <p class="caption">Imanuel Wicaksono</p>
+                                <p class="additional-text">Data Analysis</p>
+                            </div>
+                            <div class="foto-container">
+                                <img src="img\foto-anggota\Salsa.png" alt="Foto 2">
+                                <p class="caption">Salsa Djagat Diyta</p>
+                                <p class="additional-text">Data Analysis</p>
+                            </div>
+                            <div class="foto-container">
+                                <img src="img\foto-anggota\okta.png" alt="Foto 2">
+                                <p class="caption">Oktaviya Dwi Lestari</p>
+                                <p class="additional-text">Data Analysis</p>
+                            </div>
+                            <div class="foto-container">
+                                <img src="img\foto-anggota\whevman.png" alt="Foto 2">
+                                <p class="caption">Whevman</p>
+                                <p class="additional-text">Data Visualization</p>
+                            </div>
+                            <div class="foto-container">
+                                <img src="img\foto-anggota\Febri.png" alt="Foto 2">
+                                <p class="caption">Febriansyah Ilham N.W.</p>
+                                <p class="additional-text">Data Visualization</p>
+                            </div>
+                            <div class="foto-container">
+                                <img src="img\foto-anggota\Monic.png" alt="Foto 2">
+                                <p class="caption">Devina Monic Ritonga</p>
+                                <p class="additional-text">Data Communication</p>
+                            </div>
+                            <div class="foto-container">
+                                <img src="img\foto-anggota\tegar.png" alt="Foto 2">
+                                <p class="caption">Tegar Rahmat Hidayat</p>
+                                <p class="additional-text">Data Communication</p>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <!-- Bagian Mentor -->
-                <h2>Thanks to Our <span style="font-style: italic; color: #0072f0;"> Mentors</span></h2>
-                <div class="flex-container2">
+                <h2 data-aos="zoom-in">Thanks to Our <span style="font-style: italic; color: #0072f0;"> Mentors</span></h2>
+                <div class="flex-container2" data-aos="fade-up">
                     <div class="foto-container">
                         <img src="img\foto-anggota\Ka intan.png" alt="Foto 3">
                         <p class="caption">Kak Intan Ginasti</p>
@@ -245,17 +247,16 @@
 
             <!-- Section Acknoeledgemnet -->
             <section class="container-acknowledgement container-fluid">
-                <h2>Acknowledgement</h2>
+                <h2 data-aos="fade">Acknowledgement</h2>
                 <div class="line"></div>
-                <p>Team 14 Jayapura extends its sincere thanks to everyone who contributed to and supported us in completing this capstone project. We want to express our gratitude to the instructors, mentors, section managers, and teammates for their guidance, support, and the facilities provided. This achievement wouldn't have been possible without their help. We appreciate all the support and opportunities given.</p>
-
+                <p data-aos="fade">Team 14 Jayapura extends its sincere thanks to everyone who contributed to and supported us in completing this capstone project. We want to express our gratitude to the instructors, mentors, section managers, and teammates for their guidance, support, and the facilities provided. This achievement wouldn't have been possible without their help. We appreciate all the support and opportunities given.</p>
             </section>
 
             <!-- section teknologi -->
             <section class="container-technology container-fluid" id="tools">
-                <h2>Technology We <span style="color: #0072f0; font-style: italic;">Used</span></h2>
+                <h2 data-aos="fade">Technology We <span style="color: #0072f0; font-style: italic;">Used</span></h2>
                 <div class="line"></div>
-                <div class="flex-container technology">
+                <div class="flex-container technology" data-aos="fade-up">
                     <div><img src="img/tools-logo/Figma.svg" alt="Figma"></div>
                     <div><img src="img/tools-logo/Google Sheets.svg" alt="GSheets"></div>
                     <div><img src="img/tools-logo/bigquery_svgrepo.com.svg" alt="BigQuery"></div>
@@ -273,9 +274,9 @@
 
             <!-- section support by -->
             <section class="container-supportby container-fluid">
-                <h2>Support <span style="color: #0072f0; font-style: italic;">By</span></h2>
+                <h2 data-aos="fade">Support <span style="color: #0072f0; font-style: italic;">By</span></h2>
                 <div class="line"></div>
-                <div class="flex-container">
+                <div class="flex-container" data-aos="fade">
                     <img src="img/Logo_KM-color.svg" class="img-thumbnail" alt="logoKM">
                     <img src="img/RevoU.svg" class="img-thumbnail" alt="logoRevoU">
                 </div>
@@ -283,8 +284,8 @@
 
             <!-- form feedback -->
                 <section class="form-section container-fluid" id="feedback">
-                    <div class="form-section-right">
-                        <h1>We're looking forward to hearing back from you!</h1>
+                    <div class="form-section-right" data-aos="fade-right">
+                        <h2>We're looking forward to hearing back from you!</h2>
                         <p>Feel free to ask us if you have any question. <br>We will appreciate all your feedback.</p>
                     </div>
                     <div class="suggestion-box" id="send-feedback">
@@ -367,9 +368,6 @@
                             <a href="#" target="_blank">Our Clean Dataset</a>
                         </li>
                         <li>
-                            <a href="#" target="_blank">Data Analytics Deck</a>
-                        </li>
-                        <li>
                             <a href="https://www.figma.com/" target="_blank">Root Cause Analysis</a>
                         </li>
                     </ul>
@@ -380,5 +378,14 @@
             </div>
         </footer>
         <script src="./js/script.js"></script>
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script>
+            AOS.init({
+                duration: 1000,
+                once: true,
+                easing: 'ease-in-out',
+                // mirror: true
+            });
+        </script>
     </body>
 </html>

@@ -5,11 +5,14 @@
             <meta name="viewport" content="width=device-width, initial-scale=1">
 
             <!-- link icon font awesome -->
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
 
             <!-- link library css bawaan DataTables.js dan leaflet.js -->
             <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
             <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+            <!-- library animasi aos -->
+            <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
             <!-- link CSS -->
             <link rel="stylesheet" href="./css/style.css">
@@ -44,9 +47,9 @@
                     <div class="bg-image">
                         <img src="img/Hero-3.png" width="100%" height="508px" alt="hero">
                     </div>
-                    <div class="content">
+                    <div class="content" data-aos="fade-up">
                         <h1 class="title-capstone1">The Superstore Analysis</h1>
-                        <p class="large title-capstone2">Team 14 - Jayapura</p>
+                        <p class="large title-capstone2">Jayapura 14</p>
                         <div id="logo-hero">
                             <img src="img/RevoU.svg" alt="revoU">
                             <img src="img/logo-white@2x-km.svg" alt="Kampus Merdeka">
@@ -55,26 +58,53 @@
                 </section>
 
                 <!-- section business overview -->
-                <section class="container-fluid">
-                    <div class="subjudul">
+                <section class="container-fluid row">
+                    <div class="subjudul" data-aos="fade">
                         <h2>Business Overview</h2>
                     </div>
-                        <div class="row secondary">
-                            <div class="column">
-                                <h3>GRAFIK BACKGROUND ANALISIS AWAL DISINI</h3>
+                    <div class="row secondary">
+                        <div class="column" data-aos="fade-up">
+                            <div class="bisnis-overview">
+                                <div class="bisnis-img">
+                                    <canvas id="profitChart"></canvas>
+                                </div>
                             </div>
-                            <div class="column">
-                                <p>Based on our analysis, we have identified a substantial decrease in profit percentage from 2016 to 2017, amounting to only 14.24%. This decline is below the average percentage increase from 2014 to 2017 and can be attributed to the imbalance between discount applications and total sales. As a result, we have presented the analysis results on this website to provide comprehensive information about Giant Superstore.</p>
-                                <h3>Problem Statement</h3>
-                                <p>Why did the profit increase only 14.24% from 2016 to 2017? → Identifying the variables with a strong influence on the 14.24% profit increase.</p>
+                            <div class="bisnis-tabel">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Year</th>
+                                            <th>Percentage</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>2014 - 2015</td>
+                                            <td>24,37%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2015 - 2016</td>
+                                            <td>32,74%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2016 - 2017</td>
+                                            <td>14,24%</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-                
+                        <div class="column" data-aos="fade-left">
+                            <p>Based on our analysis, we have identified a substantial decrease in profit percentage from 2016 to 2017, amounting to only 14.24%. This decline is below the average percentage increase from 2014 to 2017 and can be attributed to the imbalance between discount applications and total sales. As a result, we have presented the analysis results on this website to provide comprehensive information about Giant Superstore.</p>
+                            <h3>Problem Statement</h3>
+                            <p>Why did the profit increase only 14.24% from 2016 to 2017? → Identifying the variables with a strong influence on the 14.24% profit increase.</p>
+                        </div>
+                    </div>
                 </section>
 
                 <!-- section dashboard -->
-                <section class="container-fluid">
-                    <div class="subjudul">
+                <section class="container-fluid row">
+                    <div class="subjudul" data-aos="fade">
                         <h2>Dashboard Superstore 2017</h2>
                     </div>
                         <!-- SUMMARY CARD -->
@@ -129,7 +159,7 @@
                         <div class="dashboard">
                             <form action="./js/chart.js" class="filters select">
                                 <div class="select-dropdown">
-                                    <div class="select-btn btn1">
+                                    <div class="select-btn">
                                         <span class="btn-text">Order Date(Month)</span>
                                         <span class="arrow-dwn">
                                             <i class="fa fa-chevron-down"></i>
@@ -138,7 +168,7 @@
                                     <ul class="list-items order-month"></ul>
                                 </div>
                                 <div class="select-dropdown">
-                                    <div class="select-btn btn2">
+                                    <div class="select-btn">
                                         <span class="btn-text">Sub-category</span>
                                         <span class="arrow-dwn">
                                             <i class="fa fa-chevron-down"></i>
@@ -147,7 +177,7 @@
                                     <ul class="list-items sub-cat"></ul>
                                 </div>
                                 <div class="select-dropdown">
-                                    <div class="select-btn btn3">
+                                    <div class="select-btn">
                                         <span class="btn-text">Segment</span>
                                         <span class="arrow-dwn">
                                             <i class="fa fa-chevron-down"></i>
@@ -156,7 +186,7 @@
                                     <ul class="list-items segment"></ul>
                                 </div>
                                 <div class="select-dropdown">
-                                    <div class="select-btn btn4">
+                                    <div class="select-btn">
                                         <span class="btn-text">Region</span>
                                         <span class="arrow-dwn">
                                             <i class="fa fa-chevron-down"></i>
@@ -165,7 +195,7 @@
                                     <ul class="list-items region"></ul>
                                 </div>
                                 <div class="select-dropdown">
-                                    <div class="select-btn btn5">
+                                    <div class="select-btn">
                                         <span class="btn-text">State</span>
                                         <span class="arrow-dwn">
                                             <i class="fa fa-chevron-down"></i>
@@ -181,6 +211,21 @@
                                 <div class="chart-img">
                                     <canvas id="total_salesChart"></canvas>
                                 </div>
+                                <div class="btn-hasil">
+                                    <select id="sortOrder" onchange="sortTotalSales(this.value)">
+                                        <option value="asc">Sort by Sales Ascending</option>
+                                        <option value="desc">Sort by Sales Descending</option>
+                                    </select>
+                                    <button class="btn-primary" type="button" onclick="showInsightPopup()">Insight</button>
+                                </div>
+                                <!-- Popup Modal -->
+                                <div id="insightPopup" class="popup">
+                                    <div class="popup-content">
+                                        <i class="close" onclick="closeInsightPopup()">&times;</i>
+                                        <h3><span style="color: #0072f0; font-size: larger;">Insight</span><br>Total Sales by Category and Segment</h3>
+                                        <p>The category with the largest sales based on the three segments is <b>Furniture Category</b>, specifically in the <b>Consumer Segment</b> with a total of <b>27.3M</b>. And the category with the lowest sales is <b>Category Office Supplies</b>, precisely in the <b>Home Office Segment</b> amounting to <b>5.5M</b>. <b>Consumer Segment</b> is the largest market among the three categories because its total sales are in the first place which is the highest sales</p>
+                                    </div>
+                                </div>
                             </div>
                             <div class="sales-profit chart-item">
                                 <div class="chart-text">
@@ -188,6 +233,24 @@
                                 </div>
                                 <div class="chart-img">
                                     <canvas id="sales_profitChart"></canvas>
+                                </div>
+                                <div class="btn-hasil">
+                                    <select id="sortOrder" onchange="sortSubCat(this.value)">
+                                        <option value="sales-asc">Sort by Sales Ascending</option>
+                                        <option value="sales-desc">Sort by Sales Descending</option>
+                                        <option value="profit-asc">Sort by Profit Ascending</option>
+                                        <option value="profit-desc">Sort by Profit Descending</option>
+                                    </select>
+                                    <button class="btn-primary" type="button" onclick="showSalesProfitSubCatInsight()">Insight</button>
+                                </div>
+                                <!-- Popup Modal -->
+                                <div id="SalesProfitSubCat" class="popup">
+                                    <div class="popup-content">
+                                        <i class="close" onclick="closeSalesProfitSubCatInsight()">&times;</i>
+                                        <!-- <span class="close" onclick="closeInsightPopup()">&times;</span> -->
+                                        <h3><span style="color: #0072f0; font-size: larger;">Insight</span><br>Sales & Profit by Sub-Category</h3>
+                                        <p>Based on the chart, it can be seen that several sub-categories show varying performance, including the <b>'Paper'</b> and <b>'Accessories'</b> sub-categories showing <b>very high</b> profits, <b>70.5M</b> and <b>47.8M</b> respectively, indicating that this product is </b>selling and profitable</b>. Meanwhile, the <b>'Tables'</b> sub-category had <b>negative</b> profits despite sales, indicating high operational costs or a less effective sales strategy. While the sub-categories <b>'Chairs'</b> and <b>'Phones'</b> showed <b>significant sales with good profits</b>, indicating the potential to focus on increasing sales.<br><br>Our recommendation is to focus sales strategies on sub-categories with high profits such as <b>'Paper'</b> and <b>'Accessories'</b>, and evaluate sub-categories with negative profits to increase profitability.</p>
+                                    </div>
                                 </div>
                             </div>
                             <div class="profit-region chart-item">
@@ -197,6 +260,17 @@
                                 <div class="chart-img">
                                     <canvas id="catbyprofitChart"></canvas>
                                 </div>
+                                <div class="btn-hasil">
+                                    <button class="btn-primary" type="button" onclick="showCatProfit()">Insight</button>
+                                </div>
+                                <!-- Popup Modal -->
+                                <div id="CatProfit" class="popup">
+                                    <div class="popup-content">
+                                        <i class="close" onclick="closeCatProfit()">&times;</i>
+                                        <h3><span style="color: #0072f0; font-size: larger;">Insight</span><br>Category by profit</h3>
+                                        <p>The chart shows <b>the total percentage of 100% Profit divided by each category</b>. The superstore has only three categories: office supplies, furniture and technology. The data shows that the furniture category has the lowest total profit, namely 14.15%, and office supplies have the highest total profit, 56.64%. <br><br>Our recommendation is to <b>maximize discount strategies</b> to encourage an increase in <b>furniture income</b> and also implement <b> cross-selling on favorite products outside of furniture</b>.</p>
+                                    </div>
+                                </div>
                             </div>
                             <div class="discount-quantity chart-item">
                                 <div class="chart-text">
@@ -204,6 +278,25 @@
                                 </div>
                                 <div class="chart-img">
                                     <canvas id="diskon_quantityChart"></canvas>
+                                </div>
+                                <div class="btn-hasil">
+                                    <select id="sortCriteria" onchange="sortDiskon()">
+                                        <option value="discount-asc">Discount Asc</option>
+                                        <option value="discount-desc">Discount Desc</option>
+                                        <option value="quantity-asc">Quantity Asc</option>
+                                        <option value="quantity-desc">Quantity Desc</option>
+                                        <option value="date-asc">Date Asc</option>
+                                        <option value="date-desc">Date Desc</option>
+                                    </select>
+                                    <button class="btn-primary" type="button" onclick="showDiskonKuantiti()">Insight</button>
+                                </div>
+                                <!-- Popup Modal -->
+                                <div id="insightDiskon" class="popup">
+                                    <div class="popup-content">
+                                        <i class="close" onclick="closeDiskonKuantiti()">&times;</i>
+                                        <h3><span style="color: #0072f0; font-size: larger;">Insight</span><br>Discount and Quantity</h3>
+                                        <p><b>The highest quantity</b> was in <b>November</b> and <b>September</b> 2017, amounting to <b>149</b>. <b>The lowest quantity</b>, on the other hand, was found in <b>February</b> 2017 with a total of <b>8</b>. <b>The highest discount</b> occurred in <b>September</b> 2017, totaling <b>34</b>, while <b>the lowest discounts</b> were in <b>May</b> and <b>March</b> 2017, with a total of <b>6</b >.<br><br> Both <b>discount and quantity fluctuation throughout the year</b>. The discount ranged from 6 to 34, while the quantity ranged from 12 to 149. There were instances where the discount value and quantity <b> were not aligned</b>. For example, in July, the quantity was relatively high at 73, but the discount was low at 8.</p>
+                                    </div>
                                 </div>
                             </div>
                             <div class="abs-aov chart-item">
@@ -213,6 +306,24 @@
                                 <div class="chart-img">
                                     <canvas id="abs_aovChart"></canvas>
                                 </div>
+                                <div class="btn-hasil">
+                                    <select id="sortabsaov" onchange="onSortOrderChange()">
+                                        <option value="abs-asc">ABS Asc</option>
+                                        <option value="abs-desc">ABS Desc</option>
+                                        <option value="aov-asc">AOV Asc</option>
+                                        <option value="aov-desc">AOV Desc</option>
+                                    </select>
+                                    <button class="btn-primary" type="button" onclick="showAbsAov()">Insight</button>
+                                </div>
+                                <!-- Popup Modal -->
+                                <div id="insightAbsAov" class="popup">
+                                    <div class="popup-content">
+                                        <i class="close" onclick="closeAbsAov()">&times;</i>
+                                        <!-- <span class="close" onclick="closeInsightPopup()">&times;</span> -->
+                                        <h3><span style="color: #0072f0; font-size: larger;">Insight</span><br>ABS & AOV in Segment</h3>
+                                        <p>This data clearly indicates that the <b>Home Office</b> segment outperforms the <b>Consumer</b> and <b>Corporate</b> segments. With an <b>ABS of 6.87</b> and the highest <b>AOV of 87.2K</b>, the Home Office segment demonstrates that each transaction in this segment tends to have a high value, despite the relatively low number of items purchased.<br><br> On the other hand, the <b>Consumer Segment</b> and the <b>Corporate segment</b> exhibit <b>ABS values of 6.4 and 6.89</b> respectively, with <b>AOV values of 66.9K and 64.5K</b>. This shows a more balanced approach in the Consumer Segment and a higher number of items purchased in the Corporate segment, but with a lower value per transaction compared to the Home Office segment.<br><br>In conclusion, although the Corporate segment has the highest ABS, it is more profitable to focus on increasing the transaction value in the Corporate and Consumer segments to approach the Home Office AOV value.</p>
+                                    </div>
+                                </div>
                             </div>
                             <div class="heatmap-sales chart-item">
                                 <div class="chart-text">
@@ -220,6 +331,17 @@
                                 </div>
                                 <div class="chart-img heatlayer" id="heatmapChart">
                                     <!-- <canvas id="heatmapChart"></canvas> -->
+                                </div>
+                                <div class="btn-hasil">
+                                    <button class="btn-primary" type="button" onclick="showInsightHeatmap()">Insight</button>
+                                </div>
+                                <!-- Popup Modal -->
+                                <div id="insightHeatMap" class="popup">
+                                    <div class="popup-content">
+                                        <i class="close" onclick="closeInsightHeatmap()">&times;</i>
+                                        <h3><span style="color: #0072f0; font-size: larger;">Insight</span><br>Heatmap Sales by City</h3>
+                                        <p>According to the "Sales by City" heatmap, the highest concentration of sales is in <b>key regions such as California, Texas, and the East</b>. This indicates a very strong market in these areas, with significant sales activity in cities such as Los Angeles, Houston, New York, and Philadelphia. <br> Our recommendations include <b>maximizing potential in high-sales cities while developing city-specific strategies for areas with low sales</b> to increase overall profits.</p>
+                                    </div>
                                 </div>
                             </div>
                             <div class="table state-lowest">
@@ -300,9 +422,6 @@
                                 <a href="#" target="_blank">Our Clean Dataset</a>
                             </li>
                             <li>
-                                <a href="#" target="_blank">Data Analytics Deck</a>
-                            </li>
-                            <li>
                                 <a href="https://www.figma.com/" target="_blank">Root Cause Analysis</a>
                             </li>
                         </ul>
@@ -314,6 +433,7 @@
             </footer>
             
             <script src="./js/chart.js"></script>
+            <script src="./js/overview.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
             <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -321,5 +441,14 @@
             <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
             <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
             <!-- <script src="./js/leaflet-heat.js"></script> -->
+            <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+            <script>
+                AOS.init({
+                    duration: 1000,
+                    once: true,
+                    easing: 'ease-in-out',
+                    // mirror: true
+                });
+            </script>
         </body>
 </html>
