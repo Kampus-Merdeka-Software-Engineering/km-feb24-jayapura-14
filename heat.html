@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+        <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
+        <title>Heatmap Jayapura 14</title>
+        <style>
+            #map {position: absolute; top: 0; bottom: 0; left:0; right: 0;}
+        </style>
+    </head>
+    <body>
+        <div id="map"></div>
+
+        <script>
+            var L = window.L;
+            var map = L.map('map').setView([37.8, -96], 4);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            document.addEventListener("DOMContentLoaded", function(){
+                async function fetchCityCoordinates() {
+                    const response = await fetch('Data/cityCoordinates.json');
+                    const cityCoordinates = await response.json();
+                    return cityCoordinates;
+                }
+
+                async function fetchDataAndMerge() {
+                    const cityCoordinates = await fetchCityCoordinates();
+                    const response = await fetch("./Data/Superstore.json");
+                    const data = await response.json();
+
+                    function calculateIntensity(totalSales) {
+                        if (totalSales >= 10000) return 1;
+                        if (totalSales >= 5000) return 0.75;
+                        if (totalSales >= 1000) return 0.5;
+                        return 0.25;
+                    }
+
+                    function mergeDataWithCoordinates(data) {
+                        const salesByCity = data.reduce((acc, sale) => {
+                            if (!acc[sale.City]) {
+                                acc[sale.City] = 0;
+                            }
+                            acc[sale.City] += parseFloat(sale.Sales);
+                            return acc;
+                        }, {});
+
+                        return cityCoordinates.map(city => {
+                            const totalSales = salesByCity[city.City] || 0;
+                            const intensity = calculateIntensity(totalSales);
+                            return {
+                                City: city.City,
+                                Coordinates: [parseFloat(city.Lat), parseFloat(city.Lng)],
+                                Sales: totalSales,
+                                Intensity: intensity
+                            };
+                        }).filter(item => item.Sales > 0);
+                    }
+
+                    const mergedData = mergeDataWithCoordinates(data);
+                    console.log(mergedData);
+
+                    var heatData = mergedData.map(item => [...item.Coordinates, item.Intensity]);
+
+                    var heat = L.heatLayer(heatData, {
+                        radius: 25,
+                        blur: 15,
+                        maxZoom: 17,
+                        minOpacity: 0.4,
+                        gradient: {0.4: 'green', 0.65: 'yellow', 1: 'red'}
+                    }).addTo(map);
+                }
+
+                fetchDataAndMerge();
+            });
+            
+        </script>
+    </body>
+</html>

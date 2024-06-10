@@ -3,7 +3,6 @@
         <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
-
             <!-- link icon font awesome -->
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
 
@@ -329,13 +328,10 @@
                                 <div class="chart-text">
                                     <p>Heat Map Sales By City</p>
                                 </div>
-                                <div class="chart-img heatlayer" id="heatmapChart">
-                                    <!-- <canvas id="heatmapChart"></canvas> -->
-                                </div>
+                                <iframe class="chart-img" src="heat.html" frameborder="0"></iframe>
                                 <div class="btn-hasil">
                                     <button class="btn-primary" type="button" onclick="showInsightHeatmap()">Insight</button>
                                 </div>
-                                <!-- Popup Modal -->
                                 <div id="insightHeatMap" class="popup">
                                     <div class="popup-content">
                                         <i class="close" onclick="closeInsightHeatmap()">&times;</i>
@@ -380,6 +376,10 @@
                             </div>
                         </div>
                     </div>
+                </section>
+                <section class="container-fluid row">
+                    <p style="font-weight: bolder;">Heatmap Sales by City</p>
+                    <div class="mapheat" id="map"></div>
                 </section>
             </main>
 
@@ -438,9 +438,6 @@
             <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
             <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
             <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
-            <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-            <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
-            <!-- <script src="./js/leaflet-heat.js"></script> -->
             <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
             <script>
                 AOS.init({

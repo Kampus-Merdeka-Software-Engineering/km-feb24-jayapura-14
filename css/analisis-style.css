@@ -374,17 +374,6 @@ div.dt-container .dt-paging .dt-paging-button.disabled:active {
     float: none;
 }
 
-/* === HEAT MAP === */
-#heatmapChart {
-    height: auto;
-    width: 100%;
-}
-.heatlayer {
-    width: 100% !important;
-    height: 100% !important;
-    max-width: 100%;
-    max-height: 100%;
-}
 /* -=== pop up==== */
 .popup {
     display: none;

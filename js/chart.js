@@ -14,19 +14,6 @@ selectbtn.forEach((selectBtn) => {
   });
 });
 
-let cityCoordinates = {};
-function mergeDataWithCoordinates(filteredSalesData) {
-    return filteredSalesData.map(sale => {
-        const cityCoord = cityCoordinates.find(city => city.City === sale.City);
-        if (cityCoord) {
-            return {
-                ...sale,
-                Coordinates: [parseFloat(cityCoord.Lat), parseFloat(cityCoord.Lng)]
-            };
-        }
-        return sale;
-    }).filter(item => item.Coordinates); // Filter out entries without coordinates
-}
 document.addEventListener("DOMContentLoaded", function(){
     async function fetchCityCoordinates() {
         const response = await fetch('Data/cityCoordinates.json');
@@ -286,15 +273,6 @@ function displayData(data) {
         const uniqueState = new Set(state);
         numState = uniqueState.size;
     }
-    // Num of City = count_distinct(City)
-    let numCity = 0;
-    if (data.length > 0) {
-        const city = data.map((item) => item["City"]);
-        const uniqueCity = new Set(city);
-        numCity = uniqueCity.size;
-    }
-    console.log(numCity);
-    
     
     document.getElementById("sales-summary").textContent = `$${totalSales.toLocaleString()}`;
     document.getElementById("profit-summary").textContent = `$${totalProfit.toLocaleString()}`;
@@ -310,39 +288,9 @@ function displayData(data) {
 	buatCatbyProfit(data); // catbyorder_profitChart
     buatStatebyLowest(data) // statelowest_salesTable
 	buatCitybyLowSales(data); // citylowest_salesTable
-	// buatHeatmap(data); // heatMapChart
     
-    // Merge data with coordinates and update heatmap
-    const mergedData = mergeDataWithCoordinates(data);
-    console.log(mergedData);
-    buatHeatmap(mergedData); // heatMapChart
 }
 
-// HEAT MAP
-let heat;
-function buatHeatmap(data) {
-    const map = L.map('heatmapChart').setView([37.8, -96], 4);
-    
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-    
-    // Remove previous heatmap layer if it exists
-    if (window.heat) {
-        map.removeLayer(window.heat);
-    }
-    
-    // Prepare the heatmap data
-    const heatData = data.map(item => [...item.Coordinates, parseFloat(item.Sales)]);
-    
-    // Create and add the heatmap layer to the map
-    window.heat = L.heatLayer(heatData, {
-        radius: 25,
-        blur: 15,
-        maxZoom: 17,
-        gradient: {0.4: 'green', 0.65: 'yellow', 1: 'red'}
-    }).addTo(map);
-}
 
 let total_salesChart;
 let totalsalesData;
@@ -440,15 +388,12 @@ function buatTotalSalesbyCatAndSeg(data) {
                     },
                 },
                 y: {
-                    // beginAtZero: true,
                     title: {
                         display: true,
                         text: 'Total Sales'
                     },
                     ticks: {
-                        // stepSize: 5000,
                         beginAtZero: true,
-                        // color: tickColor,
                         callback: function (value) {
                             if (value >= 1e6) {
                                 return (value / 1e6) + 'M'; // Tampilkan dalam jutaan
@@ -1145,6 +1090,7 @@ function buatStatebyLowest(data) {
         }
     });
 }
+// =================================
 // CITY BY LOWEST PROFIT
 let dataTable;
 function buatCitybyLowSales(data){
@@ -1160,10 +1106,6 @@ function buatCitybyLowSales(data){
         aggregatedData[city].totalSales += sales;
         aggregatedData[city].totalProfit += profit;
     });
-
-    // const sortedData = Object.keys(aggregatedData).map(city => {
-    //     return { city: city, state: state, totalSales: aggregatedData[city].totalSales, totalProfit: aggregatedData[city].totalProfit };
-    // }).sort((a, b) => a.totalProfit - b.totalProfit);
     const sortedData = Object.values(aggregatedData).sort((a, b) => a.totalProfit - b.totalProfit);
 
     // Clear previous data if DataTable already initialized
@@ -1202,53 +1144,10 @@ function buatCitybyLowSales(data){
         }
     });
 }
-
+// insight heatmap
 function showInsightHeatmap() {
     document.getElementById("insightHeatMap").style.display = "block";
 }
 function closeInsightHeatmap() {
     document.getElementById("insightHeatMap").style.display = "none";
 }
-
-// function buatHeatmap(data){
-//     const map = L.map('heatmapChart').setView([37.8, -96], 4);
-    
-//     var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-//         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-//     })
-//     osm.addTo(map);
-    
-//     //buat data yg masuk dinamis, klo ada data bisa didestroy dulu
-//     if (heat) {
-//         map.removeLayer(heat);
-//     }
-//     // Merge filtered sales data with city coordinates
-//     const mergedData = mergeDataWithCoordinates(data);
-    
-//     // Prepare the heatmap data
-//     const heatData = mergedData.map(item => [...item.Coordinates, item.Sales]);
-//     console.log(heatData);
-//     // const heatData = data.map(item => [...item.Coordinates, item.Sales]);
-//     // const heatData = data.filter(item => Array.isArray(item.Coordinates) && item.Coordinates.length === 2).map(item => [...item.Coordinates, item.Sales]);
-
-//     heat = L.heatLayer(heatData, {
-//         radius: 25,
-//         blur: 15,
-//         maxZoom: 17,
-//         gradient: {0.4: 'green', 0.65: 'yellow', 1: 'red'}
-//     }).addTo(map);
-// }
-
-// function getUniqueCities(data) {
-//     const cityCount = {};
-//     data.forEach(item => {
-//         const city = item.City;
-//         if (cityCount[city]) {
-//             cityCount[city]++;
-//         } else {
-//             cityCount[city] = 1;
-//         }
-//     });
-//     console.log(cityCount)
-//     return data.toLocaleString();
-// }
