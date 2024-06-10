@@ -467,6 +467,8 @@ function buatTotalSalesbyCatAndSeg(data) {
         },
         plugins: [ChartDataLabels],
     });
+    document.getElementById("sortOrder").value = "asc";
+    sortTotalSales('asc');
 }
 function sortTotalSales(order) {
     const labels = ["Furniture", "Office Supplies", "Technology"];
@@ -963,7 +965,7 @@ function buatABSnAOVinSeg(data) {
         },
         plugins: [ChartDataLabels],
     });
-    document.getElementById("sortOrder").value = "abs-asc";
+    document.getElementById("sortabsaov").value = "abs-asc";
     sortABSAOV();
 }
 function onSortOrderChange() {

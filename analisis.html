@@ -212,7 +212,7 @@
                                     <canvas id="total_salesChart"></canvas>
                                 </div>
                                 <div class="btn-hasil">
-                                    <select id="sortOrder" onchange="sortTotalSales(this.value)">
+                                    <select id="sortOrder" class="dropdown dropbtn" onchange="sortTotalSales(this.value)">
                                         <option value="asc">Sort by Sales Ascending</option>
                                         <option value="desc">Sort by Sales Descending</option>
                                     </select>
@@ -235,7 +235,7 @@
                                     <canvas id="sales_profitChart"></canvas>
                                 </div>
                                 <div class="btn-hasil">
-                                    <select id="sortOrder" onchange="sortSubCat(this.value)">
+                                    <select id="sortSubCat" class="dropdown dropbtn" onchange="sortSubCat(this.value)">
                                         <option value="sales-asc">Sort by Sales Ascending</option>
                                         <option value="sales-desc">Sort by Sales Descending</option>
                                         <option value="profit-asc">Sort by Profit Ascending</option>
@@ -280,13 +280,13 @@
                                     <canvas id="diskon_quantityChart"></canvas>
                                 </div>
                                 <div class="btn-hasil">
-                                    <select id="sortCriteria" onchange="sortDiskon()">
-                                        <option value="discount-asc">Discount Asc</option>
-                                        <option value="discount-desc">Discount Desc</option>
-                                        <option value="quantity-asc">Quantity Asc</option>
-                                        <option value="quantity-desc">Quantity Desc</option>
-                                        <option value="date-asc">Date Asc</option>
-                                        <option value="date-desc">Date Desc</option>
+                                    <select id="sortCriteria" class="dropdown dropbtn" onchange="sortDiskon()">
+                                        <option value="discount-asc">Discount Ascending</option>
+                                        <option value="discount-desc">Discount Descending</option>
+                                        <option value="quantity-asc">Quantity Ascending</option>
+                                        <option value="quantity-desc">Quantity Descending</option>
+                                        <option value="date-asc">Date Month Ascending</option>
+                                        <option value="date-desc">Date Month Descending</option>
                                     </select>
                                     <button class="btn-primary" type="button" onclick="showDiskonKuantiti()">Insight</button>
                                 </div>
@@ -307,11 +307,11 @@
                                     <canvas id="abs_aovChart"></canvas>
                                 </div>
                                 <div class="btn-hasil">
-                                    <select id="sortabsaov" onchange="onSortOrderChange()">
-                                        <option value="abs-asc">ABS Asc</option>
-                                        <option value="abs-desc">ABS Desc</option>
-                                        <option value="aov-asc">AOV Asc</option>
-                                        <option value="aov-desc">AOV Desc</option>
+                                    <select id="sortabsaov" class="dropdown dropbtn" onchange="onSortOrderChange()">
+                                        <option value="abs-asc">ABS Ascending</option>
+                                        <option value="abs-desc">ABS Descending</option>
+                                        <option value="aov-asc">AOV Ascending</option>
+                                        <option value="aov-desc">AOV Descending</option>
                                     </select>
                                     <button class="btn-primary" type="button" onclick="showAbsAov()">Insight</button>
                                 </div>
@@ -416,13 +416,13 @@
                         <h3 class="footer-text">External Links</h3>
                         <ul>
                             <li>
-                                <a href="https://www.kaggle.com/" target="_blank">The Dataset</a>
+                                <a href="https://www.kaggle.com/datasets/vivek468/superstore-dataset-final" target="_blank">The Dataset</a>
                             </li>
                             <li>
-                                <a href="#" target="_blank">Our Clean Dataset</a>
+                                <a href="https://docs.google.com/spreadsheets/d/1FZtT9kVTYW3CS19RInLiOJrsRrwfn94j/edit?usp=sharing&ouid=102222247887085481890&rtpof=true&sd=true" target="_blank">Our Clean Dataset</a>
                             </li>
                             <li>
-                                <a href="https://www.figma.com/" target="_blank">Root Cause Analysis</a>
+                                <a href="https://www.figma.com/board/OgBRxHR2wltlPVgFOdMrSB/RCA?node-id=0-1&t=eviz3Cjp0u7kq3Ii-1" target="_blank">Root Cause Analysis</a>
                             </li>
                         </ul>
                     </div>
