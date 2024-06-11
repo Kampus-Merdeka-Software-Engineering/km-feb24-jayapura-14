@@ -1,14 +1,14 @@
-<img src="./img/logo/Logo-white.svg" width="100%">
-
 <div align="center"><a name="readme-top"></a>
 
 # Kampus Merdeka February 2024 RevoU-Jayapura ✨
+
+<img src="./img/logo/Logo-white.svg" width="100%" height="200px">
   
-## Jayapura-14's Analytical Results Dashboard Website 🖥
+## 🖥 Jayapura-14's Analytical Results Dashboard Website 🖥
 
-## Giant Superstore 🛒
+## 🛒 Giant Superstore 🛒
 
-Capstone project created by <b>Jayapura 14</b> featuring web development and analytical data from Giant Superstore. <br/>
+Capstone project created by <b>Jayapura 14</b> featuring web development and analytical data for Giant Superstore. <br/>
 
 ## 🔥 Contributor 🔥
 
@@ -28,6 +28,7 @@ Capstone project created by <b>Jayapura 14</b> featuring web development and ana
 |    Syhti Zyahtini Wabulla     |    _Pitch Deck_     |
 
 </div>
+
 ## Deployment / Production
 
 |   The Superstore Analysis     | [Click Here to Access Website](https://km-feb24-jayapura-14.vercel.app/) |
