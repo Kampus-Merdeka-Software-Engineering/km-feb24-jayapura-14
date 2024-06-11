@@ -1,4 +1,4 @@
-![Logo](./img/logo/Logo-white.svg)
+<img src="./img/logo/Logo-white.svg" width="100%">
 
 <div align="center"><a name="readme-top"></a>
 
@@ -29,5 +29,6 @@ Capstone project created by <b>Jayapura 14</b> featuring web development and ana
 
 </div>
 ## Deployment / Production
+
 |   The Superstore Analysis     | [Click Here to Access Website](https://km-feb24-jayapura-14.vercel.app/) |
 | ----------------------------- | ------------------------------------------------------------------------ |
