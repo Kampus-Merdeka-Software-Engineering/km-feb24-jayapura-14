@@ -2,7 +2,9 @@
 
 <div align="center"><a name="readme-top"></a>
 # Kampus Merdeka February 2024 RevoU-Jayapura ✨
+  
 ## Jayapura-14's Analytical Results Dashboard Website 🖥
+
 ## Giant Superstore 🛒
 
 Capstone project created by <b>Jayapura 14</b> featuring web development and analytical data from Giant Superstore. <br/>
