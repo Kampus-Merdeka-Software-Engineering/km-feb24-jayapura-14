@@ -27,9 +27,9 @@ Capstone project created by <b>Jayapura 14</b> featuring web development and ana
 |     Devina Monic Ritonga      |    _Pitch Deck_     |
 |    Syhti Zyahtini Wabulla     |    _Pitch Deck_     |
 
-</div>
-
 ## Deployment / Production
 
 |   The Superstore Analysis     | [Click Here to Access Website](https://km-feb24-jayapura-14.vercel.app/) |
 | ----------------------------- | ------------------------------------------------------------------------ |
+
+</div>
