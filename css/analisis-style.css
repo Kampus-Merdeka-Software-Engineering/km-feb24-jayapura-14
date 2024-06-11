@@ -384,7 +384,7 @@ div.dt-container .dt-paging .dt-paging-button.disabled:active {
     display: none;
     position: fixed;
     z-index: 999;
-    padding-top: 10%;
+    padding-top: 12%;
     left: 0;
     top: 0;
     width: 100%;
