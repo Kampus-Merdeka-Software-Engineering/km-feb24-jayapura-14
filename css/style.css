@@ -153,6 +153,7 @@ a:hover {
     border: none;
     font-size: 16px;
     cursor: pointer;
+    overflow: hidden;
 }
 
 .dropbtn:hover {
@@ -743,14 +744,6 @@ div.social {
     #check:checked~ul {
         top: 65px;
     }
-
-    /* .dropbtn {
-        font-size: 16px;
-    }
-
-    .dropdown-content {
-        bottom: 0;
-    } */
 
     /* body */
     .overview, .analysis {

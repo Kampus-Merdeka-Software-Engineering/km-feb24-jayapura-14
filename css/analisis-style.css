@@ -59,9 +59,14 @@ h2:hover {
 .card:hover {
     background: #0072f0;
     box-shadow: 0 7px 25px 0 rgba(0, 114, 240, 0.5);
-    .card-name, .icon-box, .number {
+    /* .card-name, .icon-box, .number {
         color: #fff;
-    }
+    } */
+}
+.card:hover .card-name, 
+.card:hover .icon-box, 
+.card:hover .number {
+    color: #fff !important;
 }
 /* === dashboard === */
 .dashboard {
@@ -468,8 +473,7 @@ div.dt-container .dt-paging .dt-paging-button.disabled:active {
         gap: 8px;
         justify-content: center;
     }
-    form .select-dropdown .select-btn,
-    .select-sort {
+    form .select-dropdown .select-btn {
         /* width: max-content; */
         width: 150px;
         padding: 0 16px;
@@ -477,6 +481,11 @@ div.dt-container .dt-paging .dt-paging-button.disabled:active {
     form .select-btn .btn-text,
     .sort-btn{
         font-size: smaller;
+    }
+
+    .popup-content {
+        padding: 32px;
+        width: 80%;
     }
 
     .total-sales, .discount-quantity, .abs-aov, .heatmap-sales, .state-lowest,.sales-profit, .profit-region{
@@ -512,28 +521,35 @@ div.dt-container .dt-paging .dt-paging-button.disabled:active {
         height: 40px;
         margin-left: 16px;
     }
-    form .select-dropdown .select-btn,
-    .select-sort {
+    form .select-dropdown .select-btn {
         width: 120px;
     }  
+    .popup-content {
+        padding: 24px;
+        width: 80%;
+    }
 }
-@media screen and (max-width:375px){
-    .cards {
-        grid-template-columns: repeat(1, 1fr);
-    }
-    form .select-dropdown .select-btn,
-    .select-sort {
-        width: 250px;
-    }
+@media screen and (max-width: 410px) {
     .chart-item .btn-hasil {
         justify-content: space-evenly;
-        gap: 2%;
+        gap: 8%;
         align-self: center;
         padding: 8px;
     }
     .chart-item .btn-hasil select{
         width: 100%;
         overflow: hidden;
+    }
+}
+@media screen and (max-width:375px){
+    .cards {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    form .select-dropdown .select-btn {
+        width: 250px;
+    }
+    .chart-item .btn-hasil {
+        gap: 2%;
     }
 }
 @media screen and (max-width:320px){
