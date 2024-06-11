@@ -4,9 +4,7 @@
 
 <img src="./img/logo/Logo-white.svg" width="100%" height="200px">
   
-## 🖥 Jayapura-14's Analytical Results Dashboard Website 🖥
-
-## 🛒 Giant Superstore 🛒
+## 🖥 Jayapura-14's Analytical Results Dashboard Website 🖥 <br> 🛒 Giant Superstore 🛒
 
 Capstone project created by <b>Jayapura 14</b> featuring web development and analytical data for Giant Superstore. <br/>
 
