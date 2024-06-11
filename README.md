@@ -8,7 +8,7 @@
 
 Capstone project created by <b>Jayapura 14</b> featuring web development and analytical data from Giant Superstore. <br/>
 
-## Contributor ![icon](https://media1.tenor.com/m/uTJev41fOAwAAAAd/ates.gif)
+## 🔥 Contributor 🔥
 
 |          **Name**             |      **Role**       |
 | :---------------------------: | :-----------------: |
@@ -26,6 +26,7 @@ Capstone project created by <b>Jayapura 14</b> featuring web development and ana
 |    Syhti Zyahtini Wabulla     |    _Pitch Deck_     |
 
 </div>
+<div align="left"><a name="readme-bottom"></a>
 ## Deployment / Production
 
 | ----------------------------- | ------------------------------------------------------------------------ |
