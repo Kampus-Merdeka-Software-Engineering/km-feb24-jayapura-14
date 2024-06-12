@@ -1074,6 +1074,7 @@ function buatStatebyLowest(data) {
 
     // Initialize DataTable with pagination and search features
     statelowest_salesTable = $('#statelowest_salesTable').DataTable({
+        "responsive": true, // Enable responsive mode
         "pageLength": 10,
         "searching": true,
         "ordering": true,
@@ -1087,7 +1088,11 @@ function buatStatebyLowest(data) {
                 "next": "&#8250;",
                 "previous": "&#8249;"
             }
-        }
+        },
+        "columnDefs": [
+            { "responsivePriority": 1, "targets": 0 }, // First column (state) gets highest priority
+            { "responsivePriority": 2, "targets": 1 }  // Second column (total sales) gets second priority
+        ]
     });
 }
 // =================================
@@ -1128,6 +1133,7 @@ function buatCitybyLowSales(data){
     });
     // Initialize DataTable with pagination and search features
     dataTable = $('#citylowest_salesTable').DataTable({
+        "responsive": true, // Enable responsive mode
         "pageLength": 10,
         "searching": true,
         "ordering": true,
@@ -1141,7 +1147,13 @@ function buatCitybyLowSales(data){
                 "next": "&#8250;",
                 "previous": "&#8249;"
             }
-        }
+        },
+        "columnDefs": [
+            { "responsivePriority": 1, "targets": 0 }, // First column (city) gets highest priority
+            { "responsivePriority": 2, "targets": 1 }, // Second column (state) gets second priority
+            { "responsivePriority": 3, "targets": 2 }, // Third column (total sales) gets third priority
+            { "responsivePriority": 4, "targets": 3 }  // Fourth column (total profit) gets fourth priority
+        ]
     });
 }
 // insight heatmap
